@@ -7,6 +7,7 @@ public class Player : Entity
 
     [Header("Attack details")]
     public Vector2[] attackMovement;
+    public float counterAttackDuration=.2f; 
 
     public bool isBusy { get; private set; }
     [Header("Move info")]
@@ -14,8 +15,6 @@ public class Player : Entity
     public float jumpForce;
 
     [Header("Dash info")]
-    [SerializeField] private float dashCooldown;
-    private float dashUsageTimer;
     public float dashSpeed;
     public float dashDuration;
     public float dashDir { get; private set; }
@@ -33,6 +32,7 @@ public class Player : Entity
     public PlayerDashState dashState { get; private set; }
 
     public PlayerPrimaryAttackState primaryAttack { get; private set; }
+    public PlayerCounterAttack counterAttack { get; private set; }
     #endregion
 
     public override void Awake()
@@ -49,6 +49,7 @@ public class Player : Entity
         wallJump = new PlayerWallJumpState(this, stateMachine, "Jump");
 
         primaryAttack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
+        counterAttack = new PlayerCounterAttack(this, stateMachine, "CounterAttack");
     }
 
     public override void Start()
@@ -75,18 +76,16 @@ public class Player : Entity
     }
 
     public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
-
+  
     private void CheckForDashInput()
     {
         if (IsWallDetected())
             return;
 
-        dashUsageTimer -= Time.deltaTime;
 
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer < 0)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
         {
-            dashUsageTimer = dashCooldown;
             dashDir = Input.GetAxisRaw("Horizontal");
 
             if (dashDir == 0)
