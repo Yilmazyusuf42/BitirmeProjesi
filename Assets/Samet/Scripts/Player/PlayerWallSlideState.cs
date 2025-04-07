@@ -16,6 +16,7 @@ public class PlayerWallSlideState : PlayerState
     public override void Exit()
     {
         base.Exit();
+
     }
 
     public override void Update()
@@ -38,6 +39,8 @@ public class PlayerWallSlideState : PlayerState
 
         if(player.IsGroundDetected())
                 stateMachine.ChangeState(player.idleState);
+        if(!player.IsWallDetected())
+            stateMachine.ChangeState(player.idleState);
 
     }
 
