@@ -24,7 +24,10 @@ public class PlayerAirState : PlayerState
 
 
         if (player.IsWallDetected())
+        {
             stateMachine.ChangeState(player.wallSlide);
+        }
+       
 
         if(player.IsGroundDetected())
             stateMachine.ChangeState(player.idleState);

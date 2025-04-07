@@ -20,8 +20,8 @@ public class Entity : MonoBehaviour
     [SerializeField] protected Vector2 knockBackDirection;
     protected bool isKnocked;
     public float     knockBackTime;
-    [Header("Collision info")]
 
+    [Header("Collision info")]
     [SerializeField] protected Transform groundCheck;
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected Transform wallCheck;
