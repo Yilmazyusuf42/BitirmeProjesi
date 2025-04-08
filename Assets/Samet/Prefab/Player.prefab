@@ -121,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 8943072037029687539}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.15, y: 0.45, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -309,8 +309,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25239474}
-  m_Size: {x: 0.5, y: 1.2980083}
+  m_Offset: {x: -0.09270567, y: -0.530239}
+  m_Size: {x: 0.88717973, y: 2.4218643}
   m_Direction: 0
 --- !u!114 &3571853388325568431
 MonoBehaviour:
@@ -329,9 +329,9 @@ MonoBehaviour:
   knockBackDirection: {x: 0, y: 0}
   knockBackTime: 0
   groundCheck: {fileID: 826872758401599080}
-  groundCheckDistance: 0.92
+  groundCheckDistance: 1.86
   wallCheck: {fileID: 5536402828368364606}
-  wallCheckDistance: 0.27
+  wallCheckDistance: 0.51
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
@@ -341,5 +341,5 @@ MonoBehaviour:
   counterAttackDuration: 0.2
   moveSpeed: 9
   jumpForce: 10
-  dashSpeed: 15
+  dashSpeed: 20
   dashDuration: 0.4
