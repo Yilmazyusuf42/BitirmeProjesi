@@ -18,7 +18,7 @@ public class Player : Entity
     public float dashSpeed;
     public float dashDuration;
     public float dashDir { get; private set; }
-
+    public float crouchSpeed=0.5f;
 
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
@@ -33,6 +33,10 @@ public class Player : Entity
 
     public PlayerPrimaryAttackState primaryAttack { get; private set; }
     public PlayerCounterAttack counterAttack { get; private set; }
+    public PlayerCrouchState crouchState { get; private set; }
+    public PlayerCrouchWalkState crouchWalkState { get; private set; }
+    public PlayerCrouchAttack crouchAttackState { get; private set; }
+    public PlayerCrouchIdle crouchIdle { get; private set; }
     #endregion
 
     public override void Awake()
@@ -47,6 +51,11 @@ public class Player : Entity
         dashState = new PlayerDashState(this, stateMachine, "Dash");
         wallSlide = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJump = new PlayerWallJumpState(this, stateMachine, "Jump");
+        crouchState = new PlayerCrouchState(this, stateMachine, "Crouch");
+        crouchWalkState= new PlayerCrouchWalkState(this, stateMachine, "CrouchWalk");
+        crouchAttackState = new PlayerCrouchAttack(this, stateMachine, "CrouchAttack");
+        crouchIdle = new PlayerCrouchIdle(this, stateMachine, "CrouchIdle");
+
 
         primaryAttack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         counterAttack = new PlayerCounterAttack(this, stateMachine, "CounterAttack");
