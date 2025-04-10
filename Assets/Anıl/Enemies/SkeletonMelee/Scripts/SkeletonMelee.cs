@@ -1,23 +1,23 @@
 using UnityEngine;
 
-public class WerewolfEnemy : MonoBehaviour
+public class SkeletonWarrior : MonoBehaviour
 {
-    public float moveSpeed = 3f;
+    public float moveSpeed = 2.5f;
     public float chaseRange = 5f;
-    public float runAttackRange = 4f;
-    public float attackRange = 3f;
+    public float runAttackRange = 3.5f;
+    public float attackRange = 1.5f;
 
-    public float attackDamage = 10f;
-    public float attackCooldown = 0.5f;
+    public float attackDamage = 8f;
+    public float attackCooldown = 0.6f;
     private float lastAttackTime;
 
-    public float maxHealth = 50f;
+    public float maxHealth = 30f;
     private float currentHealth;
 
-    private readonly float attack0Length = 0.5f; // Set manually for werewolf_attack_0
-    private readonly float attack1Length = 0.333f; // Set manually for werewolf_attack_1
-    private readonly float attack2Length = 0.417f; // Set manually for werewolf_attack_2
-    private readonly float runAttackLength = 0.583f; // Set manually for werewolf_runattack
+    private readonly float attack0Length = 0.417f;
+    private readonly float attack1Length = 0.5f;
+    private readonly float attack3Length = 0.333f;
+    private readonly float runAttackLength = 0.667f;
 
     private bool hasDoneRunAttack = false;
 
@@ -47,7 +47,7 @@ public class WerewolfEnemy : MonoBehaviour
     {
         if (isDeceased || playerHealth.IsDead())
         {
-            anim.SetBool("werewolf_run", false);
+            anim.SetBool("smelee_run", false);
             rb.velocity = Vector2.zero;
             CancelInvoke();
             isAttacking = false;
@@ -76,7 +76,7 @@ public class WerewolfEnemy : MonoBehaviour
         else if (distanceToPlayer > attackRange && distanceToPlayer <= chaseRange && !isAttacking)
         {
             ChasePlayer();
-            anim.SetBool("werewolf_run", true);
+            anim.SetBool("smelee_run", true);
             wasRunning = true;
 
             if (distanceToPlayer <= runAttackRange && Time.time > lastAttackTime + attackCooldown && wasRunning && !hasDoneRunAttack)
@@ -93,8 +93,9 @@ public class WerewolfEnemy : MonoBehaviour
         {
             if (distanceToPlayer > runAttackRange)
                 hasDoneRunAttack = false;
-            anim.SetBool("werewolf_run", false);
+            anim.SetBool("smelee_run", false);
             wasRunning = false;
+            anim.SetTrigger("smelee_idle");
         }
     }
 
@@ -115,8 +116,8 @@ public class WerewolfEnemy : MonoBehaviour
 
         isAttacking = true;
         hasDoneRunAttack = true;
-        anim.SetBool("werewolf_run", false);
-        anim.SetTrigger("werewolf_runattack");
+        anim.SetBool("smelee_run", false);
+        anim.SetTrigger("smelee_runattack");
         anim.SetBool("isAttacking", true);
         anim.Update(0f);
 
@@ -152,10 +153,10 @@ public class WerewolfEnemy : MonoBehaviour
         }
 
         isAttacking = true;
-        anim.SetBool("werewolf_run", false);
+        anim.SetBool("smelee_run", false);
         int attackChoice = Random.Range(0, 3);
         anim.SetFloat("attackType", attackChoice);
-        anim.SetTrigger("werewolf_attack");
+        anim.SetTrigger("smelee_attack");
         anim.SetBool("isAttacking", true);
         anim.Update(0f);
 
@@ -172,8 +173,8 @@ public class WerewolfEnemy : MonoBehaviour
         {
             case 0: return attack0Length;
             case 1: return attack1Length;
-            case 2: return attack2Length;
-            default: return 0.7f;
+            case 2: return attack3Length;
+            default: return 0.5f;
         }
     }
 
@@ -199,23 +200,23 @@ public class WerewolfEnemy : MonoBehaviour
     {
         isAttacking = false;
         wasRunning = false;
-        anim.ResetTrigger("werewolf_runattack");
-        anim.ResetTrigger("werewolf_attack");
+        anim.ResetTrigger("smelee_runattack");
+        anim.ResetTrigger("smelee_attack");
         anim.SetBool("isAttacking", false);
+        anim.SetTrigger("smelee_idle");
     }
 
     public void TakeDamage(float damage)
     {
         if (isDeceased) return;
         currentHealth -= damage;
-        anim.SetTrigger("werewolf_hurt");
         if (currentHealth <= 0) Die();
     }
 
     void Die()
     {
         isDeceased = true;
-        anim.SetBool("werewolf_dead", true);
+        anim.SetBool("smelee_dead", true);
         rb.velocity = Vector2.zero;
         collider.enabled = false;
         Destroy(gameObject, 2f);
