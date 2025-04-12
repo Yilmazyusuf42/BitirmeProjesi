@@ -12,31 +12,35 @@ public class PlayerCrouchState : PlayerState
     {
         base.Enter();
         player.SetZeroVelocity();
+        player.anim.SetBool("Crouch", true);
     }
 
     public override void Exit()
     {
         base.Exit();
+        player.anim.SetBool("Crouch", false);
     }
 
     public override void Update()
     {
         base.Update();
+
         if (xInput != 0)
         {
             stateMachine.ChangeState(player.crouchWalkState);
         }
-        //else
-        //{
-        //    stateMachine.ChangeState(player.crouchIdle);
-        //}
+        else
+        {
+            stateMachine.ChangeState(player.crouchIdle);
+        }
 
         if (Input.GetKeyDown(KeyCode.C))
         {
-            stateMachine.ChangeState(player.idleState);    
+            stateMachine.ChangeState(player.idleState);
         }
-           
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            stateMachine.ChangeState(player.crouchAttackState);       
+            stateMachine.ChangeState(player.crouchAttackState);
+
     }
 }

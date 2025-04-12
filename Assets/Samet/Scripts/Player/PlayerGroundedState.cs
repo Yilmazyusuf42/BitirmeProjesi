@@ -28,7 +28,8 @@ public class PlayerGroundedState: PlayerState
         if (Input.GetKeyDown(KeyCode.C))
         {
             player.SetZeroVelocity();
-            stateMachine.ChangeState(player.crouchState);
+            player.anim.SetBool("Crouch", true);
+            stateMachine.ChangeState(player.crouchIdle);
         }
             
         if (Input.GetKeyDown(KeyCode.Mouse0))

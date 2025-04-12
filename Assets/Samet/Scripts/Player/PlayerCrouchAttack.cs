@@ -11,21 +11,22 @@ public class PlayerCrouchAttack : PlayerState
     {
         base.Enter();
         stateTimer = .1f;
+        player.anim.SetBool("Crouch", true);
     }
 
     public override void Exit()
     {
         base.Exit();
+        player.anim.SetBool("Crouch", false);
     }
 
     public override void Update()
     {
         base.Update();
 
-        if (stateTimer < 0)
             player.SetZeroVelocity();
 
         if (triggerCalled)
-            stateMachine.ChangeState(player.crouchState);
+            stateMachine.ChangeState(player.crouchIdle);
     }
 }

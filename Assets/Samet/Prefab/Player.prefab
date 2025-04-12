@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 4023024614554606429}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.73, y: -0.15, z: 0}
+  m_LocalPosition: {x: 0.9, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCheck: {fileID: 1663474658546877195}
-  attackRadius: 0.54
+  attackRadius: 0.69
   knockBackDirection: {x: 0, y: 0}
   knockBackTime: 0
   groundCheck: {fileID: 826872758401599080}
@@ -344,6 +344,7 @@ MonoBehaviour:
   jumpForce: 10
   dashSpeed: 20
   dashDuration: 0.4
+  crouchSpeed: 0.5
 --- !u!114 &5427915251374975974
 MonoBehaviour:
   m_ObjectHideFlags: 0
