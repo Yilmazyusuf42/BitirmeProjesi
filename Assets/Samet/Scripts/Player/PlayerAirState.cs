@@ -27,12 +27,15 @@ public class PlayerAirState : PlayerState
         {
             stateMachine.ChangeState(player.wallSlide);
         }
-       
 
         if(player.IsGroundDetected())
             stateMachine.ChangeState(player.idleState);
 
         if (xInput != 0)
             player.SetVelocity(player.moveSpeed * .8f * xInput, rb.velocity.y);
+
+
+        if (Input.GetKeyDown(KeyCode.Space) && !player.IsGroundDetected())
+            SkillManager.instance.doubleJump.CanUseSkill();
     }
 }
