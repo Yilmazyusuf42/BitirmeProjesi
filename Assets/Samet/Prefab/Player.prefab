@@ -341,7 +341,7 @@ MonoBehaviour:
   - {x: 1, y: 1}
   counterAttackDuration: 0.2
   moveSpeed: 9
-  jumpForce: 10
+  jumpForce: 12
   dashSpeed: 20
   dashDuration: 0.4
   crouchSpeed: 0.5
