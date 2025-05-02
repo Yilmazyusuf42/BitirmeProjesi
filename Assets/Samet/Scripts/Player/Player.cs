@@ -36,6 +36,7 @@ public class Player : Entity
     public PlayerCrouchWalkState crouchWalkState { get; private set; }
     public PlayerCrouchAttack crouchAttackState { get; private set; }
     public PlayerCrouchIdle crouchIdle { get; private set; }
+    public PlayerRollState rollState { get; private set; }
     #endregion
 
     public override void Awake()
@@ -53,6 +54,7 @@ public class Player : Entity
         crouchWalkState= new PlayerCrouchWalkState(this, stateMachine, "CrouchWalk");
         crouchAttackState = new PlayerCrouchAttack(this, stateMachine, "CrouchAttack");
         crouchIdle = new PlayerCrouchIdle(this, stateMachine, "CrouchIdle");
+        rollState = new PlayerRollState(this, stateMachine, "Roll");
 
 
         primaryAttack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");

@@ -35,6 +35,9 @@ public class PlayerGroundedState: PlayerState
         if (Input.GetKeyDown(KeyCode.Mouse0))
             stateMachine.ChangeState(player.primaryAttack);
 
+        if (Input.GetKeyDown(KeyCode.R)&&SkillManager.instance.roll.CanUseSkill())
+            stateMachine.ChangeState(player.rollState);
+
         if (!player.IsGroundDetected())
             stateMachine.ChangeState(player.airState);
 
