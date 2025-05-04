@@ -31,7 +31,10 @@ public class PlayerGroundedState: PlayerState
             player.anim.SetBool("Crouch", true);
             stateMachine.ChangeState(player.crouchIdle);
         }
-            
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+            stateMachine.ChangeState(player.aimSwordState);
+
         if (Input.GetKeyDown(KeyCode.Mouse0))
             stateMachine.ChangeState(player.primaryAttack);
 

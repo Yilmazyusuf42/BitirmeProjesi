@@ -37,6 +37,8 @@ public class Player : Entity
     public PlayerCrouchAttack crouchAttackState { get; private set; }
     public PlayerCrouchIdle crouchIdle { get; private set; }
     public PlayerRollState rollState { get; private set; }
+    public PlayerAimSwordState aimSwordState { get; private set; }
+    public PlayerCatchSwordState playerCatchSwordState { get; private set; }
     #endregion
 
     public override void Awake()
@@ -59,6 +61,9 @@ public class Player : Entity
 
         primaryAttack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         counterAttack = new PlayerCounterAttack(this, stateMachine, "CounterAttack");
+
+        aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
+        playerCatchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
     }
 
     public override void Start()

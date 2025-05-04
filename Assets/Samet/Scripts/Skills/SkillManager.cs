@@ -10,6 +10,7 @@ public class SkillManager : MonoBehaviour
     public CloneSkill clone { get; private set; }   
     public DoubleJump doubleJump { get; private set; }
     public Roll roll { get; private set; }
+    public SwordSkill sword { get; private set; }
  
     private void Awake()
     {
@@ -25,5 +26,6 @@ public class SkillManager : MonoBehaviour
         clone = GetComponent<CloneSkill>();
         doubleJump= GetComponent<DoubleJump>();
         roll = GetComponent<Roll>();
+        sword = GetComponent<SwordSkill>();
     }
 }
