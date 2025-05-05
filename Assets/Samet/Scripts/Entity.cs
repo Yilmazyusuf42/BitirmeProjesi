@@ -9,7 +9,6 @@ public class Entity : MonoBehaviour
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public EntityFx entityFx { get; private set; }
-
     #endregion
 
     [Header("Attack info")]

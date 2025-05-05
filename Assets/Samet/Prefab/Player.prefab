@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5536402828368364606}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1663474658546877195}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ Transform:
   m_GameObject: {fileID: 4023024614554606429}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.73, y: -0.15, z: 0}
+  m_LocalPosition: {x: 0.9, y: -0.15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 826872758401599080}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 1170394909553052836}
   - component: {fileID: 3606803987438119998}
   - component: {fileID: 970318613111574085}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,9 +165,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -871230389
-  m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingLayerID: -344553091
+  m_SortingLayer: 4
+  m_SortingOrder: -1
   m_Sprite: {fileID: 325624573, guid: 982fc20616faf754383db280b9db735b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -224,7 +224,8 @@ GameObject:
   - component: {fileID: 6875382141031567201}
   - component: {fileID: 5352763962585509596}
   - component: {fileID: 3571853388325568431}
-  m_Layer: 0
+  - component: {fileID: 5427915251374975974}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -325,7 +326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackCheck: {fileID: 1663474658546877195}
-  attackRadius: 0.54
+  attackRadius: 0.69
   knockBackDirection: {x: 0, y: 0}
   knockBackTime: 0
   groundCheck: {fileID: 826872758401599080}
@@ -340,6 +341,22 @@ MonoBehaviour:
   - {x: 1, y: 1}
   counterAttackDuration: 0.2
   moveSpeed: 9
-  jumpForce: 10
+  jumpForce: 12
   dashSpeed: 20
   dashDuration: 0.4
+  crouchSpeed: 0.5
+  sword: {fileID: 0}
+--- !u!114 &5427915251374975974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9133067962708312460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34979052c0cde4f42a2a6eb825416605, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetMaterial: {fileID: 2100000, guid: 8a01c93f0018a36449926d7999f693d8, type: 2}
+  flashDuration: 0.2
