@@ -20,9 +20,6 @@ public class Player : Entity
     public float dashDir { get; private set; }
     public float crouchSpeed=0.5f;
 
-    public SkillManager skill {  get; private set; }
-    public GameObject sword; //{ get; private set; }
-
     #region States
     public PlayerStateMachine stateMachine { get; private set; }
 
@@ -39,9 +36,6 @@ public class Player : Entity
     public PlayerCrouchWalkState crouchWalkState { get; private set; }
     public PlayerCrouchAttack crouchAttackState { get; private set; }
     public PlayerCrouchIdle crouchIdle { get; private set; }
-    public PlayerRollState rollState { get; private set; }
-    public PlayerAimSwordState aimSwordState { get; private set; }
-    public PlayerCatchSwordState playerCatchSwordState { get; private set; }
     #endregion
 
     public override void Awake()
@@ -59,14 +53,10 @@ public class Player : Entity
         crouchWalkState= new PlayerCrouchWalkState(this, stateMachine, "CrouchWalk");
         crouchAttackState = new PlayerCrouchAttack(this, stateMachine, "CrouchAttack");
         crouchIdle = new PlayerCrouchIdle(this, stateMachine, "CrouchIdle");
-        rollState = new PlayerRollState(this, stateMachine, "Roll");
 
 
         primaryAttack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
         counterAttack = new PlayerCounterAttack(this, stateMachine, "CounterAttack");
-
-        aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
-        playerCatchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
     }
 
     public override void Start()
@@ -83,17 +73,7 @@ public class Player : Entity
         stateMachine.currentState.Update();
         CheckForDashInput();
     }
-    
-    public void AssignNewSword(GameObject _newSword)
-    {
-    sword = _newSword;
-    }
 
-    public void ClearSword()
-    {
-        Destroy(sword);
-    }
-     
     public IEnumerator BusyFor(float _seconds)
     {
         isBusy = true;        
