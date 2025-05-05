@@ -242,7 +242,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.761, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2369318541567088605}
@@ -330,7 +330,7 @@ MonoBehaviour:
   knockBackDirection: {x: 0, y: 0}
   knockBackTime: 0
   groundCheck: {fileID: 826872758401599080}
-  groundCheckDistance: 1.86
+  groundCheckDistance: 1.46
   wallCheck: {fileID: 5536402828368364606}
   wallCheckDistance: 0.51
   whatIsGround:
@@ -341,7 +341,7 @@ MonoBehaviour:
   - {x: 1, y: 1}
   counterAttackDuration: 0.2
   moveSpeed: 9
-  jumpForce: 12
+  jumpForce: 10
   dashSpeed: 20
   dashDuration: 0.4
   crouchSpeed: 0.5
