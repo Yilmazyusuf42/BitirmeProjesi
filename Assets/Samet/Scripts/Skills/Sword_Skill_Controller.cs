@@ -12,6 +12,7 @@ public class Sword_Skill_Controller : MonoBehaviour
 
     private bool canRotate=true;
     private bool isReturning;
+    private Transform sword;
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
@@ -29,7 +30,18 @@ public class Sword_Skill_Controller : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, returnSpeed * Time.deltaTime);
 
             if (Vector2.Distance(transform.position, player.transform.position) < 1)
+            {
                 player.ClearSword();
+                sword = player.sword.transform;
+
+                if (player.transform.position.x > sword.transform.position.x && player.facingDir == 1)
+                    player.Flip();
+                else if (player.transform.position.x < sword.transform.position.x && player.facingDir == -1)
+                    player.Flip();
+
+                player.SetVelocity(player.swordReturnImpact * -player.facingDir, rb.velocity.y);
+            }
+               
         }
     }
     public void SetSword(Vector2 _dir, float _gravityScale,Player _player)
@@ -39,12 +51,14 @@ public class Sword_Skill_Controller : MonoBehaviour
         rb.velocity = _dir;
         rb.gravityScale= _gravityScale;
 
-        anim.SetBool("Rotation", true);
+        anim.SetBool("Rotate", true);
     }
 
     public void ReturnSword()
     {
-        rb.isKinematic = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        anim.SetBool("Rotate", true);
+        // rb.isKinematic = false;
         transform.parent = null;
         isReturning = true;
 
@@ -52,6 +66,9 @@ public class Sword_Skill_Controller : MonoBehaviour
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (isReturning)
+            return;
+        anim.SetBool("Rotate", false);
         canRotate = false;
         cd.enabled = false;
 
