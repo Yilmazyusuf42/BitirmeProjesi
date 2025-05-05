@@ -38,6 +38,8 @@ public class Sword_Skill_Controller : MonoBehaviour
 
         rb.velocity = _dir;
         rb.gravityScale= _gravityScale;
+
+        anim.SetBool("Rotation", true);
     }
 
     public void ReturnSword()
