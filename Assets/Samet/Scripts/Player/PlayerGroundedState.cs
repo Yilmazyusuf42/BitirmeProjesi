@@ -31,31 +31,14 @@ public class PlayerGroundedState: PlayerState
             player.anim.SetBool("Crouch", true);
             stateMachine.ChangeState(player.crouchIdle);
         }
-
-        if (Input.GetKeyDown(KeyCode.Mouse1)&& HasNoSword())
-            stateMachine.ChangeState(player.aimSwordState);
-
+            
         if (Input.GetKeyDown(KeyCode.Mouse0))
             stateMachine.ChangeState(player.primaryAttack);
-
-        if (Input.GetKeyDown(KeyCode.R)&&SkillManager.instance.roll.CanUseSkill())
-            stateMachine.ChangeState(player.rollState);
 
         if (!player.IsGroundDetected())
             stateMachine.ChangeState(player.airState);
 
         if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected())
             stateMachine.ChangeState(player.jumpState);
-    }
-
-    private bool HasNoSword()
-    {
-        if (!player.sword)
-        {
-            return true;
-        }
-
-        player.sword.GetComponent<Sword_Skill_Controller>().ReturnSword();
-        return false;
     }
 }
