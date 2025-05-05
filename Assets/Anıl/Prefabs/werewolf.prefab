@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7192217549135422192}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: AttackPointw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8584990480644063556}
   - component: {fileID: 850776844238974142}
   - component: {fileID: 7499635503794527974}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: werewolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,13 +216,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 1
-  runSpeed: 8
+  runSpeed: 3
   patrolRange: 2
   chaseRange: 7
   attackPoint: {fileID: 7192217549135422192}
   attackRadius: 0.5
   playerLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   attackCooldown: 1
   maxHealth: 5

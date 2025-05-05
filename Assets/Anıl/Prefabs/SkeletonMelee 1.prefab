@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6922993162025213939}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: AttackPoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 6844736523104383967}
   - component: {fileID: 5510941240652899234}
   - component: {fileID: 504112811728446821}
-  m_Layer: 7
+  m_Layer: 6
   m_Name: SkeletonMelee 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.45, y: 2.99, z: -0.05104412}
-  m_LocalScale: {x: -0.9542985, y: 1.2149127, z: 0.95780253}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6922993162025213939}
@@ -223,6 +223,6 @@ MonoBehaviour:
   attackRadius: 0.5
   playerLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   attackCooldown: 1
   maxHealth: 3
