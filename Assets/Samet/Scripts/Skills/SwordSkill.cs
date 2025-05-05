@@ -56,7 +56,7 @@ public class SwordSkill : Skill
     {
         Vector2 playerPosition= player.transform.position;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 direction= mousePosition- playerPosition;
+        Vector2 direction= mousePosition - playerPosition;
 
         return direction;
     }
