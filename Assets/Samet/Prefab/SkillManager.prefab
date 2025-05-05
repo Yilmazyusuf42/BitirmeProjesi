@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 3865382283402710178}
   - component: {fileID: 1471820035156260406}
   - component: {fileID: 1842817158709677188}
+  - component: {fileID: 2787825406385593534}
+  - component: {fileID: 7203628210381595827}
   m_Layer: 0
   m_Name: SkillManager
   m_TagString: Untagged
@@ -59,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98cf0c90eec62e9419d48f95807e38c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 1
+  cooldown: 2
 --- !u!114 &1471820035156260406
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,7 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 829fc66074ee926469c79d3142b37899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 1
+  cooldown: 2
   cloneDuration: 1.5
   clonePrefab: {fileID: 1267531889469043625, guid: fff55eb9f9bece046a6033f4ed24e719, type: 3}
   _canAttack: 1
@@ -89,3 +91,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 2
+--- !u!114 &2787825406385593534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441777962402123665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8459b5494e2eab46a6e9f184681e553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 1
+--- !u!114 &7203628210381595827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6441777962402123665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da42fc6adef413e449831beb8adda10c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 1
+  swordPrefab: {fileID: 1702124665431818264, guid: 197570ab3b814264abf26d6df8665e6b, type: 3}
+  launchDir: {x: 15, y: 5}
+  swordGravity: 4
