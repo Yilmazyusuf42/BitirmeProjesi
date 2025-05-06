@@ -100,12 +100,12 @@ TextureImporter:
       name: Dead_0
       rect:
         serializedVersion: 2
-        x: 19
+        x: 0
         y: 0
-        width: 83
-        height: 50
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -121,12 +121,12 @@ TextureImporter:
       name: Dead_1
       rect:
         serializedVersion: 2
-        x: 147
+        x: 128
         y: 0
-        width: 89
-        height: 22
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
