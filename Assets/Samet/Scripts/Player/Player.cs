@@ -19,9 +19,10 @@ public class Player : Entity
     public float dashDuration;
     public float dashDir { get; private set; }
     public float crouchSpeed = 0.5f;
+    public float swordReturnImpact = 2f;
 
     public SkillManager skill { get; private set; }
-    public GameObject sword; //{ get; private set; }
+    public GameObject sword { get; private set; }
 
     #region States
     public PlayerStateMachine stateMachine { get; private set; }

@@ -31,14 +31,14 @@ public class PlayerCounterAttack : PlayerState
 
         foreach (var hit in colliders)
         {
-            if (hit.GetComponent<Enemy>() != null)
+            if (hit.tag == "Enemy")
             {
-                if (hit.GetComponent<Enemy>().CanBeStunned())
+              /*  if (hit.tag == "Enemy".CanBeStunned())
                 {
                     stateTimer = .3f;
 
                     player.anim.SetBool("SuccesfulCounterAttack", true);
-                }
+                }*/
                    
             }
         }

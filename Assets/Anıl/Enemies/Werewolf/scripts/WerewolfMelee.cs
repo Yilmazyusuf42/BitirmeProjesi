@@ -54,7 +54,7 @@ public class WerewolfMelee : MonoBehaviour
             attackTimer -= Time.deltaTime;
             if (attackTimer <= 0)
             {
-                Debug.LogWarning("Werewolf attack timeout — reset.");
+                //Debug.logWarning("Werewolf attack timeout — reset.");
                 isAttacking = false;
             }
             return;
@@ -156,7 +156,7 @@ public class WerewolfMelee : MonoBehaviour
         {
             if (hit.GetComponent<Player>() != null)
             {
-                Debug.Log("Werewolf hit the player!");
+                //Debug.log("Werewolf hit the player!");
                 // hit.GetComponent<Player>().TakeDamage(damageAmount);
             }
         }
