@@ -90,7 +90,7 @@ public static class HelperUtilities
     {
         if (stringToCheck == "")
         {
-            Debug.Log(fieldName + " is empty and must contain a value in object " + thisObject.name.ToString());
+            //Debug.log(fieldName + " is empty and must contain a value in object " + thisObject.name.ToString());
             return true;
         }
         return false;
@@ -103,7 +103,7 @@ public static class HelperUtilities
     {
         if (objectToCheck == null)
         {
-            Debug.Log(fieldName + " is null and must contain a value in object " + thisObject.name.ToString());
+            //Debug.log(fieldName + " is null and must contain a value in object " + thisObject.name.ToString());
             return true;
         }
         return false;
@@ -120,7 +120,7 @@ public static class HelperUtilities
 
         if (enumerableObjectToCheck == null)
         {
-            Debug.Log(fieldName + " is null in object " + thisObject.name.ToString());
+            //Debug.log(fieldName + " is null in object " + thisObject.name.ToString());
             return true;
         }
 
@@ -130,7 +130,7 @@ public static class HelperUtilities
 
             if (item == null)
             {
-                Debug.Log(fieldName + " has null values in object " + thisObject.name.ToString());
+                //Debug.log(fieldName + " has null values in object " + thisObject.name.ToString());
                 error = true;
             }
             else
@@ -141,7 +141,7 @@ public static class HelperUtilities
 
         if (count == 0)
         {
-            Debug.Log(fieldName + " has no values in object " + thisObject.name.ToString());
+            //Debug.log(fieldName + " has no values in object " + thisObject.name.ToString());
             error = true;
         }
 
@@ -160,7 +160,7 @@ public static class HelperUtilities
         {
             if (valueToCheck < 0)
             {
-                Debug.Log(fieldName + " must contain a positive value or zero in object " + thisObject.name.ToString());
+                //Debug.log(fieldName + " must contain a positive value or zero in object " + thisObject.name.ToString());
                 error = true;
             }
         }
@@ -168,7 +168,7 @@ public static class HelperUtilities
         {
             if (valueToCheck <= 0)
             {
-                Debug.Log(fieldName + " must contain a positive value in object " + thisObject.name.ToString());
+                //Debug.log(fieldName + " must contain a positive value in object " + thisObject.name.ToString());
                 error = true;
             }
         }
@@ -187,7 +187,7 @@ public static class HelperUtilities
         {
             if (valueToCheck < 0)
             {
-                Debug.Log(fieldName + " must contain a positive value or zero in object " + thisObject.name.ToString());
+                //Debug.log(fieldName + " must contain a positive value or zero in object " + thisObject.name.ToString());
                 error = true;
             }
         }
@@ -195,7 +195,7 @@ public static class HelperUtilities
         {
             if (valueToCheck <= 0)
             {
-                Debug.Log(fieldName + " must contain a positive value in object " + thisObject.name.ToString());
+                //Debug.log(fieldName + " must contain a positive value in object " + thisObject.name.ToString());
                 error = true;
             }
         }
@@ -211,7 +211,7 @@ public static class HelperUtilities
         bool error = false;
         if (valueToCheckMinimum > valueToCheckMaximum)
         {
-            Debug.Log(fieldNameMinimum + " must be less than or equal to " + fieldNameMaximum + " in object " + thisObject.name.ToString());
+            //Debug.log(fieldNameMinimum + " must be less than or equal to " + fieldNameMaximum + " in object " + thisObject.name.ToString());
             error = true;
         }
 
@@ -230,7 +230,7 @@ public static class HelperUtilities
         bool error = false;
         if (valueToCheckMinimum > valueToCheckMaximum)
         {
-            Debug.Log(fieldNameMinimum + " must be less than or equal to " + fieldNameMaximum + " in object " + thisObject.name.ToString());
+            //Debug.log(fieldNameMinimum + " must be less than or equal to " + fieldNameMaximum + " in object " + thisObject.name.ToString());
             error = true;
         }
 
