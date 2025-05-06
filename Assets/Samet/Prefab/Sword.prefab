@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8109362735871827512}
   - component: {fileID: 5795567549026565821}
   - component: {fileID: 4732006476700202272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sword
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2658337809154007744}
   m_Father: {fileID: 0}
@@ -48,6 +48,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   returnSpeed: 12
+  bounceSpeed: 20
+  isBouncing: 1
+  amountOfBounce: 4
+  enemyTargets: []
 --- !u!50 &5795567549026565821
 Rigidbody2D:
   serializedVersion: 4
@@ -107,8 +111,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03316641, y: -0.017835772}
-  m_Size: {x: 1.2899662, y: 0.28291547}
+  m_Offset: {x: 0.028726898, y: -0.009756312}
+  m_Size: {x: 1.2214117, y: 0.22797838}
   m_Direction: 1
 --- !u!1 &4891547921775967676
 GameObject:
@@ -121,7 +125,7 @@ GameObject:
   - component: {fileID: 2658337809154007744}
   - component: {fileID: 8541569020782924020}
   - component: {fileID: 7700100092134139077}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,9 +185,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -458481305
-  m_SortingLayer: 1
-  m_SortingOrder: -1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -2004053239, guid: f6b296ee51c42564abe9c05f1c502ecd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

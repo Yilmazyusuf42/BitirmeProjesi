@@ -41,7 +41,6 @@ public class SkeletonMelee : MonoBehaviour
         anim = GetComponent<Animator>();
         spawnPoint = transform.position;
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        Debug.Log("Skeleton spawned at " + spawnPoint);
         currentHealth = maxHealth;
 
     }
@@ -49,7 +48,7 @@ public class SkeletonMelee : MonoBehaviour
     private void Update()
     {
         float distToPlayer = Vector2.Distance(transform.position, player.position);
-        Debug.Log("Distance to player: " + distToPlayer);
+        //Debug.log("Distance to player: " + distToPlayer);
 
         if (isAttacking)
 {
@@ -57,7 +56,7 @@ public class SkeletonMelee : MonoBehaviour
     attackTimer -= Time.deltaTime;
     if (attackTimer <= 0)
     {
-        Debug.LogWarning("Forced attack reset — animation event failed?");
+        //Debug.logWarning("Forced attack reset — animation event failed?");
         isAttacking = false;
     }
     return;
@@ -70,26 +69,26 @@ public class SkeletonMelee : MonoBehaviour
 
         if (IsPlayerInAttackZone())
         {
-            Debug.Log("✅ Player in attack zone.");
+            //Debug.log("✅ Player in attack zone.");
             rb.velocity = Vector2.zero;
             anim.SetBool("smelee_idle", true);
             StartAttack();
         }
         else if (distToPlayer <= chaseRange)
         {
-            Debug.Log("👁️ Chasing player.");
+            //Debug.log("👁️ Chasing player.");
             ChasePlayer();
             anim.SetBool("smelee_run", true);
         }
         else if (playerDetected)
         {
-            Debug.Log("🔙 Returning to spawn.");
+            //Debug.log("🔙 Returning to spawn.");
             ReturnToSpawn();
             anim.SetBool("smelee_run", true);
         }
         else
         {
-            Debug.Log("👣 Patrolling.");
+            //Debug.log("👣 Patrolling.");
             Patrol();
             anim.SetBool("smelee_walk", true);
         }
@@ -106,12 +105,12 @@ public class SkeletonMelee : MonoBehaviour
         if (movingRight && transform.position.x >= spawnPoint.x + patrolRange)
 {
     movingRight = false;
-    Debug.Log("Flipped left at patrol edge.");
+    //Debug.log("Flipped left at patrol edge.");
 }
 else if (!movingRight && transform.position.x <= spawnPoint.x - patrolRange)
 {
     movingRight = true;
-    Debug.Log("Flipped right at patrol edge.");
+    //Debug.log("Flipped right at patrol edge.");
 }
 
     }
@@ -123,7 +122,7 @@ else if (!movingRight && transform.position.x <= spawnPoint.x - patrolRange)
 
         float direction = Mathf.Sign(player.position.x - transform.position.x);
         rb.velocity = new Vector2(direction * runSpeed, rb.velocity.y);
-        Debug.Log("🏃‍♂️ Running toward player. Direction: " + direction);
+        //Debug.log("🏃‍♂️ Running toward player. Direction: " + direction);
     }
 
     private void ReturnToSpawn()
@@ -132,13 +131,13 @@ else if (!movingRight && transform.position.x <= spawnPoint.x - patrolRange)
 
         float direction = Mathf.Sign(spawnPoint.x - transform.position.x);
         rb.velocity = new Vector2(direction * walkSpeed, rb.velocity.y);
-        Debug.Log("🏠 Returning to spawn. Direction: " + direction);
+        //Debug.log("🏠 Returning to spawn. Direction: " + direction);
 
         if (Mathf.Abs(transform.position.x - spawnPoint.x) <= 0.1f)
         {
             returningToSpawn = false;
             playerDetected = false;
-            Debug.Log("✅ Returned to spawn.");
+            //Debug.log("✅ Returned to spawn.");
         }
     }
 
@@ -146,7 +145,7 @@ else if (!movingRight && transform.position.x <= spawnPoint.x - patrolRange)
     {
         if (Time.time < lastAttackTime + attackCooldown)
         {
-            Debug.Log("⏳ Skeleton: attack on cooldown.");
+            //Debug.log("⏳ Skeleton: attack on cooldown.");
             return;
         }
 
@@ -155,7 +154,7 @@ else if (!movingRight && transform.position.x <= spawnPoint.x - patrolRange)
         lastAttackTime = Time.time;
 
         float attackIndex = Mathf.Floor(Random.Range(1f, 4f));
-        Debug.Log($"🗡️ Skeleton: ATTACKING — attackType = {attackIndex}");
+        //Debug.log($"🗡️ Skeleton: ATTACKING — attackType = {attackIndex}");
 
         anim.ResetTrigger("smelee_attack");
         anim.SetTrigger("smelee_attack");
@@ -164,7 +163,7 @@ else if (!movingRight && transform.position.x <= spawnPoint.x - patrolRange)
 
     public void EndAttack()
     {
-        Debug.Log("✅ Attack finished → Skeleton ready to attack again.");
+        //Debug.log("✅ Attack finished → Skeleton ready to attack again.");
         isAttacking = false;
     }
 
@@ -176,7 +175,7 @@ else if (!movingRight && transform.position.x <= spawnPoint.x - patrolRange)
         {
             if (hit.GetComponent<Player>() != null)
             {
-                Debug.Log("💥 Skeleton hit the player!");
+                //Debug.log("💥 Skeleton hit the player!");
                 // hit.GetComponent<Player>().TakeDamage(damageAmount);
             }
         }
@@ -185,7 +184,7 @@ else if (!movingRight && transform.position.x <= spawnPoint.x - patrolRange)
     public void Damage()
     {
         anim.SetTrigger("smelee_hurt");
-        Debug.Log("😵 Skeleton took damage.");
+        //Debug.log("😵 Skeleton took damage.");
     }
 
     public void TakeDamage(int amount)
@@ -193,7 +192,7 @@ else if (!movingRight && transform.position.x <= spawnPoint.x - patrolRange)
     if (isDead) return;
 
     currentHealth -= amount;
-    Debug.Log($"💢 Skeleton took {amount} damage. Remaining HP: {currentHealth}");
+    //Debug.log($"💢 Skeleton took {amount} damage. Remaining HP: {currentHealth}");
 
     if (currentHealth > 0)
     {
@@ -207,7 +206,7 @@ else if (!movingRight && transform.position.x <= spawnPoint.x - patrolRange)
 
 private void Die()
 {
-    Debug.Log("💀 Skeleton died.");
+    //Debug.log("💀 Skeleton died.");
     isDead = true;
     rb.velocity = Vector2.zero;
 
@@ -236,7 +235,7 @@ private void Die()
         bool inZone = Physics2D.OverlapCircle(attackPoint.position, attackRadius, playerLayer);
         if (inZone)
         {
-            Debug.Log("🎯 Player is inside the attack radius.");
+            //Debug.log("🎯 Player is inside the attack radius.");
         }
         return inZone;
     }
