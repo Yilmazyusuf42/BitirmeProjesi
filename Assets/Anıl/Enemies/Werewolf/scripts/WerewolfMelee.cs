@@ -40,7 +40,7 @@ public class WerewolfMelee : MonoBehaviour
         anim = GetComponent<Animator>();
         spawnPoint = transform.position;
         currentHealth = maxHealth;
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform; 
     }
 
     private void Update()
