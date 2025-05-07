@@ -42,8 +42,12 @@ public class WerewolfMelee : MonoBehaviour
         anim = GetComponent<Animator>();
         spawnPoint = transform.position;
         currentHealth = maxHealth;
+<<<<<<< HEAD:Assets/Anıl/Enemies/Werewolf/scripts/werewolflegacy.cs
         player = GameObject.FindGameObjectWithTag("Player").transform;
         fx = GetComponent<EntityFx>();
+=======
+        player = GameObject.FindGameObjectWithTag("Player").transform; 
+>>>>>>> 466a28d2d4da8cdc7737ed64e5352fa0ea619874:Assets/Anıl/Enemies/Werewolf/scripts/WerewolfMelee.cs
     }
 
     private void Update()
