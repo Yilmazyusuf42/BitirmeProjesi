@@ -28,6 +28,8 @@ public class WerewolfMelee : MonoBehaviour
     private float lastAttackTime;
     private float attackTimeout = 1.5f;
     private float attackTimer;
+    private EntityFx fx;
+
 
     [Header("Health")]
     public int maxHealth = 5;
@@ -41,6 +43,7 @@ public class WerewolfMelee : MonoBehaviour
         spawnPoint = transform.position;
         currentHealth = maxHealth;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        fx = GetComponent<EntityFx>();
     }
 
     private void Update()
@@ -162,20 +165,29 @@ public class WerewolfMelee : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int amount)
-    {
-        if (isDead) return;
+public void TakeDamage(int amount)
+{
+    if (isDead) return;
 
-        currentHealth -= amount;
-        if (currentHealth > 0)
+    currentHealth -= amount;
+
+    if (currentHealth > 0)
+    {
+        anim.SetTrigger("werewolf_hurt");
+
+        if (fx != null)
         {
-            anim.SetTrigger("werewolf_hurt");
-        }
-        else
-        {
-            Die();
+            fx.StartCoroutine("FlashFx");
+            // OR: fx.FlashFx(); if method isn't coroutine
         }
     }
+    else
+    {
+        Die();
+    }
+}
+
+
 
     private void Die()
     {

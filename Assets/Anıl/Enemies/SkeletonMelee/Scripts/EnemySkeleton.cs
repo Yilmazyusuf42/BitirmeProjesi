@@ -1,0 +1,44 @@
+using UnityEngine;
+
+public class EnemySkeleton : Enemy
+{
+    public EnemyIdleState idleState { get; private set; }
+    public EnemyMoveState moveState { get; private set; }
+    public EnemySkeletonBattleState battleStateInternal { get; private set; }
+    public EnemySkeletonAttackState attackStateInternal { get; private set; }
+    public EnemySkeletonStunnedState stunnedState { get; private set; }
+    public EnemyPatrolState patrolStateInternal { get; private set; }
+
+    public override EnemyState battleState => battleStateInternal;
+    public override EnemyState patrolState => patrolStateInternal;
+    public override EnemyState attackState => attackStateInternal;
+
+    public override void Awake()
+    {
+        base.Awake();
+
+        idleState = new EnemyIdleState(stateMachine, this, "Idle");
+        moveState = new EnemyMoveState(stateMachine, this, "Run");
+        battleStateInternal = new EnemySkeletonBattleState(stateMachine, this, "Battle", this);
+        attackStateInternal = new EnemySkeletonAttackState(stateMachine, this, "Attack", this);
+        stunnedState = new EnemySkeletonStunnedState(stateMachine, this, "Stunned", this);
+        patrolStateInternal = new EnemyPatrolState(stateMachine, this, "Walk");
+    }
+
+    public override void Start()
+    {
+        base.Start();
+        stateMachine.Initialize(idleState);
+        spawnPosition = transform.position;
+    }
+
+    public override bool CanBeStunned()
+    {
+        if (canBeStunned)
+        {
+            stateMachine.ChangeState(stunnedState);
+            return true;
+        }
+        return false;
+    }
+}
