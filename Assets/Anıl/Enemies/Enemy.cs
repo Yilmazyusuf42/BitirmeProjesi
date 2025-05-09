@@ -23,40 +23,44 @@ public class Enemy : MonoBehaviour
 
     [Header("Combat Settings")]
     public bool canBeStunned = true;
-    [HideInInspector] public bool returningToSpawn = false;
+
+    [HideInInspector] 
+    public bool returningToSpawn = false;
 
     [Header("Patrol Settings")]
     public float patrolRange = 3f;
     public Vector2 spawnPosition;
 
-    // ───────────────────────────────────────────────
-    // ░░ Unity Lifecycle
-    // ───────────────────────────────────────────────
+    public virtual float stunDuration => 0.5f;
+
+    // FSM State Hooks
+    public virtual EnemyState patrolState => null;
+    public virtual EnemyState battleState => null;
+    public virtual EnemyState attackState => null;
+    public virtual EnemyState stunnedState => null;
+    public virtual EnemyState idle => null;
 
     public virtual void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player")?.transform;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        fx = GetComponent<EntityFx>(); // ✅ Get FX script
+        fx = GetComponent<EntityFx>();
         stateMachine = new EnemyStateMachine();
+        
 
         Debug.Log($"[Enemy BASE] Awake for {gameObject.name}");
     }
 
     public virtual void Start()
     {
-        spawnPosition = transform.position; // ✅ Set patrol origin
+        spawnPosition = transform.position;
     }
 
     public virtual void Update()
     {
         stateMachine?.currentState?.Update();
     }
-
-    // ───────────────────────────────────────────────
-    // ░░ Shared Movement + Facing
-    // ───────────────────────────────────────────────
 
     public void SetVelocity(float x, float y)
     {
@@ -83,10 +87,6 @@ public class Enemy : MonoBehaviour
         transform.localScale = new Vector3(facingDir, 1, 1);
     }
 
-    // ───────────────────────────────────────────────
-    // ░░ Shared Detection
-    // ───────────────────────────────────────────────
-
     public virtual bool IsPlayerDetected()
     {
         return Vector2.Distance(transform.position, player.position) <= maxAgroRange;
@@ -100,26 +100,20 @@ public class Enemy : MonoBehaviour
     public virtual bool IsWallDetected() => false;
     public virtual bool IsGroundDetected() => true;
 
-    // ───────────────────────────────────────────────
-    // ░░ FSM State Hooks (overridable pointers)
-    // ───────────────────────────────────────────────
-
-    public virtual EnemyState patrolState => null;
-    public virtual EnemyState battleState => null;
-    public virtual EnemyState attackState => null;
-
-    public virtual bool CanBeStunned() => false;
-
-    // ───────────────────────────────────────────────
-    // ░░ Combat Hooks (can override)
-    // ───────────────────────────────────────────────
+    public virtual bool CanBeStunned() => canBeStunned;
 
     public virtual void TakeDamage(int amount)
     {
-        fx?.Flash(); // ✅ Trigger flash effect
-        anim.SetTrigger("Hurt"); // ✅ Play hurt anim
+        if (IsStunned) return;
+        
+        fx?.Flash();
 
-        // Add HP / death logic here if needed
+        if (CanBeStunned() && stunnedState != null)
+        {
+            stateMachine.ChangeState(stunnedState);
+        }
+
+        Debug.Log($"{gameObject.name} took {amount} damage.");
     }
 
     public virtual void Die()
@@ -128,10 +122,6 @@ public class Enemy : MonoBehaviour
         SetZeroVelocity();
         // Optional: disable collider, script, drop loot, etc.
     }
-
-    // ───────────────────────────────────────────────
-    // ░░ Gizmos (for patrol debug)
-    // ───────────────────────────────────────────────
 
     protected virtual void OnDrawGizmosSelected()
     {
@@ -146,4 +136,5 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawSphere(rightEdge, 0.1f);
 #endif
     }
+    public bool IsStunned => stateMachine.currentState == stunnedState;
 }
