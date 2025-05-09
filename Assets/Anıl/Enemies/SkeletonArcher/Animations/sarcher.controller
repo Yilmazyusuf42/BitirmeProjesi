@@ -41,9 +41,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.01
+  m_TransitionDuration: 0.1
   m_TransitionOffset: 0
-  m_ExitTime: 0.01
+  m_ExitTime: 0
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -56,7 +56,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: sspear_idle
+  m_Name: sarcher_idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -70,29 +70,12 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 13e38313e147a944db08950c9e564d36, type: 2}
+  m_Motion: {fileID: 7400000, guid: 992e0b7f4388e1b4e9e5c594af25556a, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1109 &-4735225949173786888
-AnimatorTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: PlayRun
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 3157928337082898831}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 1
 --- !u!1101 &-3151853188377165190
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -107,9 +90,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.01
+  m_TransitionDuration: 0.1
   m_TransitionOffset: 0
-  m_ExitTime: 0.01
+  m_ExitTime: 0
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -146,24 +129,20 @@ AnimatorStateMachine:
     m_Position: {x: -140, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1500245690429608418}
-    m_Position: {x: -150, y: 50, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: 3157928337082898831}
-    m_Position: {x: -140, y: 110, z: 0}
+    m_Position: {x: -140, y: 40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8185148666153694762}
-    m_Position: {x: -150, y: 160, z: 0}
+    m_Position: {x: -140, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 738913721025252681}
-    m_Position: {x: -140, y: 220, z: 0}
+    m_Position: {x: -140, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7475238667529836472}
-    m_Position: {x: -140, y: 270, z: 0}
+    m_Position: {x: -140, y: 220, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions:
   - {fileID: 2649741131127735613}
-  - {fileID: -4735225949173786888}
   - {fileID: 7940866343092467258}
   - {fileID: -2909056099038337068}
   - {fileID: 2878842419050424978}
@@ -180,7 +159,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: sspear
+  m_Name: sarcher
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: attackType
@@ -196,12 +175,6 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
   - m_Name: PlayWalk
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: PlayRun
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -267,9 +240,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.01
+  m_TransitionDuration: 0.05
   m_TransitionOffset: 0
-  m_ExitTime: 0.01
+  m_ExitTime: 0.05
   m_HasExitTime: 1
   m_HasFixedDuration: 0
   m_InterruptionSource: 0
@@ -289,11 +262,11 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.01
+  m_TransitionDuration: 0.1
   m_TransitionOffset: 0
-  m_ExitTime: 0.01
+  m_ExitTime: 0.1
   m_HasExitTime: 1
-  m_HasFixedDuration: 0
+  m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -304,7 +277,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: sspear_dead
+  m_Name: sarcher_dead
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -318,34 +291,12 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 75d2967877cf5df4faf5817f09692710, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8b63798cb226be2428a28e3756bb0dc4, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
---- !u!1101 &782676388735132953
-AnimatorStateTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions: []
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 0}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 1
-  serializedVersion: 3
-  m_TransitionDuration: 0.01
-  m_TransitionOffset: 0
-  m_ExitTime: 0.01
-  m_HasExitTime: 1
-  m_HasFixedDuration: 0
-  m_InterruptionSource: 0
-  m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
 --- !u!1102 &1500245690429608418
 AnimatorState:
   serializedVersion: 6
@@ -353,7 +304,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: sspear_walk
+  m_Name: sarcher_walk
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -367,7 +318,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 826d73bfef36f2344982547009930a10, type: 2}
+  m_Motion: {fileID: 7400000, guid: db1647a2d7aa6264080c4be7e454f90c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -387,7 +338,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 3
-  m_TransitionDuration: 0.01
+  m_TransitionDuration: 0.1
   m_TransitionOffset: 0
   m_ExitTime: 1
   m_HasExitTime: 1
@@ -429,33 +380,6 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 1
---- !u!1102 &3157928337082898831
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: sspear_run
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions:
-  - {fileID: 782676388735132953}
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 75438ebc758ff364ea3864c8c7005a60, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1109 &7940866343092467258
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -480,7 +404,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: sspear_hurt
+  m_Name: sarcher_hurt
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -494,7 +418,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: abfc5b915ed600441b5c0177a215341d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 6a4b376a37d3067488d163e8be3d1fbc, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -509,7 +433,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 325d5f9335fba5e468ed8412ccf690ba, type: 2}
+    m_Motion: {fileID: 7400000, guid: 0da97807271bd6e4f8d934fb622f14ee, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 0.5
@@ -517,7 +441,7 @@ BlendTree:
     m_DirectBlendParameter: Attack
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 38b6ed10e9ae9764e9a91db0de34b4b3, type: 2}
+    m_Motion: {fileID: 7400000, guid: 0389e4f4eabdb9b4eac2b692e26d12d9, type: 2}
     m_Threshold: 2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 0.5

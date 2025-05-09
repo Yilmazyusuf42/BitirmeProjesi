@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
+    public Transform player { get; protected set; }
+
     [Header("References")]
-    protected Transform player;
     public Rigidbody2D rb;
     public Animator anim;
     public EnemyStateMachine stateMachine;
