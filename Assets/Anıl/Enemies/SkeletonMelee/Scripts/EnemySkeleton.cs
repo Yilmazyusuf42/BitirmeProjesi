@@ -6,12 +6,16 @@ public class EnemySkeleton : Enemy
     public EnemyMoveState moveState { get; private set; }
     public EnemySkeletonBattleState battleStateInternal { get; private set; }
     public EnemySkeletonAttackState attackStateInternal { get; private set; }
-    public EnemySkeletonStunnedState stunnedState { get; private set; }
+    public EnemyStunnedState stunnedStateInternal { get; private set; } // 🔄 Changed to generic
     public EnemyPatrolState patrolStateInternal { get; private set; }
 
     public override EnemyState battleState => battleStateInternal;
     public override EnemyState patrolState => patrolStateInternal;
     public override EnemyState attackState => attackStateInternal;
+    public override EnemyState stunnedState => stunnedStateInternal;
+    public override EnemyState idle => idleState;
+
+    public override float stunDuration => 0.3f;
 
     public override void Awake()
     {
@@ -21,7 +25,7 @@ public class EnemySkeleton : Enemy
         moveState = new EnemyMoveState(stateMachine, this, "Run");
         battleStateInternal = new EnemySkeletonBattleState(stateMachine, this, "Battle", this);
         attackStateInternal = new EnemySkeletonAttackState(stateMachine, this, "Attack", this);
-        stunnedState = new EnemySkeletonStunnedState(stateMachine, this, "Stunned", this);
+        stunnedStateInternal = new EnemyStunnedState(stateMachine, this, "Stunned");
         patrolStateInternal = new EnemyPatrolState(stateMachine, this, "Walk");
     }
 

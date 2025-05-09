@@ -124,4 +124,17 @@ public class Player : Entity
         }
     }
 
+    public void TakeDamage(int amount)
+{
+    Debug.Log($"Player took {amount} damage!");
+
+    // Add your own health reduction or effects here
+    // For example:
+    // currentHealth -= amount;
+    // if (currentHealth <= 0) Die();
+
+    // Optional: Play hurt animation, flash, knockback, etc.
+}
+
+
 }

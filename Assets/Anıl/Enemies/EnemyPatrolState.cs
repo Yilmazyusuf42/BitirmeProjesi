@@ -34,26 +34,28 @@ public class EnemyPatrolState : EnemyState
 
         enemy.SetVelocity(enemy.walkSpeed * enemy.facingDir, rb.velocity.y);
 
-        float distanceFromSpawn = Mathf.Abs(enemy.transform.position.x - enemy.spawnPosition.x);
+        float delta = enemy.transform.position.x - enemy.spawnPosition.x;
 
-        // ✅ Flip once if out of range or blocked
-        if (!flippedRecently &&
-            (distanceFromSpawn >= enemy.patrolRange || enemy.IsWallDetected() || !enemy.IsGroundDetected()))
+    // Flip if enemy is out of patrol range AND going further away
+        if (!flippedRecently && Mathf.Abs(delta) >= enemy.patrolRange)
         {
-            enemy.Flip();
-            flippedRecently = true;
+            if ((delta > 0 && enemy.facingDir > 0) || (delta < 0 && enemy.facingDir < 0))
+            {
+                enemy.Flip();
+                flippedRecently = true;
+            }
         }
 
-        // ✅ Allow future flips when safely inside patrol range again
-        if (distanceFromSpawn < enemy.patrolRange * 0.8f)
+    // Reset flip cooldown once safely inside patrol area
+    if (Mathf.Abs(delta) < enemy.patrolRange * 0.8f)
         {
             flippedRecently = false;
         }
 
-        // ✅ Detect player
         if (enemy.IsPlayerDetected())
         {
             stateMachine.ChangeState(enemy.battleState);
         }
     }
+
 }
