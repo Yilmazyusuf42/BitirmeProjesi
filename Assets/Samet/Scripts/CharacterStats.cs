@@ -5,8 +5,10 @@ using UnityEngine;
 public class CharacterStats : MonoBehaviour
 {
 
-    public int damage;
-    public int maxHp;
+    public Stat damage;
+    public Stat maxHealth;
+
+
 
     [SerializeField] private int currentHp;
 
@@ -15,7 +17,7 @@ public class CharacterStats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHp = maxHp;
+        currentHp = maxHealth.GetValue();
     }
 
     public void TakeDamage(int _damage)

@@ -19,7 +19,8 @@ private void AttackTrigger()
         Enemy enemy = hit.GetComponent<Enemy>();
         if (enemy!=null)
         {
-            enemy.TakeDamage(10);     
+                enemy.TakeDamage(10);
+                hit.GetComponent<CharacterStats>().TakeDamage(player.stats.damage.GetValue());
         }
     }
 }
