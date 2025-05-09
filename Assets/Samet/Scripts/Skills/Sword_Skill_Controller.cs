@@ -97,13 +97,14 @@ public class Sword_Skill_Controller : MonoBehaviour
                 {
                     hitTimer = hitCooldown;
 
-                    //Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1);
+                    Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 1);
 
-                    //foreach (var hit in colliders)
-                    //{
-                    //    if (hit.tag == "Enemy")
-                    //        enemyTargets.Add(hit.transform);
-                    //} damage eklencek
+                    foreach (var hit in colliders)
+                    {
+                        if (hit.GetComponent<Enemy>() != null)
+                            hit.GetComponent<Enemy>().TakeDamage();
+
+                    }
                 }
             }
         }
@@ -184,7 +185,7 @@ public class Sword_Skill_Controller : MonoBehaviour
         if (isReturning)
             return;
 
-        //  collision.GetComponent<Enemy>()?.Damage(); //eneemy damage
+        collision.GetComponent<Enemy>()?.TakeDamage();
 
         SetupTargetsForBounce(collision);
         StukInto(collision);
@@ -200,7 +201,7 @@ public class Sword_Skill_Controller : MonoBehaviour
 
                 foreach (var hit in colliders)
                 {
-                    if (hit.tag == "Enemy")
+                    if (hit.GetComponent<Enemy>()!=null)
                         enemyTargets.Add(hit.transform);
                 }
             }

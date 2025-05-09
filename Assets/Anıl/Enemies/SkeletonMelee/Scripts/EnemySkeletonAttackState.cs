@@ -4,7 +4,7 @@ public class EnemySkeletonAttackState : EnemyState
 {
     private EnemySkeleton enemy;
     private float attackTimer;
-    private float attackDuration = 1.1f;
+    private float attackDuration = 1f;
 
     public EnemySkeletonAttackState(EnemyStateMachine stateMachine, Enemy enemyBase, string animBoolName, EnemySkeleton enemy)
         : base(stateMachine, enemyBase, animBoolName)
@@ -42,6 +42,7 @@ public class EnemySkeletonAttackState : EnemyState
     public override void AnimationFinishTrigger()
     {
         base.AnimationFinishTrigger();
+        Debug.Log("Tetiklendi");
         stateMachine.ChangeState(enemy.battleState);
     }
 }

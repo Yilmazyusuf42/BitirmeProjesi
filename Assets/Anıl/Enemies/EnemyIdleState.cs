@@ -9,6 +9,7 @@ public class EnemyIdleState : EnemyState
     {
         base.Enter();
         stateTimer = enemyBase.idleTime;
+        
     }
 
     public override void Update()

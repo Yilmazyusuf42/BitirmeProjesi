@@ -53,9 +53,9 @@ public class CloneSkillController : MonoBehaviour
 
         foreach (var hit in colliders)
         {
-            if (hit.tag == "Enemy")
+            if (hit.GetComponent<Enemy>()!=null)
             {
-                //hit.tag == "Enemy".Damage();
+                hit.GetComponent<Enemy>().TakeDamage();
             }
         }
     }
@@ -67,7 +67,7 @@ public class CloneSkillController : MonoBehaviour
 
         foreach(var hit in colliders)
         {
-            if(hit.tag == "Enemy")
+            if(hit.GetComponent<Enemy>()!=null)
             {
                 float distanceToEnemy= Vector2.Distance(transform.position, hit.transform.position);
 

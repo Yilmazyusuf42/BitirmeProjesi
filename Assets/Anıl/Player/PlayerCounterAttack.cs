@@ -19,6 +19,7 @@ public class PlayerCounterAttack : PlayerState
     public override void Exit()
     {
         base.Exit();
+        player.anim.SetBool("SuccesfulCounterAttack", false);
     }
 
     public override void Update()
@@ -31,19 +32,23 @@ public class PlayerCounterAttack : PlayerState
 
         foreach (var hit in colliders)
         {
-            if (hit.tag == "Enemy")
+            if (hit.GetComponent<Enemy>()!=null)
             {
-              /*  if (hit.tag == "Enemy".CanBeStunned())
+                if (hit.GetComponent<Enemy>().CanBeStunned())
                 {
                     stateTimer = .3f;
 
                     player.anim.SetBool("SuccesfulCounterAttack", true);
-                }*/
-                   
+                }
+
             }
         }
 
         if (stateTimer < 0 || triggerCalled)
+        {
+            Debug.Log("oldu");
             stateMachine.ChangeState(player.idleState);
+        }
+           
 }
 }

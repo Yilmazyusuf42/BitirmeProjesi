@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 public class EnemyStunnedState : EnemyState
 {
     private float stunDuration;
@@ -17,9 +19,15 @@ public class EnemyStunnedState : EnemyState
 
         enemyBase.SetZeroVelocity();
         stateTimer = enemyBase.stunDuration;
-
         // Play the hurt animation
-        enemyBase.anim.SetTrigger("Stunned");
+        enemyBase.anim.SetBool("Stunned",true);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+        enemyBase.anim.SetBool("Stunned", false);
+        enemyBase.canBeStunned = false;
     }
 
     public override void Update()

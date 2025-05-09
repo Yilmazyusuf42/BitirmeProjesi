@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 3637283142374197156}
   - component: {fileID: 2231925036117604735}
   - component: {fileID: 6648255209932714728}
+  - component: {fileID: 4474426257478318104}
+  - component: {fileID: 8589756431950689052}
   m_Layer: 6
   m_Name: Skeletonspear 1
   m_TagString: Enemy
@@ -214,6 +216,30 @@ MonoBehaviour:
   blinkColor: {r: 1, g: 0, b: 0, a: 1}
   blinkInterval: 0.1
   totalBlinkTime: 0.4
+--- !u!114 &4474426257478318104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008089575712667851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f4af8b68ade8b4e97983f14f4a6ea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8589756431950689052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008089575712667851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f818a3adac4a6c479cd4885ffa790bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7034219101065351309
 GameObject:
   m_ObjectHideFlags: 0
