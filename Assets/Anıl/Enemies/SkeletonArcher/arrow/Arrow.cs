@@ -23,9 +23,10 @@ public class Arrow : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Enemy enemy = GetComponent<Enemy>();
             if (other.TryGetComponent(out Player player))
             {
-                player.TakeDamage(damage); // This assumes your Player script has a TakeDamage(int) method
+                player.TakeDamage(enemy); // This assumes your Player script has a TakeDamage(int) method
             }
 
             Destroy(gameObject);

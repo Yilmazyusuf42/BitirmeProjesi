@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-
+    public Stat strength;
     public Stat damage;
     public Stat maxHealth;
 
@@ -15,14 +15,27 @@ public class CharacterStats : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+   protected virtual void Start()
     {
         currentHp = maxHealth.GetValue();
     }
+    
+    public virtual void DoDamage(CharacterStats _targerStats)
+    {
 
-    public void TakeDamage(int _damage)
+        Debug.Log("Uygulandý");
+
+        int totalDamage = damage.GetValue()+strength.GetValue();
+
+        _targerStats.TakeDamage(totalDamage);
+
+    }
+
+    public virtual void TakeDamage(int _damage)
     {
         currentHp -= _damage;
+
+        Debug.Log(_damage); 
 
 
         if (currentHp < 0)
@@ -31,7 +44,7 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    private static void Die()
+    protected virtual void Die()
     {
 
     }

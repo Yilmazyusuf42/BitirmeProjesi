@@ -1,3 +1,4 @@
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -9,6 +10,7 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D rb;
     public Animator anim;
     public EnemyStateMachine stateMachine;
+    public CharacterStats stats { get; private set; }
     public EntityFx fx { get; private set; }  // ✅ Flash FX handler
 
     [Header("Movement Settings")]
@@ -33,6 +35,10 @@ public class Enemy : MonoBehaviour
     public float patrolRange = 3f;
     public Vector2 spawnPosition;
 
+    [Header("Attack info")]
+    public Transform attackCheck;
+    public float attackRadius;
+
     public virtual float stunDuration => 0.5f;
 
     // FSM State Hooks
@@ -49,7 +55,7 @@ public class Enemy : MonoBehaviour
         anim = GetComponent<Animator>();
         fx = GetComponent<EntityFx>();
         stateMachine = new EnemyStateMachine();
-        
+        stats = GetComponent<CharacterStats>();
 
         Debug.Log($"[Enemy BASE] Awake for {gameObject.name}");
     }
@@ -104,20 +110,22 @@ public class Enemy : MonoBehaviour
 
     public virtual bool CanBeStunned() => canBeStunned;
 
-    public virtual void TakeDamage(int amount)
+    public virtual void TakeDamage()
     {
+        EnemyStats _target = GetComponent<EnemyStats>();
+        PlayerManager.instance.player.stats.DoDamage(_target);
+
         if (IsStunned) return;
         
         fx?.Flash();
 
-        if (CanBeStunned() && stunnedState != null)
-        {
-            stateMachine.ChangeState(stunnedState);
-        }
+        //if (canBeStunned && stunnedState != null)
+        //{
+        //    stateMachine.ChangeState(stunnedState);
+        //}
 
-        Debug.Log($"{gameObject.name} took {amount} damage.");
     }
-
+    private void AnimationFinishTrigger() => stateMachine.currentState.AnimationFinishTrigger();
     public virtual void Die()
     {
         anim.SetTrigger("Dead");
@@ -136,6 +144,8 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawLine(leftEdge + Vector2.up * 0.1f, rightEdge + Vector2.up * 0.1f);
         Gizmos.DrawSphere(leftEdge, 0.1f);
         Gizmos.DrawSphere(rightEdge, 0.1f);
+
+        Gizmos.DrawWireSphere(attackCheck.position, attackRadius);
 #endif
     }
     public bool IsStunned => stateMachine.currentState == stunnedState;

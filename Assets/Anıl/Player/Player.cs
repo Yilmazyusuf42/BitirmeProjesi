@@ -20,7 +20,7 @@ public class Player : Entity
     public float dashDir { get; private set; }
     public float crouchSpeed = 0.5f;
     public float swordReturnImpact = 2f;
-
+    
     public SkillManager skill { get; private set; }
     public GameObject sword { get; private set; }
 
@@ -124,16 +124,11 @@ public class Player : Entity
         }
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(Enemy enemy)
 {
-    Debug.Log($"Player took {amount} damage!");
-
-    // Add your own health reduction or effects here
-    // For example:
-    // currentHealth -= amount;
-    // if (currentHealth <= 0) Die();
-
-    // Optional: Play hurt animation, flash, knockback, etc.
+        CharacterStats target = GetComponent<CharacterStats>();
+        enemy.stats.DoDamage(target);
+        entityFx.Flash();
 }
 
 

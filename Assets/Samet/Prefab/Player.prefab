@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 5352763962585509596}
   - component: {fileID: 3571853388325568431}
   - component: {fileID: 5427915251374975974}
+  - component: {fileID: 2769285157088999114}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -360,3 +361,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetMaterial: {fileID: 2100000, guid: 8a01c93f0018a36449926d7999f693d8, type: 2}
   flashDuration: 0.2
+  blinkColor: {r: 1, g: 0, b: 0, a: 1}
+  blinkInterval: 0.1
+  totalBlinkTime: 0.4
+--- !u!114 &2769285157088999114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9133067962708312460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35fc7109dec9676499600fdae162cafd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strength:
+    baseValue: 5
+    modifiers: 
+  damage:
+    baseValue: 5
+    modifiers: 
+  maxHealth:
+    baseValue: 100
+    modifiers: 
+  currentHp: 0
