@@ -20,7 +20,7 @@ public class Player : Entity
     public float dashDir { get; private set; }
     public float crouchSpeed = 0.5f;
     public float swordReturnImpact = 2f;
-    
+
     public SkillManager skill { get; private set; }
     public GameObject sword { get; private set; }
 
@@ -127,15 +127,36 @@ public class Player : Entity
         }
     }
 
-    public void TakeDamage(Enemy enemy)
+public void TakeDamage(EnemyBase enemy)
+{
+    if (enemy == null || enemy.stats == null)
     {
-        CharacterStats target = GetComponent<CharacterStats>();
-        enemy.stats.DoDamage(target);
-        entityFx.Flash();
+        Debug.LogError("[Player] enemy or enemy.stats is null!");
+        return;
     }
 
-    public void Die()
+    if (stats == null)
     {
-        stateMachine.ChangeState(deadState);
+        Debug.LogError("[Player] stats (PlayerStats) is not assigned!");
+        return;
     }
+
+    enemy.stats.DoDamage(stats); // ✅ let the enemy damage the player’s stats
+    entityFx?.Flash();           // ✅ visual feedback
+}
+
+public void Die()
+{
+    stateMachine.ChangeState(deadState);
+    stateMachine = null;           // stop input/state updates
+    SetZeroVelocity();             // freeze movement
+    anim.SetTrigger("die");        // trigger animation
+    StartCoroutine(FreezeAndDestroy());
+}
+
+private IEnumerator FreezeAndDestroy()
+{
+    yield return new WaitForSeconds(5f);
+    Destroy(gameObject);
+}          
 }

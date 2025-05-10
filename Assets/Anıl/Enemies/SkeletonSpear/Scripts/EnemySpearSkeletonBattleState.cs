@@ -4,7 +4,7 @@ public class EnemySpearSkeletonBattleState : EnemyState
 {
     private EnemySpearSkeleton enemy;
 
-    public EnemySpearSkeletonBattleState(EnemyStateMachine stateMachine, Enemy enemyBase, string animBoolName, EnemySpearSkeleton enemy)
+    public EnemySpearSkeletonBattleState(EnemyStateMachine stateMachine, EnemyBase enemyBase, string animBoolName, EnemySpearSkeleton enemy)
         : base(stateMachine, enemyBase, animBoolName)
     {
         this.enemy = enemy;
@@ -22,23 +22,37 @@ public class EnemySpearSkeletonBattleState : EnemyState
         enemy.anim.SetBool("PlayRun", false);
     }
 
-    public override void Update()
+public override void Update()
+{
+    base.Update();
+
+    enemy.FlipTowardsPlayer();
+
+    float distanceToPlayer = Vector2.Distance(enemy.transform.position, enemy.player.position);
+
+    if (distanceToPlayer <= enemy.minAgroRange)
     {
-        base.Update();
+        enemy.SetZeroVelocity();
+        enemy.anim.SetBool("PlayRun", false); // ✅ stop running animation
 
-        enemy.FlipTowardsPlayer();
-        enemy.SetVelocity(enemy.runSpeed * enemy.facingDir, rb.velocity.y);
-
-        if (enemy.IsPlayerInMinAgroRange())
+        if (enemy.CanAttack())
         {
             stateMachine.ChangeState(enemy.attackState);
-            return;
         }
 
-        if (!enemy.IsPlayerDetected())
-        {
-            stateMachine.ChangeState(enemy.moveState);
-            return;
-        }
+        return;
     }
+
+    // Player is still detected and we’re not in attack range
+    if (enemy.IsPlayerDetected())
+    {
+        enemy.SetVelocity(enemy.runSpeed * enemy.facingDir, rb.velocity.y);
+        enemy.anim.SetBool("PlayRun", true); // ✅ chase animation
+    }
+    else
+    {
+        stateMachine.ChangeState(enemy.moveState);
+    }
+}
+
 }

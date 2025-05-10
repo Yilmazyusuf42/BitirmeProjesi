@@ -16,13 +16,15 @@ private void AttackTrigger()
 
     foreach (var hit in colliders)
     {
-            Enemy enemy= hit.GetComponent<Enemy>();
-        if (enemy!=null)
+        EnemyBase enemy = hit.GetComponent<EnemyBase>();
+        if (enemy != null)
         {
-                enemy.TakeDamage();
+            enemy.TakeDamage();
         }
     }
 }
+
+
 
     private void ThrowSword()
     {

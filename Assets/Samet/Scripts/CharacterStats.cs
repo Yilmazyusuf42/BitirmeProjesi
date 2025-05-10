@@ -33,9 +33,9 @@ public class CharacterStats : MonoBehaviour
         currentHp = maxHealth.GetValue();
     }
     
-    public virtual void DoDamage(CharacterStats _targerStats)
-    {
-        int totalEvasion= _targerStats.evasion.GetValue()+_targerStats.agility.GetValue();
+public virtual void DoDamage(CharacterStats _targetStats)
+{
+        int totalEvasion = _targetStats.evasion.GetValue() + _targetStats.agility.GetValue();
 
         if (Random.Range(0, 100) < totalEvasion)
         {
@@ -45,27 +45,34 @@ public class CharacterStats : MonoBehaviour
 
         Debug.Log("Uygulandý");
 
-        int totalDamage = damage.GetValue()+strength.GetValue();
+        int totalDamage = damage.GetValue() + strength.GetValue();
+    _targetStats.TakeDamage(totalDamage);
+}
 
-        _targerStats.TakeDamage(totalDamage);
 
-    }
+public virtual void TakeDamage(int damage)
+{
 
-    public virtual void TakeDamage(int _damage)
+    currentHp -= damage;
+
+    Debug.Log($"{gameObject.name} took {damage} damage. Current HP: {currentHp}");
+
+    if (currentHp <= 0)
+        Die();
+}
+
+
+protected virtual void Die()
+{
+    if (TryGetComponent(out EnemyBase enemy))
     {
-        currentHp -= _damage;
-
-        Debug.Log(_damage); 
-
-
-        if (currentHp < 0)
-        {
-            Die();
-        }
+        enemy.Die(); // âœ… call enemy death logic
     }
-
-    protected virtual void Die()
+    else
     {
-
+        Debug.LogWarning($"{name} died but has no EnemyBase script.");
+        Destroy(gameObject);
     }
+}
+
 }

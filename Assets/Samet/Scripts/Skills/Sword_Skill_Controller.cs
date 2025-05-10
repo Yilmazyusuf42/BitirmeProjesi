@@ -101,8 +101,8 @@ public class Sword_Skill_Controller : MonoBehaviour
 
                     foreach (var hit in colliders)
                     {
-                        if (hit.GetComponent<Enemy>() != null)
-                            hit.GetComponent<Enemy>().TakeDamage();
+                        if (hit.GetComponent<EnemyBase>() != null)
+                            hit.GetComponent<EnemyBase>().TakeDamage();
 
                     }
                 }
@@ -185,7 +185,7 @@ public class Sword_Skill_Controller : MonoBehaviour
         if (isReturning)
             return;
 
-        collision.GetComponent<Enemy>()?.TakeDamage();
+        collision.GetComponent<EnemyBase>()?.TakeDamage();
 
         SetupTargetsForBounce(collision);
         StukInto(collision);
@@ -201,7 +201,7 @@ public class Sword_Skill_Controller : MonoBehaviour
 
                 foreach (var hit in colliders)
                 {
-                    if (hit.GetComponent<Enemy>()!=null)
+                    if (hit.GetComponent<EnemyBase>()!=null)
                         enemyTargets.Add(hit.transform);
                 }
             }
