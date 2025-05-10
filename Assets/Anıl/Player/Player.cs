@@ -43,6 +43,7 @@ public class Player : Entity
     public PlayerRollState rollState { get; private set; }
     public PlayerAimSwordState aimSwordState { get; private set; }
     public PlayerCatchSwordState playerCatchSwordState { get; private set; }
+    public PlayerDeadState deadState { get; private set; }
     #endregion
 
     public override void Awake()
@@ -68,6 +69,8 @@ public class Player : Entity
 
         aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
         playerCatchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
+
+        deadState = new PlayerDeadState(this, stateMachine, "Die");
     }
 
     public override void Start()
@@ -125,11 +128,14 @@ public class Player : Entity
     }
 
     public void TakeDamage(Enemy enemy)
-{
+    {
         CharacterStats target = GetComponent<CharacterStats>();
         enemy.stats.DoDamage(target);
         entityFx.Flash();
-}
+    }
 
-
+    public void Die()
+    {
+        stateMachine.ChangeState(deadState);
+    }
 }
