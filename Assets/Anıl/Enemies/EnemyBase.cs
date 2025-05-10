@@ -11,6 +11,7 @@ public class EnemyBase : MonoBehaviour
     public EnemyStateMachine stateMachine;
     public CharacterStats stats { get; private set; }
     public EntityFx fx { get; private set; }
+    public CapsuleCollider2D cd { get; private set; }
 
     [Header("Movement Settings")]
     public float runSpeed = 3f;
@@ -59,11 +60,18 @@ public class EnemyBase : MonoBehaviour
         anim = GetComponent<Animator>();
         fx = GetComponent<EntityFx>();
         stateMachine = new EnemyStateMachine();
+        cd = GetComponent<CapsuleCollider2D>();
         stats = GetComponent<CharacterStats>();
     }
 
     public virtual void Start() => spawnPosition = transform.position;
-    public virtual void Update() => stateMachine?.currentState?.Update();
+    public virtual void Update()
+    {
+        stateMachine?.currentState?.Update();
+
+        if (isDead)
+            SetZeroVelocity();
+    }
 
     public void SetVelocity(float x, float y) => rb.velocity = new Vector2(x, y);
     public void SetZeroVelocity() => rb.velocity = Vector2.zero;
@@ -77,7 +85,7 @@ public class EnemyBase : MonoBehaviour
     public void FlipTowardsPlayer()
     {
         if (player == null) return;
-
+        if (isDead) return;
         float dir = player.position.x - transform.position.x;
         facingDir = dir > 0 ? 1 : -1;
         transform.localScale = new Vector3(facingDir, 1, 1);
@@ -138,7 +146,7 @@ public virtual void TakeDamage()
         isDead = true;
 
         SetZeroVelocity();
-
+        rb.freezeRotation=true;
         if (anim != null)
         {
             anim.SetTrigger("Die"); // ✅ match Animator trigger name
@@ -147,8 +155,7 @@ public virtual void TakeDamage()
         {
             Debug.LogWarning($"[Enemy] {name} missing Animator.");
         }
-
-        stateMachine = null;
+        
         StartCoroutine(FreezeAndDestroy());
     }
 

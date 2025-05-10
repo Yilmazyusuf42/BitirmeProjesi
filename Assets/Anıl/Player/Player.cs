@@ -20,7 +20,7 @@ public class Player : Entity
     public float dashDir { get; private set; }
     public float crouchSpeed = 0.5f;
     public float swordReturnImpact = 2f;
-    
+
     public SkillManager skill { get; private set; }
     public GameObject sword { get; private set; }
 
@@ -43,7 +43,7 @@ public class Player : Entity
     public PlayerRollState rollState { get; private set; }
     public PlayerAimSwordState aimSwordState { get; private set; }
     public PlayerCatchSwordState playerCatchSwordState { get; private set; }
-    private bool isDead = false;
+    public PlayerDeadState deadState { get; private set; }
     #endregion
 
     public override void Awake()
@@ -69,6 +69,8 @@ public class Player : Entity
 
         aimSwordState = new PlayerAimSwordState(this, stateMachine, "AimSword");
         playerCatchSwordState = new PlayerCatchSwordState(this, stateMachine, "CatchSword");
+
+        deadState = new PlayerDeadState(this, stateMachine, "Die");
     }
 
     public override void Start()
@@ -145,19 +147,7 @@ public void TakeDamage(EnemyBase enemy)
 
 public void Die()
 {
-    if (isDead) return;
-    isDead = true;
-
-    stateMachine = null;           // stop input/state updates
-    SetZeroVelocity();             // freeze movement
-    anim.SetTrigger("die");        // trigger animation
-    StartCoroutine(FreezeAndDestroy());
-}
-
-private IEnumerator FreezeAndDestroy()
-{
-    yield return new WaitForSeconds(5f);
-    Destroy(gameObject);
-}
-
+    stateMachine.ChangeState(deadState);
+}    
+    
 }
