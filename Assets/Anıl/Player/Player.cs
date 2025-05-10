@@ -43,6 +43,7 @@ public class Player : Entity
     public PlayerRollState rollState { get; private set; }
     public PlayerAimSwordState aimSwordState { get; private set; }
     public PlayerCatchSwordState playerCatchSwordState { get; private set; }
+    private bool isDead = false;
     #endregion
 
     public override void Awake()
@@ -124,12 +125,39 @@ public class Player : Entity
         }
     }
 
-    public void TakeDamage(Enemy enemy)
+public void TakeDamage(EnemyBase enemy)
 {
-        CharacterStats target = GetComponent<CharacterStats>();
-        enemy.stats.DoDamage(target);
-        entityFx.Flash();
+    if (enemy == null || enemy.stats == null)
+    {
+        Debug.LogError("[Player] enemy or enemy.stats is null!");
+        return;
+    }
+
+    if (stats == null)
+    {
+        Debug.LogError("[Player] stats (PlayerStats) is not assigned!");
+        return;
+    }
+
+    enemy.stats.DoDamage(stats); // ✅ let the enemy damage the player’s stats
+    entityFx?.Flash();           // ✅ visual feedback
 }
 
+public void Die()
+{
+    if (isDead) return;
+    isDead = true;
+
+    stateMachine = null;           // stop input/state updates
+    SetZeroVelocity();             // freeze movement
+    anim.SetTrigger("die");        // trigger animation
+    StartCoroutine(FreezeAndDestroy());
+}
+
+private IEnumerator FreezeAndDestroy()
+{
+    yield return new WaitForSeconds(5f);
+    Destroy(gameObject);
+}
 
 }

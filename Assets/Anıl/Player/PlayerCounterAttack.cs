@@ -32,9 +32,9 @@ public class PlayerCounterAttack : PlayerState
 
         foreach (var hit in colliders)
         {
-            if (hit.GetComponent<Enemy>()!=null)
+            if (hit.GetComponent<EnemyBase>()!=null)
             {
-                if (hit.GetComponent<Enemy>().CanBeStunned())
+                if (hit.GetComponent<EnemyBase>().CanBeStunned())
                 {
                     stateTimer = .3f;
 

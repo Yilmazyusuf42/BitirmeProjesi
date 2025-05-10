@@ -1,17 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-  public static PlayerManager instance;
-  public Player player;
+    public static PlayerManager instance;
+    public Player player;
 
     private void Awake()
     {
-        if(instance != null)
-            Destroy(instance.gameObject);
-        else
-           instance=this;
+        // Ensure singleton instance
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
+
+    private void Start()
+    {
+        // Try to auto-assign if not done in Inspector
+        if (player == null)
+        {
+            player = FindObjectOfType<Player>();
+            if (player == null)
+                Debug.LogError("[PlayerManager] Player reference is missing and could not be found in the scene!");
+        }
     }
 }

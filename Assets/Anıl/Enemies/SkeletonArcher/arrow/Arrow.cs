@@ -3,9 +3,10 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     public float speed = 5f;
-    public int damage = 1;
     public float lifetime = 3f;
     private Vector2 direction;
+
+    public EnemyRanged ownerEnemy; // ✅ Shooter of the arrow
 
     public void SetDirection(Vector2 dir)
     {
@@ -23,10 +24,20 @@ public class Arrow : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Enemy enemy = GetComponent<Enemy>();
+            if (ownerEnemy == null)
+            {
+                Debug.LogError("[Arrow] ownerEnemy is not set! Cannot apply damage.");
+                Destroy(gameObject);
+                return;
+            }
+
             if (other.TryGetComponent(out Player player))
             {
-                player.TakeDamage(enemy); // This assumes your Player script has a TakeDamage(int) method
+                player.TakeDamage(ownerEnemy); // ✅ Pass full enemy reference
+            }
+            else
+            {
+                Debug.LogWarning("[Arrow] Player does not have Player component!");
             }
 
             Destroy(gameObject);

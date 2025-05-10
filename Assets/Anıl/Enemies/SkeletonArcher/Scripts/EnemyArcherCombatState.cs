@@ -4,7 +4,7 @@ public class EnemyArcherCombatState : EnemyState
 {
     private EnemyArcherSkeleton enemy;
 
-    public EnemyArcherCombatState(EnemyStateMachine stateMachine, Enemy enemyBase, string animBoolName, EnemyArcherSkeleton enemy)
+    public EnemyArcherCombatState(EnemyStateMachine stateMachine, EnemyBase enemyBase, string animBoolName, EnemyArcherSkeleton enemy)
         : base(stateMachine, enemyBase, animBoolName)
     {
         this.enemy = enemy;

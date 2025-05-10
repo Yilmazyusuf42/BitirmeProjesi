@@ -2,30 +2,43 @@ using UnityEngine;
 
 public class EnemyAnimationTriggers : MonoBehaviour
 {
-    private Enemy enemy;
+    private EnemyBase enemyBase;
 
     private void Awake()
     {
-        enemy = GetComponent<Enemy>();
+        enemyBase = GetComponent<EnemyBase>();
     }
 
+    // Called by animation event to notify current state
     public void AnimationTrigger()
     {
-        enemy?.stateMachine?.currentState?.AnimationTrigger();
+        enemyBase?.stateMachine?.currentState?.AnimationTrigger();
     }
+
+    // Called by melee attack animation to trigger damage
     private void AttackTrigger()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(enemy.attackCheck.transform.position,enemy.attackRadius);
-        foreach(Collider2D hit in colliders)
+        // Only melee enemies have attackCheck and attackRadius
+        if (enemyBase is EnemyMelee meleeEnemy && meleeEnemy.attackCheck != null)
         {
-            if (hit.GetComponent<Player>() != null)
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(
+                meleeEnemy.attackCheck.position,
+                meleeEnemy.attackRadius
+            );
+
+            foreach (Collider2D hit in colliders)
             {
-                hit.GetComponent<Player>().TakeDamage(enemy);
+                if (hit.TryGetComponent(out Player player))
+                {
+                    player.TakeDamage(enemyBase); // Pass EnemyBase reference
+                }
             }
         }
     }
+
+    // Called by animation event to signal animation is done
     public void AnimationFinishTrigger()
     {
-        enemy?.stateMachine?.currentState?.AnimationFinishTrigger();
+        enemyBase?.stateMachine?.currentState?.AnimationFinishTrigger();
     }
 }

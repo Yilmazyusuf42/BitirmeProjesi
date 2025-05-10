@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyWerewolf : Enemy
+public class EnemyWerewolf : EnemyMelee
 {
     public EnemyIdleState idleState { get; private set; }
     public EnemyMoveState moveState { get; private set; }
@@ -22,12 +22,12 @@ public class EnemyWerewolf : Enemy
     {
         base.Awake();
 
-        idleState = new EnemyIdleState(stateMachine, this, "Idle");
-        moveState = new EnemyMoveState(stateMachine, this, "Run");
-        battleStateInternal = new EnemyWerewolfBattleState(stateMachine, this, "Battle", this);
+        idleState = new EnemyIdleState(stateMachine, this, "PlayIdle");
+        moveState = new EnemyMoveState(stateMachine, this, "PlayRun");
+        battleStateInternal = new EnemyWerewolfBattleState(stateMachine, this, "PlayRun", this);
         attackStateInternal = new EnemyWerewolfAttackState(stateMachine, this, "Attack", this);
         stunnedStateInternal = new EnemyStunnedState(stateMachine, this, "Stunned");
-        patrolStateInternal = new EnemyPatrolState(stateMachine, this, "Walk");
+        patrolStateInternal = new EnemyPatrolState(stateMachine, this, "PlayWalk");
 
         Debug.Log($"[EnemyWerewolf] Awake for {gameObject.name}. patrolStateInternal: {(patrolStateInternal != null ? "Initialized" : "NULL")}, battleStateInternal: {(battleStateInternal != null ? "Initialized" : "NULL")}");
     }
@@ -36,9 +36,9 @@ public class EnemyWerewolf : Enemy
     public override void Start()
     {
         base.Start();
-        Debug.Log("[Werewolf] patrolState null? " + (patrolState == null));
         stateMachine.Initialize(idleState);
         spawnPosition = transform.position;
+
     }
 
     // Hook stun logic
