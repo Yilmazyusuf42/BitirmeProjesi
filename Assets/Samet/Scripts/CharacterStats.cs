@@ -20,32 +20,36 @@ public class CharacterStats : MonoBehaviour
         currentHp = maxHealth.GetValue();
     }
     
-    public virtual void DoDamage(CharacterStats _targerStats)
+public virtual void DoDamage(CharacterStats targetStats)
+{
+    int totalDamage = damage.GetValue() + strength.GetValue();
+    Debug.Log($"[DoDamage] Dealing {totalDamage} damage");
+    targetStats.TakeDamage(totalDamage);
+}
+
+
+public virtual void TakeDamage(int damage)
+{
+    currentHp -= damage;
+
+    Debug.Log($"{gameObject.name} took {damage} damage. Current HP: {currentHp}");
+
+    if (currentHp <= 0)
+        Die();
+}
+
+
+protected virtual void Die()
+{
+    if (TryGetComponent(out EnemyBase enemy))
     {
-
-        Debug.Log("Uygulandý");
-
-        int totalDamage = damage.GetValue()+strength.GetValue();
-
-        _targerStats.TakeDamage(totalDamage);
-
+        enemy.Die(); // âœ… call enemy death logic
     }
-
-    public virtual void TakeDamage(int _damage)
+    else
     {
-        currentHp -= _damage;
-
-        Debug.Log(_damage); 
-
-
-        if (currentHp < 0)
-        {
-            Die();
-        }
+        Debug.LogWarning($"{name} died but has no EnemyBase script.");
+        Destroy(gameObject);
     }
+}
 
-    protected virtual void Die()
-    {
-
-    }
 }

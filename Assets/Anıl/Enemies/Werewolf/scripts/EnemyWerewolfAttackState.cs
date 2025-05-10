@@ -8,28 +8,30 @@ public class EnemyWerewolfAttackState : EnemyState
     private float attackDuration = 1.2f; // ⏱ fallback in case AnimationFinishTrigger doesn't fire
     private float attackTimer;
 
-    public EnemyWerewolfAttackState(EnemyStateMachine stateMachine, Enemy enemyBase, string animBoolName, EnemyWerewolf enemy)
+    public EnemyWerewolfAttackState(EnemyStateMachine stateMachine, EnemyBase enemyBase, string animBoolName, EnemyWerewolf enemy)
         : base(stateMachine, enemyBase, animBoolName)
     {
         this.enemy = enemy;
     }
 
-    public override void Enter()
-    {
-        base.Enter();
+public override void Enter()
+{
+    base.Enter();
 
-        enemy.SetZeroVelocity();
+    enemy.SetZeroVelocity();
 
-        // Randomly pick attack 1, 2, or 3
-        float attackIndex = Mathf.Round(Random.Range(1f, 3.99f));
-        enemy.anim.SetFloat("attackType", attackIndex);
-        enemy.anim.ResetTrigger("PlayAttack");
-        enemy.anim.SetTrigger("PlayAttack");
+    float attackIndex = Mathf.Round(Random.Range(1f, 3.99f));
+    enemy.anim.SetFloat("attackType", attackIndex);
+    enemy.anim.ResetTrigger("Attack");
+    enemy.anim.SetTrigger("Attack");
 
-        attackTimer = attackDuration;
+    enemy.lastAttackTime = Time.time; // ✅ cooldown starts here
+    attackTimer = attackDuration;
 
-        Debug.Log($"[AttackState] Started attackType {attackIndex} on {enemy.name}");
-    }
+    Debug.Log($"[AttackState] Started attackType {attackIndex} on {enemy.name}");
+}
+
+
 
     public override void Update()
     {

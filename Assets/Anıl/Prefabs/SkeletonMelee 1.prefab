@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3345836706089743884
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7106553768830924205}
+  m_Layer: 6
+  m_Name: WallCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7106553768830924205
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345836706089743884}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.09, y: -1.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5767094490503621148}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5421664534091814997
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,11 +64,12 @@ Transform:
   m_GameObject: {fileID: 5421664534091814997}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.08, y: 10.14, z: -0.05104412}
+  m_LocalPosition: {x: 6.41, y: 2, z: -0.05104412}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2705084188608324937}
+  - {fileID: 7106553768830924205}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2015271097371619257
@@ -194,11 +226,18 @@ MonoBehaviour:
   facingDir: 1
   minAgroRange: 1.5
   maxAgroRange: 5
-  idleTime: 0.1
+  idleTime: 1.5
   canBeStunned: 1
   returningToSpawn: 0
-  patrolRange: 3
+  patrolRange: 5
   spawnPosition: {x: 0, y: 0}
+  attackCooldown: 1
+  lastAttackTime: -Infinity
+  wallCheck: {fileID: 7106553768830924205}
+  wallCheckDistance: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
   attackCheck: {fileID: 2705084188608324937}
   attackRadius: 0.7
 --- !u!114 &117247522696183466

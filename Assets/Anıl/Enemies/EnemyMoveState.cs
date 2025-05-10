@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EnemyMoveState : EnemyState
 {
-    private Enemy enemy;
+    private EnemyBase enemy;
 
-    public EnemyMoveState(EnemyStateMachine stateMachine, Enemy enemyBase, string animBoolName)
+    public EnemyMoveState(EnemyStateMachine stateMachine, EnemyBase enemyBase, string animBoolName)
         : base(stateMachine, enemyBase, animBoolName)
     {
         this.enemy = enemyBase;

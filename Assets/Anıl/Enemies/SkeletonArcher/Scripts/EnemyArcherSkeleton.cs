@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyArcherSkeleton : Enemy
+public class EnemyArcherSkeleton : EnemyRanged
 {
     public EnemyIdleState idleState { get; private set; }
     public EnemyPatrolState patrolStateInternal { get; private set; }
@@ -15,20 +15,17 @@ public class EnemyArcherSkeleton : Enemy
     public override EnemyState idle => idleState;
 
     [Header("Archer Settings")]
-    public float attackCooldown = 2f;
     public float shootRange = 6f;
     public GameObject arrowPrefab;
     public Transform arrowSpawnPoint;
-
-    [HideInInspector] public float lastAttackTime;
 
     public override void Awake()
     {
         base.Awake();
 
-        idleState = new EnemyIdleState(stateMachine, this, "Idle");
-        patrolStateInternal = new EnemyPatrolState(stateMachine, this, "Walk");
-        combatState = new EnemyArcherCombatState(stateMachine, this, "Walk", this);
+        idleState = new EnemyIdleState(stateMachine, this, "PlayIdle");
+        patrolStateInternal = new EnemyPatrolState(stateMachine, this, "PlayWalk");
+        combatState = new EnemyArcherCombatState(stateMachine, this, "PlayWalk", this);
         attackStateInternal = new EnemyArcherAttackState(stateMachine, this, "Attack", this);
         stunnedStateInternal = new EnemyStunnedState(stateMachine, this, "Stunned");
     }
@@ -51,9 +48,11 @@ public void ShootArrow()
     {
         Vector2 direction = (player.position - arrowSpawnPoint.position).normalized;
         arrowScript.SetDirection(direction);
+        arrowScript.ownerEnemy = this; // ✅ Pass reference to the shooter enemy
     }
 
     lastAttackTime = Time.time; // ✅ Reset cooldown
 }
+
 
 }

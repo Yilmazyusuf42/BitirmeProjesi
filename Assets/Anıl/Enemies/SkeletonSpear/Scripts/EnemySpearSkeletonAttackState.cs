@@ -6,7 +6,7 @@ public class EnemySpearSkeletonAttackState : EnemyState
     private float attackTimer;
     private float attackDuration = 1.1f;
 
-    public EnemySpearSkeletonAttackState(EnemyStateMachine stateMachine, Enemy enemyBase, string animBoolName, EnemySpearSkeleton enemy)
+    public EnemySpearSkeletonAttackState(EnemyStateMachine stateMachine, EnemyBase enemyBase, string animBoolName, EnemySpearSkeleton enemy)
         : base(stateMachine, enemyBase, animBoolName)
     {
         this.enemy = enemy;
@@ -20,9 +20,10 @@ public class EnemySpearSkeletonAttackState : EnemyState
 
         float attackIndex = Mathf.Round(Random.Range(1f, 2.99f));
         enemy.anim.SetFloat("attackType", attackIndex);
-        enemy.anim.ResetTrigger("PlayAttack");
-        enemy.anim.SetTrigger("PlayAttack");
+        enemy.anim.ResetTrigger("Attack");
+        enemy.anim.SetTrigger("Attack");
 
+        enemy.lastAttackTime = Time.time; // ✅ Cooldown timer
         attackTimer = attackDuration;
 
         Debug.Log($"[SpearSkeletonAttack] attackType {attackIndex}");

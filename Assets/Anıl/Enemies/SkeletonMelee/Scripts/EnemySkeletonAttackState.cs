@@ -6,27 +6,29 @@ public class EnemySkeletonAttackState : EnemyState
     private float attackTimer;
     private float attackDuration = 1f;
 
-    public EnemySkeletonAttackState(EnemyStateMachine stateMachine, Enemy enemyBase, string animBoolName, EnemySkeleton enemy)
+    public EnemySkeletonAttackState(EnemyStateMachine stateMachine, EnemyBase enemyBase, string animBoolName, EnemySkeleton enemy)
         : base(stateMachine, enemyBase, animBoolName)
     {
         this.enemy = enemy;
     }
 
-    public override void Enter()
-    {
-        base.Enter();
+public override void Enter()
+{
+    base.Enter();
 
-        enemy.SetZeroVelocity();
+    enemy.SetZeroVelocity();
 
-        float attackIndex = Mathf.Round(Random.Range(1f, 3.99f));
-        enemy.anim.SetFloat("attackType", attackIndex);
-        enemy.anim.ResetTrigger("PlayAttack");
-        enemy.anim.SetTrigger("PlayAttack");
+    float attackIndex = Mathf.Round(Random.Range(1f, 3.99f));
+    enemy.anim.SetFloat("attackType", attackIndex);
+    enemy.anim.ResetTrigger("Attack");
+    enemy.anim.SetTrigger("Attack");
 
-        attackTimer = attackDuration;
+    enemy.lastAttackTime = Time.time; // ✅ start cooldown
+    attackTimer = attackDuration;
 
-        Debug.Log($"[SkeletonAttack] attackType {attackIndex}");
-    }
+    Debug.Log($"[SkeletonAttack] attackType {attackIndex}");
+}
+
 
     public override void Update()
     {

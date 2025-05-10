@@ -6,7 +6,7 @@ public class EnemyState
 {
     protected Rigidbody2D rb;
     protected EnemyStateMachine enemyStateMachine;
-    protected Enemy enemyBase;
+    protected EnemyBase enemyBase;
 
     private string animBoolName;
     protected bool triggerCalled;
@@ -14,7 +14,7 @@ public class EnemyState
     protected float stateTimer;
     protected EnemyStateMachine stateMachine;
 
-    public EnemyState(EnemyStateMachine stateMachine, Enemy enemyBase, string animBoolName)
+    public EnemyState(EnemyStateMachine stateMachine, EnemyBase enemyBase, string animBoolName)
     {
         this.stateMachine = stateMachine; // ✅ this is what your states are actually using
         this.enemyBase = enemyBase;

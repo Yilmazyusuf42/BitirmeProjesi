@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemySkeleton : Enemy
+public class EnemySkeleton : EnemyMelee
 {
     public EnemyIdleState idleState { get; private set; }
     public EnemyMoveState moveState { get; private set; }
@@ -21,12 +21,12 @@ public class EnemySkeleton : Enemy
     {
         base.Awake();
 
-        idleState = new EnemyIdleState(stateMachine, this, "Idle");
-        moveState = new EnemyMoveState(stateMachine, this, "Run");
-        battleStateInternal = new EnemySkeletonBattleState(stateMachine, this, "Battle", this);
+        idleState = new EnemyIdleState(stateMachine, this, "PlayIdle");
+        moveState = new EnemyMoveState(stateMachine, this, "PlayRun");
+        battleStateInternal = new EnemySkeletonBattleState(stateMachine, this, "PlayRun", this);
         attackStateInternal = new EnemySkeletonAttackState(stateMachine, this, "Attack", this);
         stunnedStateInternal = new EnemyStunnedState(stateMachine, this, "Stunned");
-        patrolStateInternal = new EnemyPatrolState(stateMachine, this, "Walk");
+        patrolStateInternal = new EnemyPatrolState(stateMachine, this, "PlayWalk");
     }
 
     public override void Start()

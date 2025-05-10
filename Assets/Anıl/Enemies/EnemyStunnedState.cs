@@ -4,7 +4,7 @@ public class EnemyStunnedState : EnemyState
 {
     private float stunDuration;
 
-    public EnemyStunnedState(EnemyStateMachine stateMachine, Enemy enemyBase, string animBoolName)
+    public EnemyStunnedState(EnemyStateMachine stateMachine, EnemyBase enemyBase, string animBoolName)
         : base(stateMachine, enemyBase, animBoolName)
     {
         if (enemyBase != null)
