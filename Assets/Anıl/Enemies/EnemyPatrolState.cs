@@ -64,7 +64,7 @@ public override void Update()
         stateMachine.ChangeState(enemy.battleState);
     }
 
-    Debug.Log($"[Werewolf Patrol] PosX: {enemy.transform.position.x}, Spawn: {enemy.spawnPosition.x}, FacingDir: {enemy.facingDir}, Speed: {enemy.walkSpeed}, VelocityX: {rb.velocity.x}, Wall: {enemy.IsWallDetected()}");
+   // Debug.Log($"[Werewolf Patrol] PosX: {enemy.transform.position.x}, Spawn: {enemy.spawnPosition.x}, FacingDir: {enemy.facingDir}, Speed: {enemy.walkSpeed}, VelocityX: {rb.velocity.x}, Wall: {enemy.IsWallDetected()}");
 
 }
 

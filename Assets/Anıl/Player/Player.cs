@@ -148,15 +148,6 @@ public void TakeDamage(EnemyBase enemy)
 public void Die()
 {
     stateMachine.ChangeState(deadState);
-    stateMachine = null;           // stop input/state updates
-    SetZeroVelocity();             // freeze movement
-    anim.SetTrigger("die");        // trigger animation
-    StartCoroutine(FreezeAndDestroy());
-}
-
-private IEnumerator FreezeAndDestroy()
-{
-    yield return new WaitForSeconds(5f);
-    Destroy(gameObject);
-}          
+}    
+    
 }

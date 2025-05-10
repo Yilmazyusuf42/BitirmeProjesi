@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PlayerStats : CharacterStats
 {
     private Player player;
@@ -12,19 +8,10 @@ public class PlayerStats : CharacterStats
         player = GetComponent<Player>();
     }
 
-public override void TakeDamage(int _damage)
-{
-    base.TakeDamage(_damage);
-    Debug.Log($"[PlayerStats] Took {_damage} damage.");
-}
-
-protected override void Die()
-{
-    if (TryGetComponent(out Player player))
+    public override void TakeDamage(int _damage)
     {
-        player.Die(); // ✅ play animation, delay destruction
+        base.TakeDamage(_damage);
     }
-
     protected override void Die()
     {
         base.Die();
@@ -33,5 +20,3 @@ protected override void Die()
     }
 }
 
-
-}
