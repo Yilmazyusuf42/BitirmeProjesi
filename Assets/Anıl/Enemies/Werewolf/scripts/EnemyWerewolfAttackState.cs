@@ -3,10 +3,8 @@ using UnityEngine;
 public class EnemyWerewolfAttackState : EnemyState
 {
     private EnemyWerewolf enemy;
-    private int attackIndex;
-
-    private float attackDuration = 1.2f; // ⏱ fallback in case AnimationFinishTrigger doesn't fire
     private float attackTimer;
+    private float attackDuration = 1.1f;
 
     public EnemyWerewolfAttackState(EnemyStateMachine stateMachine, EnemyBase enemyBase, string animBoolName, EnemyWerewolf enemy)
         : base(stateMachine, enemyBase, animBoolName)
@@ -14,33 +12,30 @@ public class EnemyWerewolfAttackState : EnemyState
         this.enemy = enemy;
     }
 
-public override void Enter()
-{
-    base.Enter();
+    public override void Enter()
+    {
+        base.Enter();
 
-    enemy.SetZeroVelocity();
+        enemy.SetZeroVelocity();
 
-    float attackIndex = Mathf.Round(Random.Range(1f, 3.99f));
-    enemy.anim.SetFloat("attackType", attackIndex);
-    enemy.anim.ResetTrigger("Attack");
-    enemy.anim.SetTrigger("Attack");
+        float attackIndex = Mathf.Round(Random.Range(1f, 2.99f));
+        enemy.anim.SetFloat("attackType", attackIndex);
+        enemy.anim.ResetTrigger("Attack");
+        enemy.anim.SetTrigger("Attack");
 
-    enemy.lastAttackTime = Time.time; // ✅ cooldown starts here
-    attackTimer = attackDuration;
+        enemy.lastAttackTime = Time.time; // ✅ Cooldown timer
+        attackTimer = attackDuration;
 
-    Debug.Log($"[AttackState] Started attackType {attackIndex} on {enemy.name}");
-}
-
-
+        Debug.Log($"[SpearSkeletonAttack] attackType {attackIndex}");
+    }
 
     public override void Update()
     {
         base.Update();
 
         attackTimer -= Time.deltaTime;
-        if (attackTimer <= 0f)
+        if (attackTimer <= 0)
         {
-            Debug.LogWarning($"[AttackState] Fallback timeout on {enemy.name} → returning to battle.");
             stateMachine.ChangeState(enemy.battleState);
         }
     }
@@ -48,16 +43,6 @@ public override void Enter()
     public override void AnimationFinishTrigger()
     {
         base.AnimationFinishTrigger();
-
-        Debug.Log($"[AttackState] AnimationFinishTrigger called on {enemy.name} → back to battle.");
-
-        if (stateMachine != null && enemy.battleState != null)
-        {
-            stateMachine.ChangeState(enemy.battleState);
-        }
-        else
-        {
-            Debug.LogError("[AttackState] ERROR: Cannot transition. Missing stateMachine or battleState.");
-        }
+        stateMachine.ChangeState(enemy.battleState);
     }
 }

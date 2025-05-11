@@ -12,6 +12,8 @@ public class Arrow : MonoBehaviour
     {
         direction = dir.normalized;
         transform.localScale = new Vector3(Mathf.Sign(direction.x), 1, 1);
+        if (TryGetComponent(out SpriteRenderer sr))
+        sr.enabled = true;
         Destroy(gameObject, lifetime);
     }
 
