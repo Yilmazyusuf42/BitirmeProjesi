@@ -4,12 +4,12 @@ public class EnemyArcherSkeleton : EnemyRanged
 {
     public EnemyIdleState idleState { get; private set; }
     public EnemyPatrolState patrolStateInternal { get; private set; }
-    public EnemyArcherCombatState combatState { get; private set; }
+    public EnemyArcherBattleState BattleStateInternal { get; private set; }
     public EnemyArcherAttackState attackStateInternal { get; private set; }
     public EnemyStunnedState stunnedStateInternal { get; private set; }
 
     public override EnemyState patrolState => patrolStateInternal;
-    public override EnemyState battleState => combatState;
+    public override EnemyState battleState => BattleStateInternal;
     public override EnemyState attackState => attackStateInternal;
     public override EnemyState stunnedState => stunnedStateInternal;
     public override EnemyState idle => idleState;
@@ -25,7 +25,7 @@ public class EnemyArcherSkeleton : EnemyRanged
 
         idleState = new EnemyIdleState(stateMachine, this, "PlayIdle");
         patrolStateInternal = new EnemyPatrolState(stateMachine, this, "PlayWalk");
-        combatState = new EnemyArcherCombatState(stateMachine, this, "PlayWalk", this);
+        BattleStateInternal = new EnemyArcherBattleState(stateMachine, this, "PlayIdle", this);
         attackStateInternal = new EnemyArcherAttackState(stateMachine, this, "Attack", this);
         stunnedStateInternal = new EnemyStunnedState(stateMachine, this, "Stunned");
     }

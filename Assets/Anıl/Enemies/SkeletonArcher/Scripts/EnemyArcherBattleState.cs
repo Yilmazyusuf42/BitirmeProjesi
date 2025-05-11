@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class EnemyArcherCombatState : EnemyState
+public class EnemyArcherBattleState : EnemyState
 {
     private EnemyArcherSkeleton enemy;
 
-    public EnemyArcherCombatState(EnemyStateMachine stateMachine, EnemyBase enemyBase, string animBoolName, EnemyArcherSkeleton enemy)
+    public EnemyArcherBattleState(EnemyStateMachine stateMachine, EnemyBase enemyBase, string animBoolName, EnemyArcherSkeleton enemy)
         : base(stateMachine, enemyBase, animBoolName)
     {
         this.enemy = enemy;
