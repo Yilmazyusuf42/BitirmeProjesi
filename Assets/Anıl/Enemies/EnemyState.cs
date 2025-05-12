@@ -30,7 +30,7 @@ public class EnemyState
         rb = enemyBase.rb;
         triggerCalled = false;
         enemyBase.anim.SetBool(animBoolName, true);
-        Debug.Log($"[FSM] Entered state: {animBoolName} on {enemyBase.name}");
+       // Debug.Log($"[FSM] Entered state: {animBoolName} on {enemyBase.name}");
     }
 
     public virtual void Exit()
