@@ -109,7 +109,7 @@ public class EnemyBase : MonoBehaviour
     public virtual bool CanBeStunned() => canBeStunned;
     public virtual bool CanAttack() => Time.time >= lastAttackTime + attackCooldown;
 
-public virtual void TakeDamage()
+public virtual void TakeDamage(bool isPhysical)
 {
     if (isDead)
     {
@@ -123,7 +123,7 @@ public virtual void TakeDamage()
         return;
     }
 
-    PlayerManager.instance.player.stats.DoDamage(stats);
+    PlayerManager.instance.player.stats.DoDamage(stats, isPhysical);
 
     if (IsStunned) return;
 

@@ -127,7 +127,7 @@ public class Player : Entity
         }
     }
 
-public void TakeDamage(EnemyBase enemy)
+public void TakeDamage(EnemyBase enemy,bool isPhyscial)
 {
     if (enemy == null || enemy.stats == null)
     {
@@ -141,7 +141,7 @@ public void TakeDamage(EnemyBase enemy)
         return;
     }
 
-    enemy.stats.DoDamage(stats); // ✅ let the enemy damage the player’s stats
+    enemy.stats.DoDamage(stats,true); // ✅ let the enemy damage the player’s stats
     entityFx?.Flash();           // ✅ visual feedback
 }
 

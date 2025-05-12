@@ -19,7 +19,7 @@ private void AttackTrigger()
         EnemyBase enemy = hit.GetComponent<EnemyBase>();
         if (enemy != null)
         {
-            enemy.TakeDamage();
+            enemy.TakeDamage(true);
         }
     }
 }

@@ -30,7 +30,7 @@ public class EnemyAnimationTriggers : MonoBehaviour
             {
                 if (hit.TryGetComponent(out Player player))
                 {
-                    player.TakeDamage(enemyBase); // Pass EnemyBase reference
+                    player.TakeDamage(enemyBase, true); // Pass EnemyBase reference
                 }
             }
         }
