@@ -16,25 +16,45 @@ public class EnemyAnimationTriggers : MonoBehaviour
     }
 
     // Called by melee attack animation to trigger damage
-    private void AttackTrigger()
+private void AttackTrigger()
+{
+    // For EnemyMelee
+    if (enemyBase is EnemyMelee melee && melee.attackCheck != null)
     {
-        // Only melee enemies have attackCheck and attackRadius
-        if (enemyBase is EnemyMelee meleeEnemy && meleeEnemy.attackCheck != null)
-        {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(
-                meleeEnemy.attackCheck.position,
-                meleeEnemy.attackRadius
-            );
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(
+            melee.attackCheck.position,
+            melee.attackRadius
+        );
 
-            foreach (Collider2D hit in colliders)
+        foreach (Collider2D hit in colliders)
+        {
+            if (hit.TryGetComponent(out Player player))
             {
-                if (hit.TryGetComponent(out Player player))
-                {
-                    player.TakeDamage(enemyBase); // Pass EnemyBase reference
-                }
+                player.TakeDamage(enemyBase);
+            }
+        }
+        return;
+    }
+
+    // For EnemyHybrid
+    if (enemyBase is EnemyHybrid hybrid && hybrid.attackCheck != null)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(
+            hybrid.attackCheck.position,
+            hybrid.attackRadius
+        );
+
+        foreach (Collider2D hit in colliders)
+        {
+            if (hit.TryGetComponent(out Player player))
+            {
+                player.TakeDamage(enemyBase);
             }
         }
     }
+}
+
+
 
     // Called by animation event to signal animation is done
     public void AnimationFinishTrigger()

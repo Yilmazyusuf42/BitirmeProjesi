@@ -32,6 +32,16 @@ public class CharacterStats : MonoBehaviour
     public bool isChilled;
     public bool isShocked;
 
+    public enum DamageType
+{
+    Physical,
+    Magical
+}
+
+[Header("Damage Settings")]
+public DamageType damageType = DamageType.Physical;
+
+
 
 
 
@@ -48,24 +58,34 @@ public class CharacterStats : MonoBehaviour
         currentHp = maxHealth.GetValue();
     }
     
-    public virtual void DoDamage(CharacterStats _targetStats)
+public virtual void DoDamage(CharacterStats _targetStats)
+{
+    if (damageType == DamageType.Magical)
     {
-        if (TargetCanAvoidAttack(_targetStats))
-        {
-            return;
-        }
-        int totalDamage = damage.GetValue() + strength.GetValue();
-        if (CanCrit())
-        {
-           totalDamage=CalculateCriticalDamage(totalDamage);
-            Debug.Log(totalDamage);
-        }
-      
-        totalDamage = CheckTargetArmor(_targetStats, totalDamage);
-       // _targetStats.TakeDamage(totalDamage);
-
         DoMagicalDamage(_targetStats);
+        return;
     }
+
+    if (TargetCanAvoidAttack(_targetStats))
+    {
+        Debug.Log("⚠️ Target avoided physical attack!");
+        return;
+    }
+
+    int totalDamage = damage.GetValue() + strength.GetValue();
+
+    if (CanCrit())
+    {
+        totalDamage = CalculateCriticalDamage(totalDamage);
+    }
+
+    totalDamage = CheckTargetArmor(_targetStats, totalDamage);
+
+    Debug.Log($"🗡 Physical damage dealt: {totalDamage}");
+
+    _targetStats.TakeDamage(totalDamage);
+}
+
 
     public virtual void DoMagicalDamage(CharacterStats _targetStats)
     {

@@ -9,7 +9,7 @@ public class EnemyBase : MonoBehaviour
     public Rigidbody2D rb;
     public Animator anim;
     public EnemyStateMachine stateMachine;
-    public CharacterStats stats { get; private set; }
+    public EnemyStats stats { get; private set; }
     public EntityFx fx { get; private set; }
     public CapsuleCollider2D cd { get; private set; }
 
@@ -61,7 +61,7 @@ public class EnemyBase : MonoBehaviour
         fx = GetComponent<EntityFx>();
         stateMachine = new EnemyStateMachine();
         cd = GetComponent<CapsuleCollider2D>();
-        stats = GetComponent<CharacterStats>();
+        stats = GetComponent<EnemyStats>();
     }
 
     public virtual void Start() => spawnPosition = transform.position;
