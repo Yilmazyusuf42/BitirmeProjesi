@@ -38,7 +38,7 @@ public class CharacterStats : MonoBehaviour
     private float shockedTimer;
 
 
-    private float igniteDamageCooldown=.3f;
+    private float igniteDamageCooldown=.5f;
     private float ignitedDamgeTimer;
     private int igniteDamage;
 
@@ -52,6 +52,7 @@ public class CharacterStats : MonoBehaviour
     // Start is called before the first frame update
    protected virtual void Start()
     {
+        critChance.SetDefaultValue(5);
         critDamage.SetDefaultValue(150);
         currentHp = GetMaxHealthValue();
     }
@@ -224,12 +225,14 @@ protected virtual void DecreaseHealthBy(int _damage)
             totalDamage = Mathf.RoundToInt(_targetStats.armor.GetValue() * .8f);
         else
         {
-            int damageReductionRate = (_targetStats.armor.GetValue() / totalDamage);
+            /*   int damageReductionRate = (_targetStats.armor.GetValue() / totalDamage);
 
-            damageReductionRate = Mathf.Clamp(damageReductionRate, 0, 75);
-            totalDamage/=damageReductionRate;
+               damageReductionRate = Mathf.Clamp(damageReductionRate, 0, 75);
+               totalDamage/=damageReductionRate;*/
 
-            Debug.Log(damageReductionRate);
+            //Debug.Log(damageReductionRate);
+
+            totalDamage -= Mathf.RoundToInt(_targetStats.armor.GetValue() * .05f);
         }
 
         totalDamage = Mathf.Clamp(totalDamage, 0, int.MaxValue);
