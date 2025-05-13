@@ -16,9 +16,6 @@ public class EnemySpearSkeleton : EnemyMelee
     public override EnemyState idle => idleState;
 
     public override float stunDuration => 1f;
-    [HideInInspector]
-    public int lastAttackIndex = -1;
-
 
     public override void Awake()
     {
