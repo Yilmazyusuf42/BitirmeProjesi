@@ -149,6 +149,7 @@ public void Die()
 {
         if(IsGroundDetected())
     stateMachine.ChangeState(deadState);
+        this.tag = "Dead";
 }    
     
 }

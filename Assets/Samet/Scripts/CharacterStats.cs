@@ -224,11 +224,14 @@ protected virtual void DecreaseHealthBy(int _damage)
             totalDamage = Mathf.RoundToInt(_targetStats.armor.GetValue() * .8f);
         else
         {
-           int damageReduction = Mathf.RoundToInt((totalDamage - Mathf.RoundToInt(_targetStats.armor.GetValue()*1f)/totalDamage));
-        }
-            totalDamage -= Mathf.RoundToInt(_targetStats.armor.GetValue()*.1f);
+            int damageReductionRate = (_targetStats.armor.GetValue() / totalDamage);
 
-        Debug.Log(totalDamage);
+            damageReductionRate = Mathf.Clamp(damageReductionRate, 0, 75);
+            totalDamage/=damageReductionRate;
+
+            Debug.Log(damageReductionRate);
+        }
+
         totalDamage = Mathf.Clamp(totalDamage, 0, int.MaxValue);
         return totalDamage;
     }
