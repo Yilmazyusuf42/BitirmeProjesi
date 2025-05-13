@@ -66,13 +66,31 @@ public class EnemyBase : MonoBehaviour
     }
 
     public virtual void Start() => spawnPosition = transform.position;
-    public virtual void Update()
+public virtual void Update()
+{
+    if (isDead)
     {
-        stateMachine?.currentState?.Update();
-
-        if (isDead)
-            SetZeroVelocity();
+        SetZeroVelocity();
+        return;
     }
+
+    // Player is dead
+    if (GameState.isPlayerDead)
+    {
+        // ✅ Transition to patrol if not already in it
+        if (stateMachine.currentState != patrolState && patrolState != null)
+        {
+            stateMachine.ChangeState(patrolState);
+        }
+
+        // ❌ Don't stop all logic here — let patrol run!
+        // Just skip aggressive states
+    }
+
+    stateMachine?.currentState?.Update();
+}
+
+
 
     public void SetVelocity(float x, float y) => rb.velocity = new Vector2(x, y);
     public void SetZeroVelocity() => rb.velocity = Vector2.zero;
@@ -102,11 +120,21 @@ public class EnemyBase : MonoBehaviour
         
     }
 
-    public virtual bool IsPlayerDetected() =>
-        Vector2.Distance(transform.position, player.position) <= maxAgroRange;
+public virtual bool IsPlayerDetected()
+{
+    if (GameState.isPlayerDead || player == null)
+        return false;
 
-    public virtual bool IsPlayerInMinAgroRange() =>
-        Vector2.Distance(transform.position, player.position) <= minAgroRange;
+    return Vector2.Distance(transform.position, player.position) <= maxAgroRange;
+}
+
+public virtual bool IsPlayerInMinAgroRange()
+{
+    if (GameState.isPlayerDead || player == null)
+        return false;
+
+    return Vector2.Distance(transform.position, player.position) <= minAgroRange;
+}
 
     public virtual bool IsWallDetected()
 {
@@ -198,6 +226,8 @@ if (wallCheck != null)
         Gizmos.DrawSphere(right, 0.1f);
 #endif
     }
+
+    
 
 
     public bool IsStunned => stateMachine.currentState == stunnedState;

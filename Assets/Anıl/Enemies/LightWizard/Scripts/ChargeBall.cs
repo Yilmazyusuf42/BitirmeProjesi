@@ -17,7 +17,9 @@ public class Chargeball : MonoBehaviour
     void Update()
     {
         if (!hasHit)
+        {
             transform.Translate(direction * speed * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -25,15 +27,14 @@ public class Chargeball : MonoBehaviour
         if (hasHit)
             return;
 
-        Debug.Log("🔥 Fireball hit: " + other.name);
+        Debug.Log("⚡ Chargeball hit: " + other.name);
 
-        // Damage player only
         if (other.CompareTag("Player"))
         {
             if (other.TryGetComponent(out Player player))
             {
-                Debug.Log("💥 Fireball is calling TakeDamage()");
-                owner.stats.DoMagicalDamage(player.stats); // ✅ Ensure Player.cs has public TakeDamage(EnemyBase enemy)
+                Debug.Log("💥 Chargeball is applying magic damage!");
+                owner.stats.DoMagicalDamage(player.stats);
             }
 
             hasHit = true;
@@ -46,6 +47,7 @@ public class Chargeball : MonoBehaviour
         }
     }
 
+    // Called by animation event
     public void DestroySelf()
     {
         Destroy(gameObject);

@@ -17,7 +17,9 @@ public class Fireball : MonoBehaviour
     void Update()
     {
         if (!hasHit)
+        {
             transform.Translate(direction * speed * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -25,27 +27,24 @@ public class Fireball : MonoBehaviour
         if (hasHit)
             return;
 
-        Debug.Log("🔥 Fireball hit: " + other.name);
-
-        // Damage player only
         if (other.CompareTag("Player"))
         {
             if (other.TryGetComponent(out Player player))
             {
-                Debug.Log("💥 Fireball is calling TakeDamage()");
-                owner.stats.DoMagicalDamage(player.stats); // ✅ Ensure Player.cs has public TakeDamage(EnemyBase enemy)
+                owner.stats.DoMagicalDamage(player.stats);
+                Debug.Log("🔥 Fireball hit player");
             }
 
             hasHit = true;
         }
 
-        // Stop on any solid object
         if (!other.isTrigger)
         {
             hasHit = true;
         }
     }
 
+    // Called by animation event
     public void DestroySelf()
     {
         Destroy(gameObject);
