@@ -15,28 +15,19 @@ public class EnemySkeletonAttackState : EnemyState
 public override void Enter()
 {
     base.Enter();
+
     enemy.SetZeroVelocity();
 
-    int attackIndex;
-
-    // Keep choosing until it's different from the last
-    do
-    {
-        attackIndex = Mathf.RoundToInt(Random.Range(1f, 3.99f)); // 1 to 3 inclusive
-    }
-    while (attackIndex == enemy.lastAttackIndex);
-
-    enemy.lastAttackIndex = attackIndex; // store new one
-
+    float attackIndex = Mathf.Round(Random.Range(1f, 3.99f));
     enemy.anim.SetFloat("attackType", attackIndex);
     enemy.anim.ResetTrigger("Attack");
     enemy.anim.SetTrigger("Attack");
 
-    enemy.lastAttackTime = Time.time;
+    enemy.lastAttackTime = Time.time; // ✅ start cooldown
     attackTimer = attackDuration;
 
+ //   Debug.Log($"[SkeletonAttack] attackType {attackIndex}");
 }
-
 
 
     public override void Update()
