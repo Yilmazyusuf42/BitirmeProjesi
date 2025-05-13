@@ -117,15 +117,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
-  swordType: 0
-  amountOfBounce: 5
+  swordType: 1
+  bounceAmount: 3
   bounceGravity: 5
-  amountOfPierce: 1
+  bounceSpeed: 5
+  pierceAmount: 3
   pierceGravity: 4
+  hitCooldown: 0.35
+  maxTravelDistance: 7
+  spinDuration: 2
+  spinGravity: 1
   swordPrefab: {fileID: 1702124665431818264, guid: 197570ab3b814264abf26d6df8665e6b, type: 3}
   launchForce: {x: 25, y: 25}
   swordGravity: 4.5
+  freezeTimeDuration: 2
+  returnSpeed: 7
   numberOfDots: 20
-  spaceBetweenDots: 0.07
+  spaceBeetwenDots: 0.05
   dotPrefab: {fileID: 4548042487380735437, guid: 6493cd170005fcb469b13816a034bd8a, type: 3}
   dotsParent: {fileID: 0}
