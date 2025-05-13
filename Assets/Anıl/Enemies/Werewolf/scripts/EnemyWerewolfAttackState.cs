@@ -12,32 +12,22 @@ public class EnemyWerewolfAttackState : EnemyState
         this.enemy = enemy;
     }
 
-public override void Enter()
-{
-    base.Enter();
-    enemy.SetZeroVelocity();
-
-    int attackIndex;
-
-    // Keep choosing until it's different from the last
-    do
+    public override void Enter()
     {
-        attackIndex = Mathf.RoundToInt(Random.Range(1f, 3.99f)); // 1 to 3 inclusive
+        base.Enter();
+
+        enemy.SetZeroVelocity();
+
+        float attackIndex = Mathf.Round(Random.Range(1f, 2.99f));
+        enemy.anim.SetFloat("attackType", attackIndex);
+        enemy.anim.ResetTrigger("Attack");
+        enemy.anim.SetTrigger("Attack");
+
+        enemy.lastAttackTime = Time.time; // ✅ Cooldown timer
+        attackTimer = attackDuration;
+
+        Debug.Log($"[SpearSkeletonAttack] attackType {attackIndex}");
     }
-    while (attackIndex == enemy.lastAttackIndex);
-
-    enemy.lastAttackIndex = attackIndex; // store new one
-
-    enemy.anim.SetFloat("attackType", attackIndex);
-    enemy.anim.ResetTrigger("Attack");
-    enemy.anim.SetTrigger("Attack");
-
-    enemy.lastAttackTime = Time.time;
-    attackTimer = attackDuration;
-
-    Debug.Log($"[FireWizardAttack] attackType {attackIndex}");
-}
-
 
     public override void Update()
     {

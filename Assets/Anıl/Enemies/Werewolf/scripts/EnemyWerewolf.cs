@@ -16,9 +16,6 @@ public class EnemyWerewolf : EnemyMelee
     public override EnemyState idle => idleState;
 
     public override float stunDuration => 1f;
-    [HideInInspector]
-public int lastAttackIndex = -1;
-
 
     // Assign all states in Awake
     public override void Awake()
