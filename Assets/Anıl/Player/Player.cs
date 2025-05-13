@@ -147,6 +147,7 @@ public void TakeDamage(EnemyBase enemy,bool isPhyscial)
 
 public void Die()
 {
+        if(IsGroundDetected())
     stateMachine.ChangeState(deadState);
 }    
     

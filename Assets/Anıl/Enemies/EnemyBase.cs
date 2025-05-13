@@ -102,8 +102,8 @@ public class EnemyBase : MonoBehaviour
         
     }
 
-    public virtual bool IsPlayerDetected() =>
-        Vector2.Distance(transform.position, player.position) <= maxAgroRange;
+    public virtual bool IsPlayerDetected() =>  Vector2.Distance(transform.position, player.position) <= maxAgroRange;
+        
 
     public virtual bool IsPlayerInMinAgroRange() =>
         Vector2.Distance(transform.position, player.position) <= minAgroRange;
@@ -155,6 +155,7 @@ public virtual void TakeDamage(bool isPhysical)
     {
         if (isDead) return;
         isDead = true;
+        
 
         SetZeroVelocity();
         rb.freezeRotation=true;
@@ -201,4 +202,5 @@ if (wallCheck != null)
 
 
     public bool IsStunned => stateMachine.currentState == stunnedState;
+  
 }
