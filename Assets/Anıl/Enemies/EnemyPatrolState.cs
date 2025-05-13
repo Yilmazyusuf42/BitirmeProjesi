@@ -59,10 +59,12 @@ public override void Update()
     }
 
     // 🧠 Enter combat state if player nearby
-    if (enemy.IsPlayerDetected())
-    {
-        stateMachine.ChangeState(enemy.battleState);
-    }
+    // 🧠 Enter combat state if player nearby and alive
+if (!GameState.isPlayerDead && enemy.IsPlayerDetected())
+{
+    stateMachine.ChangeState(enemy.battleState);
+}
+
 
    // Debug.Log($"[Werewolf Patrol] PosX: {enemy.transform.position.x}, Spawn: {enemy.spawnPosition.x}, FacingDir: {enemy.facingDir}, Speed: {enemy.walkSpeed}, VelocityX: {rb.velocity.x}, Wall: {enemy.IsWallDetected()}");
 

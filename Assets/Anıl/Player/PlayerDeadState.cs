@@ -16,6 +16,7 @@ public class PlayerDeadState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        GameState.isPlayerDead = true;
     }
 
     public override void Exit()
