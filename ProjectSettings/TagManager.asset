@@ -3,17 +3,21 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - Sword
+  - EnemyProjectile
+  - Dead
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Enemy
+  - Player
+  - Sword
   - 
   - 
   - 
@@ -40,4 +44,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3836485991
+    locked: 0
+  - name: Sword
+    uniqueID: 3133909411
+    locked: 0
+  - name: Ground
+    uniqueID: 1766860671
+    locked: 0
+  - name: Enemy
+    uniqueID: 639115475
+    locked: 0
+  - name: Player
+    uniqueID: 3950414205
     locked: 0
