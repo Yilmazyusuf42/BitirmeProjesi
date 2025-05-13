@@ -35,7 +35,7 @@ public class Arrow : MonoBehaviour
 
             if (other.TryGetComponent(out Player player))
             {
-                player.TakeDamage(ownerEnemy); // ✅ Pass full enemy reference
+                player.TakeDamage(ownerEnemy,true); // ✅ Pass full enemy reference
             }
             else
             {

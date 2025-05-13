@@ -32,7 +32,7 @@ public int lastAttackIndex = -1;
         stunnedStateInternal = new EnemyStunnedState(stateMachine, this, "Stunned");
         patrolStateInternal = new EnemyPatrolState(stateMachine, this, "PlayWalk");
 
-        Debug.Log($"[EnemyWerewolf] Awake for {gameObject.name}. patrolStateInternal: {(patrolStateInternal != null ? "Initialized" : "NULL")}, battleStateInternal: {(battleStateInternal != null ? "Initialized" : "NULL")}");
+      //  Debug.Log($"[EnemyWerewolf] Awake for {gameObject.name}. patrolStateInternal: {(patrolStateInternal != null ? "Initialized" : "NULL")}, battleStateInternal: {(battleStateInternal != null ? "Initialized" : "NULL")}");
     }
 
     // Initialize FSM in Start

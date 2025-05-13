@@ -28,6 +28,8 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float wallCheckDistance;
     [SerializeField] protected LayerMask whatIsGround;
 
+
+    public System.Action onFlipped;
     public int facingDir { get; private set; } = 1;
     protected bool facingRight = true;
 
@@ -97,6 +99,9 @@ public class Entity : MonoBehaviour
         facingDir = facingDir * -1;
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
+
+        if(onFlipped!=null)
+        onFlipped();
     }
 
     public virtual void FlipController(float _x)

@@ -35,7 +35,6 @@ public override void Enter()
     enemy.lastAttackTime = Time.time;
     attackTimer = attackDuration;
 
-    Debug.Log($"[FireWizardAttack] attackType {attackIndex}");
 }
 
 
@@ -54,7 +53,7 @@ public override void Enter()
     public override void AnimationFinishTrigger()
     {
         base.AnimationFinishTrigger();
-        Debug.Log("Tetiklendi");
+       // Debug.Log("Tetiklendi");
         stateMachine.ChangeState(enemy.battleState);
     }
 }

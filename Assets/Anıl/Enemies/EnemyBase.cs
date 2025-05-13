@@ -45,6 +45,7 @@ public class EnemyBase : MonoBehaviour
 
     protected bool isDead = false;
 
+    public System.Action onFlipped;
     public virtual float stunDuration => 0.5f;
 
     public virtual EnemyState patrolState => null;
@@ -80,15 +81,25 @@ public class EnemyBase : MonoBehaviour
     {
         facingDir *= -1;
         transform.localScale = new Vector3(facingDir, 1, 1);
+
+        if (onFlipped != null)
+            onFlipped();
     }
 
     public void FlipTowardsPlayer()
     {
+        float previousFacingDir = facingDir;
         if (player == null) return;
         if (isDead) return;
         float dir = player.position.x - transform.position.x;
         facingDir = dir > 0 ? 1 : -1;
         transform.localScale = new Vector3(facingDir, 1, 1);
+        if (previousFacingDir != facingDir)
+        {
+            if (onFlipped != null)
+                onFlipped();
+        }
+        
     }
 
     public virtual bool IsPlayerDetected() =>
@@ -109,7 +120,7 @@ public class EnemyBase : MonoBehaviour
     public virtual bool CanBeStunned() => canBeStunned;
     public virtual bool CanAttack() => Time.time >= lastAttackTime + attackCooldown;
 
-public virtual void TakeDamage()
+public virtual void TakeDamage(bool isPhysical)
 {
     if (isDead)
     {
@@ -123,7 +134,7 @@ public virtual void TakeDamage()
         return;
     }
 
-    PlayerManager.instance.player.stats.DoDamage(stats);
+    PlayerManager.instance.player.stats.DoDamage(stats, isPhysical);
 
     if (IsStunned) return;
 

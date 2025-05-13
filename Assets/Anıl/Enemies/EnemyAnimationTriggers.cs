@@ -49,6 +49,12 @@ private void AttackTrigger()
             if (hit.TryGetComponent(out Player player))
             {
                 player.TakeDamage(enemyBase);
+
+                if (hit.TryGetComponent(out Player player))
+                {
+                    player.TakeDamage(enemyBase, true); // Pass EnemyBase reference
+                }
+
             }
         }
     }
