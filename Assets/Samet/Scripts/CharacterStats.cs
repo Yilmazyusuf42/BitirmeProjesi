@@ -32,6 +32,16 @@ public class CharacterStats : MonoBehaviour
     public bool isChilled; // reduce armor %20
     public bool isShocked; // reduce accuracy %20
 
+    public enum DamageType
+{
+    Physical,
+    Magical
+}
+
+[Header("Damage Settings")]
+public DamageType damageType = DamageType.Physical;
+
+
 
     private float ignitedTimer;
     private float chilledTimer;
@@ -55,6 +65,15 @@ public class CharacterStats : MonoBehaviour
         critDamage.SetDefaultValue(150);
         currentHp = GetMaxHealthValue();
     }
+
+    
+public virtual void DoDamage(CharacterStats _targetStats)
+{
+    if (damageType == DamageType.Magical)
+    {
+        DoMagicalDamage(_targetStats);
+        return;
+
     protected virtual void Update()
     {
         ignitedTimer -= Time.deltaTime;
@@ -110,6 +129,27 @@ public class CharacterStats : MonoBehaviour
             DoMagicalDamage(_targetStats);
         }  
     }
+
+    if (TargetCanAvoidAttack(_targetStats))
+    {
+        Debug.Log("⚠️ Target avoided physical attack!");
+        return;
+    }
+
+    int totalDamage = damage.GetValue() + strength.GetValue();
+
+    if (CanCrit())
+    {
+        totalDamage = CalculateCriticalDamage(totalDamage);
+    }
+
+    totalDamage = CheckTargetArmor(_targetStats, totalDamage);
+
+    Debug.Log($"🗡 Physical damage dealt: {totalDamage}");
+
+    _targetStats.TakeDamage(totalDamage);
+}
+
 
     public virtual void DoMagicalDamage(CharacterStats _targetStats)
     {

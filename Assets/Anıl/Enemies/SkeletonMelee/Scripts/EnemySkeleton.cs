@@ -16,6 +16,10 @@ public class EnemySkeleton : EnemyMelee
     public override EnemyState idle => idleState;
 
     public override float stunDuration => 0.3f;
+    
+    [HideInInspector]
+    public int lastAttackIndex = -1;
+
 
     public override void Awake()
     {
