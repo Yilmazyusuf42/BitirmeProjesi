@@ -205,13 +205,14 @@ public class CharacterStats : MonoBehaviour
     if (currentHp <= 0)
         Die();
 }
-    protected virtual void DecreaseHealthBy(int _damage)
-    {
-        DecreaseHealthBy(_damage);
+protected virtual void DecreaseHealthBy(int _damage)
+{
+    currentHp -= _damage;
 
-        if(onHealhtChanged!=null)
-            onHealhtChanged();
-    }
+    if (onHealhtChanged != null)
+        onHealhtChanged();
+}
+
 
     protected virtual void Die()
     {

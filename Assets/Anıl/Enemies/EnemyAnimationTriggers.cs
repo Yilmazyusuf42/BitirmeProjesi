@@ -4,6 +4,9 @@ public class EnemyAnimationTriggers : MonoBehaviour
 {
     private EnemyBase enemyBase;
 
+    public bool isPhysicalDamage = true;
+
+
     private void Awake()
     {
         enemyBase = GetComponent<EnemyBase>();
@@ -16,25 +19,43 @@ public class EnemyAnimationTriggers : MonoBehaviour
     }
 
     // Called by melee attack animation to trigger damage
-    private void AttackTrigger()
+private void AttackTrigger()
+{
+    if (enemyBase is EnemyMelee meleeEnemy && meleeEnemy.attackCheck != null)
     {
-        // Only melee enemies have attackCheck and attackRadius
-        if (enemyBase is EnemyMelee meleeEnemy && meleeEnemy.attackCheck != null)
-        {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(
-                meleeEnemy.attackCheck.position,
-                meleeEnemy.attackRadius
-            );
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(
+            meleeEnemy.attackCheck.position,
+            meleeEnemy.attackRadius
+        );
 
-            foreach (Collider2D hit in colliders)
+        foreach (Collider2D hit in colliders)
+        {
+            if (hit.TryGetComponent(out Player player))
             {
-                if (hit.TryGetComponent(out Player player))
-                {
-                    player.TakeDamage(enemyBase, true); // Pass EnemyBase reference
-                }
+                enemyBase.stats.DoDamage(player.stats, isPhysicalDamage);
             }
         }
     }
+    else if (enemyBase is EnemyHybrid hybridEnemy && hybridEnemy.attackCheck != null)
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(
+            hybridEnemy.attackCheck.position,
+            hybridEnemy.attackRadius
+        );
+
+        foreach (Collider2D hit in colliders)
+        {
+            if (hit.TryGetComponent(out Player player))
+            {
+                enemyBase.stats.DoDamage(player.stats, isPhysicalDamage);
+            }
+        }
+    }
+}
+
+
+
+
 
     // Called by animation event to signal animation is done
     public void AnimationFinishTrigger()
