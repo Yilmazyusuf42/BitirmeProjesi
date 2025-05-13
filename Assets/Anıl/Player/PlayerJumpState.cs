@@ -27,6 +27,11 @@ public class PlayerJumpState : PlayerState
         if (rb.velocity.y < 0)
             stateMachine.ChangeState(player.airState);
 
+        if (player.IsWallDetected())
+        {
+            stateMachine.ChangeState(player.wallSlide);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && !player.IsGroundDetected())
             SkillManager.instance.doubleJump.CanUseSkill();
     }

@@ -10,6 +10,7 @@ public class Entity : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
     public EntityFx entityFx { get; private set; }
     public CharacterStats stats { get; private set; }
+    public CapsuleCollider2D cd { get; private set; }
     #endregion
 
     [Header("Attack info")]
@@ -43,6 +44,7 @@ public class Entity : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         entityFx = GetComponent<EntityFx>();
         stats = GetComponent<CharacterStats>();
+        cd= GetComponent<CapsuleCollider2D>();
     }
     public virtual void Update()
     {

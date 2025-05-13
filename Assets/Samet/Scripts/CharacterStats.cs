@@ -223,8 +223,14 @@ protected virtual void DecreaseHealthBy(int _damage)
         if (_targetStats.isChilled)
             totalDamage = Mathf.RoundToInt(_targetStats.armor.GetValue() * .8f);
         else
-            totalDamage -= _targetStats.armor.GetValue();
+        {
+            int damageReductionRate = (_targetStats.armor.GetValue() / totalDamage);
 
+            damageReductionRate = Mathf.Clamp(damageReductionRate, 0, 75);
+            totalDamage/=damageReductionRate;
+
+            Debug.Log(damageReductionRate);
+        }
 
         totalDamage = Mathf.Clamp(totalDamage, 0, int.MaxValue);
         return totalDamage;
