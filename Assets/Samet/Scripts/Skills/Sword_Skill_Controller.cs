@@ -38,10 +38,6 @@ public class Sword_Skill_Controller : MonoBehaviour
 
     private float spinDirection;
 
-    private float returnTimer;
-    private float returnTime=5;
-
-
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();

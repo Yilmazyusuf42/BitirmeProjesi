@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAirState : PlayerState
 {
+    private float fallTime;
     public PlayerAirState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
@@ -11,6 +12,7 @@ public class PlayerAirState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        fallTime = 0;
     }
 
     public override void Exit()
@@ -21,15 +23,26 @@ public class PlayerAirState : PlayerState
     public override void Update()
     {
         base.Update();
-
+        fallTime += Time.deltaTime;
 
         if (player.IsWallDetected())
         {
             stateMachine.ChangeState(player.wallSlide);
         }
 
-        if(player.IsGroundDetected())
+        if (player.IsGroundDetected())
+        {
             stateMachine.ChangeState(player.idleState);
+            if (fallTime > 1)
+            {
+                player.stats.TakeDamage(Mathf.RoundToInt(Mathf.Round(fallTime * 15)));
+                player.entityFx?.Flash();
+                Debug.Log(fallTime);
+            }
+        }
+           
+
+        
 
         if (xInput != 0)
             player.SetVelocity(player.moveSpeed * .8f * xInput, rb.velocity.y);
