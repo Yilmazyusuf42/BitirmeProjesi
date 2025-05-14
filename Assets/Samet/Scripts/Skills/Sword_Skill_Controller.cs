@@ -22,7 +22,7 @@ public class Sword_Skill_Controller : MonoBehaviour
     [SerializeField] private float bounceSpeed;
     private bool isBouncing;
     private int amountOfBounce;
-    private List<Transform> enemyTargets;
+   [SerializeField]private List<Transform> enemyTargets;
     private int targetIndex;
 
     [Header("Spin Info")]
@@ -119,22 +119,30 @@ public class Sword_Skill_Controller : MonoBehaviour
 
     private void BounceLogic()
     {
-        if (isBouncing && enemyTargets.Count > 0 && enemyTargets[targetIndex]!=null)
+       
+        if (isBouncing && enemyTargets.Count > 0)
         {
-            transform.position = Vector2.MoveTowards(transform.position, enemyTargets[targetIndex].position, bounceSpeed * Time.deltaTime);
-
-            if (Vector2.Distance(transform.position, enemyTargets[targetIndex].position) < .1f)
+            if (enemyTargets[targetIndex] != null)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, enemyTargets[targetIndex].position, bounceSpeed * Time.deltaTime);
+                if (Vector2.Distance(transform.position, enemyTargets[targetIndex].position) < .1f)
+                {
+                    enemyTargets[targetIndex].GetComponent<EnemyBase>().TakeDamage(true);
+                    targetIndex++;
+                    amountOfBounce--;              
+                    if (amountOfBounce <= 0)
+                    {
+                        isBouncing = false;
+                        isReturning = true;
+                    }
+                    if (targetIndex >= enemyTargets.Count)
+                        targetIndex = 0;
+                }
+            }
+            else
             {
                 targetIndex++;
-                amountOfBounce--;
-                if (amountOfBounce <= 0)
-                {
-                    isBouncing = false;
-                    isReturning = true;
-                }
-                if (targetIndex >= enemyTargets.Count)
-                    targetIndex = 0;
-            }
+            }       
         }
     }
 
@@ -184,7 +192,6 @@ public class Sword_Skill_Controller : MonoBehaviour
     {
         if (isReturning)
             return;
-
         collision.GetComponent<EnemyBase>()?.TakeDamage(true);
 
         SetupTargetsForBounce(collision);
