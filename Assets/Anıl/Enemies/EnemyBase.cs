@@ -43,7 +43,7 @@ public class EnemyBase : MonoBehaviour
     public float wallCheckDistance = 0.2f;
     public LayerMask groundLayer;
 
-    protected bool isDead = false;
+    public bool isDead = false;
 
     public System.Action onFlipped;
     public virtual float stunDuration => 0.5f;
@@ -70,25 +70,21 @@ public virtual void Update()
 {
     if (isDead)
     {
-        SetZeroVelocity();
-        return;
+        return; // ❌ Don't call SetZeroVelocity() anymore
     }
 
     // Player is dead
     if (GameState.isPlayerDead)
     {
-        // ✅ Transition to patrol if not already in it
         if (stateMachine.currentState != patrolState && patrolState != null)
         {
             stateMachine.ChangeState(patrolState);
         }
-
-        // ❌ Don't stop all logic here — let patrol run!
-        // Just skip aggressive states
     }
 
     stateMachine?.currentState?.Update();
 }
+
 
 
 
@@ -179,24 +175,43 @@ public virtual void TakeDamage(bool isPhysical)
 }
 
 
-    public virtual void Die()
-    {
-        if (isDead) return;
-        isDead = true;
+public virtual void Die()
+{
+    if (isDead) return;
+    isDead = true;
 
-        SetZeroVelocity();
-        rb.freezeRotation=true;
-        if (anim != null)
-        {
-            anim.SetTrigger("Die"); // ✅ match Animator trigger name
-        }
-        else
-        {
-            Debug.LogWarning($"[Enemy] {name} missing Animator.");
-        }
-        
-        StartCoroutine(FreezeAndDestroy());
+    // ✅ Set velocity to 0 BEFORE making it static
+    rb.velocity = Vector2.zero;
+    rb.angularVelocity = 0f;
+
+    rb.freezeRotation = true;
+    rb.bodyType = RigidbodyType2D.Static; // ✅ Static after velocity is cleared
+
+    if (cd != null)
+        cd.enabled = false;
+
+    if (anim != null)
+    {
+        anim.Rebind();
+        anim.Update(0f);
+
+        anim.ResetTrigger("Attack");
+        anim.ResetTrigger("Stunned");
+        anim.ResetTrigger("Cast");
+
+        anim.SetBool("Stunned", false);
+        anim.SetBool("PlayWalk", false);
+        anim.SetBool("PlayIdle", false);
+
+        anim.SetTrigger("Die");
     }
+
+    StartCoroutine(FreezeAndDestroy());
+}
+
+
+
+
 
     private IEnumerator FreezeAndDestroy()
     {
@@ -231,4 +246,6 @@ if (wallCheck != null)
 
 
     public bool IsStunned => stateMachine.currentState == stunnedState;
+    public bool IsDead => isDead;
+
 }
