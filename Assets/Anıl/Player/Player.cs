@@ -150,6 +150,7 @@ public void Die()
         if(IsGroundDetected())
     stateMachine.ChangeState(deadState);
         this.tag = "Dead";
+        SkillManager.instance.sword.DotsActive(false);
 }    
     
 }
