@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class EnemySkeleton : EnemyMelee
+public class Medusa : EnemyMelee
 {
     public EnemyIdleState idleState { get; private set; }
     public EnemyMoveState moveState { get; private set; }
-    public EnemySkeletonBattleState battleStateInternal { get; private set; }
-    public EnemySkeletonAttackState attackStateInternal { get; private set; }
+    public MedusaBattleState battleStateInternal { get; private set; }
+    public MedusaAttackState attackStateInternal { get; private set; }
     public EnemyStunnedState stunnedStateInternal { get; private set; } // 🔄 Changed to generic
     public EnemyPatrolState patrolStateInternal { get; private set; }
 
@@ -15,7 +15,14 @@ public class EnemySkeleton : EnemyMelee
     public override EnemyState stunnedState => stunnedStateInternal;
     public override EnemyState idle => idleState;
 
+    public Transform holdPoint; // 🔹 Assign in Inspector (where the player is pulled into)
+    public MedusaSnakeAttackState snakeAttackState { get; private set; }
+
+
     public override float stunDuration => 1f;
+
+    public float snakeAttackCooldown = 25f;
+    private float lastSnakeTime = Mathf.NegativeInfinity;
 
     public override void Awake()
     {
@@ -23,10 +30,12 @@ public class EnemySkeleton : EnemyMelee
 
         idleState = new EnemyIdleState(stateMachine, this, "PlayIdle");
         moveState = new EnemyMoveState(stateMachine, this, "PlayRun");
-        battleStateInternal = new EnemySkeletonBattleState(stateMachine, this, "PlayRun", this);
-        attackStateInternal = new EnemySkeletonAttackState(stateMachine, this, "Attack", this);
+        battleStateInternal = new MedusaBattleState(stateMachine, this, "PlayRun", this);
+        attackStateInternal = new MedusaAttackState(stateMachine, this, "Attack", this);
         stunnedStateInternal = new EnemyStunnedState(stateMachine, this, "Stunned");
         patrolStateInternal = new EnemyPatrolState(stateMachine, this, "PlayWalk");
+        snakeAttackState = new MedusaSnakeAttackState(stateMachine, this, "SnakeAttack", this);
+
     }
 
     public override void Start()
@@ -45,4 +54,18 @@ public class EnemySkeleton : EnemyMelee
         }
         return false;
     }
+
+    public bool CanUseSnakeAttack()
+    {
+    return Time.time >= lastSnakeTime + snakeAttackCooldown;
+    }
+
+    public void UseSnakeAttack()
+    {
+    if (!CanUseSnakeAttack()) return;
+
+    lastSnakeTime = Time.time;
+    stateMachine.ChangeState(snakeAttackState); // ← New custom state for this attack
+    }
+
 }
