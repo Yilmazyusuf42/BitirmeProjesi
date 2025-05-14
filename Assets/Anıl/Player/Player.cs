@@ -21,6 +21,8 @@ public class Player : Entity
     public float crouchSpeed = 0.5f;
     public float swordReturnImpact = 2f;
 
+    public bool isDead=false;
+
     public SkillManager skill { get; private set; }
     public GameObject sword { get; private set; }
 
@@ -157,6 +159,7 @@ public void StunPlayer(float duration)
 
 public void Die()
 {
+        isDead = true;
         if(IsGroundDetected())
     stateMachine.ChangeState(deadState);
         this.tag = "Dead";
