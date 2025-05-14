@@ -117,10 +117,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1
-  swordType: 1
-  bounceAmount: 3
+  swordType: 0
+  bounceAmount: 2
   bounceGravity: 5
-  bounceSpeed: 5
+  bounceSpeed: 7
   pierceAmount: 3
   pierceGravity: 4
   hitCooldown: 0.35

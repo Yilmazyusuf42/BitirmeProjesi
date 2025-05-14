@@ -100,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 1361629382477188771}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.41, z: 0}
+  m_LocalPosition: {x: -0.117, y: -0.462, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -733,7 +733,7 @@ MonoBehaviour:
   - {x: 1, y: 1}
   counterAttackDuration: 0.2
   moveSpeed: 9
-  jumpForce: 12
+  jumpForce: 11
   dashSpeed: 20
   dashDuration: 0.4
   crouchSpeed: 0.5
@@ -768,19 +768,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength:
-    baseValue: 5
+    baseValue: 0
     modifiers: 
   agility:
     baseValue: 0
     modifiers: 
   intelligence:
-    baseValue: 1
+    baseValue: 0
     modifiers: 
   vitality:
     baseValue: 0
     modifiers: 
   damage:
-    baseValue: 10000000
+    baseValue: 20
     modifiers: 
   critChance:
     baseValue: 0
@@ -789,25 +789,25 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 100100000
-    modifiers: 
-  armor:
     baseValue: 100
     modifiers: 
+  armor:
+    baseValue: 20
+    modifiers: 
   evasion:
-    baseValue: 0
+    baseValue: 10
     modifiers: 
   magicResistance:
     baseValue: 20
     modifiers: 
   fireDamage:
-    baseValue: 5
+    baseValue: 0
     modifiers: 
   iceDamage:
-    baseValue: 2
+    baseValue: 0
     modifiers: 
   lightningDamage:
-    baseValue: 2
+    baseValue: 0
     modifiers: 
   isIgnited: 0
   isChilled: 0

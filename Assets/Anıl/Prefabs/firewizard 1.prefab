@@ -397,7 +397,7 @@ MonoBehaviour:
     baseValue: 500
     modifiers: 
   armor:
-    baseValue: 0
+    baseValue: 20
     modifiers: 
   evasion:
     baseValue: 0
@@ -406,7 +406,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   fireDamage:
-    baseValue: 50
+    baseValue: 10
     modifiers: 
   iceDamage:
     baseValue: 0

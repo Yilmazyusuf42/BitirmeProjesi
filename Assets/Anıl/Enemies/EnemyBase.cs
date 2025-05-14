@@ -183,9 +183,11 @@ public virtual void TakeDamage(bool isPhysical)
     {
         if (isDead) return;
         isDead = true;
-
         SetZeroVelocity();
         rb.freezeRotation=true;
+        this.tag = "Dead";
+        cd.enabled = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll; //Bunu ben ekledim ama sonradan değiştirebilirsin şuanda böyle gerekti (samet)
         if (anim != null)
         {
             anim.SetTrigger("Die"); // ✅ match Animator trigger name
