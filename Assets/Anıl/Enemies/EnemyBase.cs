@@ -162,7 +162,7 @@ public virtual void TakeDamage(bool isPhysical)
 
     if (IsStunned) return;
 
-    fx?.Flash();
+    //fx?.Flash();
 
     if (canBeStunned && stunnedState != null)
     {

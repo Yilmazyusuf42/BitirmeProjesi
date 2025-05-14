@@ -80,11 +80,14 @@ public class CharacterStats : MonoBehaviour
         
             Debug.Log("TAKE not burn DAMAGE");
             
-            DecreaseHealthBy(igniteDamage);
-            entityFx?.Flash();
+            DecreaseHealthBy(igniteDamage); 
             if (currentHp < 0)
             {
                 Die();
+            }
+            else
+            {
+             entityFx?.Flash();
             }
             
             ignitedDamgeTimer = igniteDamageCooldown;
@@ -93,7 +96,7 @@ public class CharacterStats : MonoBehaviour
     
     public virtual void DoDamage(CharacterStats _targetStats,bool isPhysicalDamage)
     {
-        Debug.Log(isPhysicalDamage);
+        //Debug.Log(isPhysicalDamage);
         if (isPhysicalDamage)
         {
             if (TargetCanAvoidAttack(_targetStats))
@@ -113,7 +116,8 @@ public class CharacterStats : MonoBehaviour
         else
         {
             DoMagicalDamage(_targetStats);
-        }  
+        }
+        _targetStats.entityFx?.Flash();
     }
 
     public virtual void DoMagicalDamage(CharacterStats _targetStats)

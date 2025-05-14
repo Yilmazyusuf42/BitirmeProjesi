@@ -145,7 +145,7 @@ public void TakeDamage(EnemyBase enemy,bool isPhyscial)
     }
 
     enemy.stats.DoDamage(stats,true); // ✅ let the enemy damage the player’s stats
-    entityFx?.Flash();           // ✅ visual feedback
+ /*   entityFx?.Flash();*/           // ✅ visual feedback
 }
 
 public void StunPlayer(float duration)
