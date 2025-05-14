@@ -197,8 +197,7 @@ public virtual void Die()
 
         anim.ResetTrigger("Attack");
         anim.ResetTrigger("Stunned");
-        anim.ResetTrigger("Cast");
-
+        
         anim.SetBool("Stunned", false);
         anim.SetBool("PlayWalk", false);
         anim.SetBool("PlayIdle", false);
