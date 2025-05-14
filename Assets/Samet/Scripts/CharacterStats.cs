@@ -42,7 +42,7 @@ public class CharacterStats : MonoBehaviour
     private float ignitedDamgeTimer;
     private int igniteDamage;
 
-
+    EntityFx entityFx;
 
 
     public int currentHp;
@@ -50,7 +50,11 @@ public class CharacterStats : MonoBehaviour
     public System.Action onHealhtChanged;
 
     // Start is called before the first frame update
-   protected virtual void Start()
+    private void Awake()
+    {
+        entityFx = GetComponent<EntityFx>();
+    }
+    protected virtual void Start()
     {
         critChance.SetDefaultValue(5);
         critDamage.SetDefaultValue(150);
@@ -75,10 +79,10 @@ public class CharacterStats : MonoBehaviour
         {
         
             Debug.Log("TAKE not burn DAMAGE");
-
+            
             DecreaseHealthBy(igniteDamage);
-
-            if(currentHp < 0)
+            entityFx?.Flash();
+            if (currentHp < 0)
             {
                 Die();
             }
@@ -120,7 +124,11 @@ public class CharacterStats : MonoBehaviour
 
         int totalMagicalDamage = _fireDamage + _iceDamage + _lightningDamage + intelligence.GetValue();
         totalMagicalDamage = CheckTargetResistance(_targetStats, totalMagicalDamage);
-
+        if (CanCrit())
+        {
+            totalMagicalDamage = CalculateCriticalDamage(totalMagicalDamage);
+            //  Debug.Log(totalDamage);
+        }
         _targetStats.TakeDamage(totalMagicalDamage);
 
         if (Mathf.Max(_fireDamage, _iceDamage, _lightningDamage) <= 0)
@@ -155,9 +163,11 @@ public class CharacterStats : MonoBehaviour
 
         if (canApplyIgnite)
         {
-            float applyIgniteDamage = _fireDamage * .1f;
+            float applyIgniteDamage = _fireDamage * .05f;
             if (applyIgniteDamage > 0 && applyIgniteDamage < 1)
                 applyIgniteDamage = 1;
+
+
             _targetStats.SetupIgniteDamage(Mathf.RoundToInt(_fireDamage * .1f));
         }
            
@@ -167,17 +177,20 @@ public class CharacterStats : MonoBehaviour
 
     private static int CheckTargetResistance(CharacterStats _targetStats, int totalMagicalDamage)
     {
-        totalMagicalDamage -= _targetStats.magicResistance.GetValue() + (_targetStats.intelligence.GetValue() * 3);
-        totalMagicalDamage = Mathf.Clamp(totalMagicalDamage, 0, int.MaxValue);
+        int decreasesMagicDamage= Mathf.RoundToInt(Mathf.Round(_targetStats.magicResistance.GetValue() * .1f + (_targetStats.intelligence.GetValue() * 3 * .1f)));
+        int maxMagicalDamage = Mathf.RoundToInt(Mathf.Round(totalMagicalDamage * 0.75f));
+        decreasesMagicDamage = Mathf.Clamp(totalMagicalDamage, 1, maxMagicalDamage);
+        totalMagicalDamage -= decreasesMagicDamage;
+        totalMagicalDamage = Mathf.Clamp(totalMagicalDamage, 1, int.MaxValue);
         return totalMagicalDamage;
     }
 
     public void ApplyAilments(bool _ignite,bool _chill,bool _shock)
     {
-        if (isIgnited || isChilled || isShocked)
-        {
-            return;
-        }
+        //if (isIgnited || isChilled || isShocked)
+        //{
+        //    return;
+        //}
 
         if (_ignite)
         {
@@ -221,19 +234,17 @@ protected virtual void DecreaseHealthBy(int _damage)
     }
     private int CheckTargetArmor(CharacterStats _targetStats, int totalDamage)
     {
+        float armorValue;
         if (_targetStats.isChilled)
-            totalDamage = Mathf.RoundToInt(_targetStats.armor.GetValue() * .8f);
+            armorValue = Mathf.RoundToInt(Mathf.Round(_targetStats.armor.GetValue() * .8f));
         else
         {
-            int damageReductionRate = (_targetStats.armor.GetValue() / totalDamage);
-
-            damageReductionRate = Mathf.Clamp(damageReductionRate, 1, 75);
-            totalDamage/=damageReductionRate;
-
-            Debug.Log(damageReductionRate);
+            armorValue = Mathf.RoundToInt(Mathf.Round(_targetStats.armor.GetValue()));
         }
-
-        totalDamage = Mathf.Clamp(totalDamage, 0, int.MaxValue);
+        int decreaseDamage = Mathf.RoundToInt(Mathf.Round(armorValue * 0.1f));
+        int maxDamage = Mathf.RoundToInt(Mathf.Round(totalDamage * 0.75f));
+        decreaseDamage = Mathf.Clamp(decreaseDamage, 0, maxDamage);
+        totalDamage -= decreaseDamage;
         return totalDamage;
     }
     private bool TargetCanAvoidAttack(CharacterStats _targetStats)
