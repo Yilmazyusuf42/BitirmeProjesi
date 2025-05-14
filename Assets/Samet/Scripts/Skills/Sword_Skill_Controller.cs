@@ -58,11 +58,13 @@ public class Sword_Skill_Controller : MonoBehaviour
             {
                 player.ClearSword();
                 sword = player.sword.transform;
-
+                if (!player.isDead)
+                {
                 if (player.transform.position.x > sword.transform.position.x && player.facingDir == 1)
                     player.Flip();
                 else if (player.transform.position.x < sword.transform.position.x && player.facingDir == -1)
                     player.Flip();
+                }      
             }
         }
         BounceLogic();
