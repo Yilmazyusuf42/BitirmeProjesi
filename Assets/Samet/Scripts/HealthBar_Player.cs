@@ -9,6 +9,7 @@ public class HealthBar_Player : MonoBehaviour
     private Entity _entity;
     private RectTransform _rectTransform;
     private Slider slider;
+    public Slider MainSlider;
     private void Start()
     {
         _entity = GetComponentInParent<Entity>();
