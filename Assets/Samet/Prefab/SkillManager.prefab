@@ -135,4 +135,4 @@ MonoBehaviour:
   numberOfDots: 20
   spaceBeetwenDots: 0.05
   dotPrefab: {fileID: 4548042487380735437, guid: 6493cd170005fcb469b13816a034bd8a, type: 3}
-  dotsParent: {fileID: 0}
+  dotsParent: {fileID: 4522071494810770663, guid: 480b0990be28b7b4abf18b187b35c0ba, type: 3}
