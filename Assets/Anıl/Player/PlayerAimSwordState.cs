@@ -11,7 +11,7 @@ public class PlayerAimSwordState : PlayerState
     public override void Enter()
     {
         base.Enter();
-      
+        player.SetZeroVelocity();
         SkillManager.instance.sword.DotsActive(true);
     }
 

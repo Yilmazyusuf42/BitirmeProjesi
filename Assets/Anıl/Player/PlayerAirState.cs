@@ -39,6 +39,10 @@ public class PlayerAirState : PlayerState
                 player.entityFx?.Flash();
                 Debug.Log(fallTime);
             }
+            if (fallTime > 10)
+            {
+                player.Die();
+            }
         }
            
 

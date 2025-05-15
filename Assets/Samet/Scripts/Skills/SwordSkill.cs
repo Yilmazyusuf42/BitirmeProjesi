@@ -84,22 +84,24 @@ public class SwordSkill : Skill
 
     public void CreateSword()
     {
-        GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
-        Sword_Skill_Controller newSwordScript = newSword.GetComponent<Sword_Skill_Controller>();
+        GameObject newSword;
+        if (player.sword == null)
+        {
+            newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
+            if (newSword != null)
+            {
+                Sword_Skill_Controller newSwordScript = newSword.GetComponent<Sword_Skill_Controller>();
+                if (swordType == SwordType.Bounce)
+                    newSwordScript.SetupBounce(true, bounceAmount, bounceSpeed);
+                else if (swordType == SwordType.Pierce)
+                    newSwordScript.SetupPierce(pierceAmount);
+                else if (swordType == SwordType.Spin)
+                    newSwordScript.SetupSpin(true, maxTravelDistance, spinDuration, hitCooldown);
+                newSwordScript.SetSword(finalDir, swordGravity, player, returnSpeed);
 
-
-        if (swordType == SwordType.Bounce)
-            newSwordScript.SetupBounce(true, bounceAmount, bounceSpeed);
-        else if (swordType == SwordType.Pierce)
-            newSwordScript.SetupPierce(pierceAmount);
-        else if (swordType == SwordType.Spin)
-            newSwordScript.SetupSpin(true, maxTravelDistance, spinDuration, hitCooldown);
-
-
-        newSwordScript.SetSword(finalDir, swordGravity, player, returnSpeed);
-
-        player.AssignNewSword(newSword);
-
+                player.AssignNewSword(newSword);
+            }
+        }
         DotsActive(false);
     }
 

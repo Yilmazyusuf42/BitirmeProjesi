@@ -95,6 +95,7 @@ public class Player : Entity
 
     public void AssignNewSword(GameObject _newSword)
     {
+        if(_newSword!=null)
         sword = _newSword;
     }
 
