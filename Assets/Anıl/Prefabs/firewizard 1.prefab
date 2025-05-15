@@ -449,6 +449,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  isDead: 0
   attackCheck: {fileID: 1931696731921379967}
   attackRadius: 0.7
   fireballSpawnPoint: {fileID: 4580388758663494693}
