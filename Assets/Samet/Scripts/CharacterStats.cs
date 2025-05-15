@@ -226,7 +226,7 @@ public class CharacterStats : MonoBehaviour
 protected virtual void DecreaseHealthBy(int _damage)
 {
     currentHp -= _damage;
-
+PlayerHealth.instance.slider.value = currentHp;
     if (onHealhtChanged != null)
         onHealhtChanged();
 }
