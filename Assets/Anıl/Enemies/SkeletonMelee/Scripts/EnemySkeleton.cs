@@ -15,7 +15,7 @@ public class EnemySkeleton : EnemyMelee
     public override EnemyState stunnedState => stunnedStateInternal;
     public override EnemyState idle => idleState;
 
-    public override float stunDuration => 0.3f;
+    public override float stunDuration => 1f;
 
     public override void Awake()
     {

@@ -21,6 +21,8 @@ public class Player : Entity
     public float crouchSpeed = 0.5f;
     public float swordReturnImpact = 2f;
 
+    public bool isDead=false;
+
     public SkillManager skill { get; private set; }
     public GameObject sword { get; private set; }
 
@@ -44,6 +46,7 @@ public class Player : Entity
     public PlayerAimSwordState aimSwordState { get; private set; }
     public PlayerCatchSwordState playerCatchSwordState { get; private set; }
     public PlayerDeadState deadState { get; private set; }
+    public PlayerStunnedState stunnedState { get; private set; }
     #endregion
 
     public override void Awake()
@@ -62,6 +65,8 @@ public class Player : Entity
         crouchAttackState = new PlayerCrouchAttack(this, stateMachine, "CrouchAttack");
         crouchIdle = new PlayerCrouchIdle(this, stateMachine, "CrouchIdle");
         rollState = new PlayerRollState(this, stateMachine, "Roll");
+        stunnedState = new PlayerStunnedState(this, stateMachine, "Stunned");
+
 
 
         primaryAttack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
@@ -142,14 +147,23 @@ public void TakeDamage(EnemyBase enemy,bool isPhyscial)
     }
 
     enemy.stats.DoDamage(stats,true); // ✅ let the enemy damage the player’s stats
-    entityFx?.Flash();           // ✅ visual feedback
+ /*   entityFx?.Flash();*/           // ✅ visual feedback
 }
+
+public void StunPlayer(float duration)
+{
+    stunnedState.SetStunTime(duration);
+    stateMachine.ChangeState(stunnedState);
+}
+
 
 public void Die()
 {
+        isDead = true;
         if(IsGroundDetected())
     stateMachine.ChangeState(deadState);
         this.tag = "Dead";
+        SkillManager.instance.sword.DotsActive(false);
 }    
     
 }

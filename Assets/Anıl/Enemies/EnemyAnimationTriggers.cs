@@ -32,7 +32,7 @@ private void AttackTrigger()
         {
             if (hit.TryGetComponent(out Player player))
             {
-                enemyBase.stats.DoDamage(player.stats, isPhysicalDamage);
+                    enemyBase.stats.DoDamage(player.stats, isPhysicalDamage);
             }
         }
     }
