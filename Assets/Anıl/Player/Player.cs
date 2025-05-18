@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Entity
+public class Player : Entity, IShopCustomer
 {
 
     [Header("Attack details")]
@@ -164,6 +164,10 @@ public void Die()
     stateMachine.ChangeState(deadState);
         this.tag = "Dead";
         SkillManager.instance.sword.DotsActive(false);
-}    
-    
+}
+
+    public void BoughtItem(Item.ShopItemType shopItemType)
+    {
+        Debug.Log("Bought item: " + shopItemType);
+    }
 }
