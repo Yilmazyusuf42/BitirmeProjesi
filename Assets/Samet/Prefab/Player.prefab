@@ -703,8 +703,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09270567, y: -0.530239}
-  m_Size: {x: 0.88717973, y: 2.4218643}
+  m_Offset: {x: -0.06170742, y: -0.5984349}
+  m_Size: {x: 0.8251834, y: 2.2854726}
   m_Direction: 0
 --- !u!114 &3571853388325568431
 MonoBehaviour:
@@ -723,7 +723,7 @@ MonoBehaviour:
   knockBackDirection: {x: 0, y: 0}
   knockBackTime: 0
   groundCheck: {fileID: 826872758401599080}
-  groundCheckDistance: 1.46
+  groundCheckDistance: 1.35
   wallCheck: {fileID: 5536402828368364606}
   wallCheckDistance: 0.51
   whatIsGround:
