@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    [SerializeField] private string itemName;
-    [SerializeField] private int quantity;
-    [SerializeField] private Sprite sprite;
-    [TextArea] [SerializeField] private string itemDescription;
+    public string itemName;
+    public int quantity;
+    public Sprite sprite;
+    public string itemDescription;
+    public int Strength = 10;
+    public int Agility = 10;
+    public int Defence = 10;
+    public int Intelligence = 10;
 
     private InventoryManager inventoryManager;
     public ItemType itemType;

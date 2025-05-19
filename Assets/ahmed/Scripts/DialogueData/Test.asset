@@ -15,3 +15,8 @@ MonoBehaviour:
   dialogue:
   - "first line \nhello"
   - "second one \nsee ya"
+  responses:
+  - responseText: Yes
+    dialogueObject: {fileID: 11400000, guid: a778e1814174bb64c8cc97fd7afbe767, type: 2}
+  - responseText: No
+    dialogueObject: {fileID: 11400000, guid: f1337d34473906f42ae45b15f7f9a437, type: 2}

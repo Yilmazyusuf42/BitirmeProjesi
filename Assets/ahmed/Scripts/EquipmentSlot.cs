@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
 {
+   [HideInInspector] public Item item;
    public string itemName;
    public int quantity;
    public Sprite itemSprite;
@@ -16,7 +17,7 @@ public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
    public ItemType itemType;
 
    [SerializeField] private TMP_Text quantityText;
-   [SerializeField] private Image itemImage;
+   public Image itemImage;
 
    public Image itemDescriptionImage;
 

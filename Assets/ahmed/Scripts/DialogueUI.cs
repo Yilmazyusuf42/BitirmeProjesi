@@ -9,22 +9,27 @@ public class DialogueUI : MonoBehaviour
 
 
     [SerializeField] private TMP_Text textLabel;
-    [SerializeField] private DialogueObject testDialogue;
 
+    public bool IsOpen {get; private set;}
+   
+
+    private ResponseHandler responseHandler;
     private TypeWriterEffect typewriterEffect;
 
 
     private void Start()
     {
+
         typewriterEffect = GetComponent<TypeWriterEffect>();
+        responseHandler = GetComponent<ResponseHandler>();
         CloseDialogueBox();
-        ShowDialogue(testDialogue);
+        
 
     }
 
     public void ShowDialogue(DialogueObject dialogueObject)
     {
-        /* IsOpen = true;*/
+         IsOpen = true;
          dialogueBox.SetActive(true);
 
         StartCoroutine(SteThroughDialogue(dialogueObject));
@@ -33,19 +38,36 @@ public class DialogueUI : MonoBehaviour
 
     private IEnumerator SteThroughDialogue(DialogueObject dialogueObject)
     {
-        yield return new WaitForSeconds(2);
-        foreach (string dialogue in dialogueObject.Dialogue)
+        for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
         {
+            string dialogue = dialogueObject.Dialogue[i];
+
             yield return typewriterEffect.Run(dialogue, textLabel);
+            if (i == dialogueObject.Dialogue.Length - 1 && dialogueObject.HasResponses) break;
+            yield return null;
+            
+
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+
         }
-        CloseDialogueBox();
+
+        if(dialogueObject.HasResponses)
+        {
+            responseHandler.ShowResponses(dialogueObject.Responses);
+
+        }
+
+        else
+        {
+            CloseDialogueBox();
+        }
+        
     }
 
      public void CloseDialogueBox()
     {
-        
 
+        IsOpen = false;
         dialogueBox.SetActive(false);
         textLabel.text = string.Empty;
 

@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Player : Entity, IShopCustomer
 {
+    
 
     [Header("Attack details")]
+    
     public Vector2[] attackMovement;
     public float counterAttackDuration = .2f;
 
@@ -91,6 +93,7 @@ public class Player : Entity, IShopCustomer
         base.Update();
         stateMachine.currentState.Update();
         CheckForDashInput();
+        
     }
 
     public void AssignNewSword(GameObject _newSword)

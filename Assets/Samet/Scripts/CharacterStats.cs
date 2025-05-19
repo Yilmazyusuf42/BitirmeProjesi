@@ -38,7 +38,7 @@ public class CharacterStats : MonoBehaviour
     private float shockedTimer;
 
 
-    private float igniteDamageCooldown=.5f;
+    private float igniteDamageCooldown = .5f;
     private float ignitedDamgeTimer;
     private int igniteDamage;
 
@@ -48,10 +48,15 @@ public class CharacterStats : MonoBehaviour
     public int currentHp;
 
     public System.Action onHealhtChanged;
+    public static CharacterStats characterStats;
 
     // Start is called before the first frame update
     private void Awake()
     {
+        if (characterStats == null)
+        {
+            characterStats = this;
+        }
         entityFx = GetComponent<EntityFx>();
     }
     protected virtual void Start()
@@ -69,32 +74,32 @@ public class CharacterStats : MonoBehaviour
 
         if (ignitedTimer < 0)
             isIgnited = false;
-        if(chilledTimer<0)
+        if (chilledTimer < 0)
             isChilled = false;
-        if(shockedTimer<0)
+        if (shockedTimer < 0)
             isShocked = false;
 
 
-        if (ignitedDamgeTimer < 0 &&isIgnited)
+        if (ignitedDamgeTimer < 0 && isIgnited)
         {
-        
+
             Debug.Log("TAKE not burn DAMAGE");
-            
-            DecreaseHealthBy(igniteDamage); 
+
+            DecreaseHealthBy(igniteDamage);
             if (currentHp < 0)
             {
                 Die();
             }
             else
             {
-             entityFx?.Flash();
+                entityFx?.Flash();
             }
-            
+
             ignitedDamgeTimer = igniteDamageCooldown;
         }
     }
-    
-    public virtual void DoDamage(CharacterStats _targetStats,bool isPhysicalDamage)
+
+    public virtual void DoDamage(CharacterStats _targetStats, bool isPhysicalDamage)
     {
         //Debug.Log(isPhysicalDamage);
         if (isPhysicalDamage)
@@ -107,11 +112,11 @@ public class CharacterStats : MonoBehaviour
             if (CanCrit())
             {
                 totalDamage = CalculateCriticalDamage(totalDamage);
-              //  Debug.Log(totalDamage);
+                //  Debug.Log(totalDamage);
             }
 
             totalDamage = CheckTargetArmor(_targetStats, totalDamage);
-             _targetStats.TakeDamage(totalDamage);
+            _targetStats.TakeDamage(totalDamage);
         }
         else
         {
@@ -144,10 +149,10 @@ public class CharacterStats : MonoBehaviour
 
         while (!canApplyIgnite && !canApplyChill && !canApplyShock)
         {
-            if(Random.value<.5f && _fireDamage > 0)
+            if (Random.value < .5f && _fireDamage > 0)
             {
                 canApplyIgnite = true;
-                _targetStats.ApplyAilments(canApplyIgnite,canApplyChill,canApplyShock);
+                _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
                 return;
             }
             if (Random.value < .5f && _iceDamage > 0)
@@ -174,14 +179,14 @@ public class CharacterStats : MonoBehaviour
 
             _targetStats.SetupIgniteDamage(Mathf.RoundToInt(_fireDamage * .1f));
         }
-           
+
 
         _targetStats.ApplyAilments(canApplyIgnite, canApplyChill, canApplyShock);
     }
 
     private static int CheckTargetResistance(CharacterStats _targetStats, int totalMagicalDamage)
     {
-        int decreasesMagicDamage= Mathf.RoundToInt(Mathf.Round(_targetStats.magicResistance.GetValue() * .1f + (_targetStats.intelligence.GetValue() * 3 * .1f)));
+        int decreasesMagicDamage = Mathf.RoundToInt(Mathf.Round(_targetStats.magicResistance.GetValue() * .1f + (_targetStats.intelligence.GetValue() * 3 * .1f)));
         int maxMagicalDamage = Mathf.RoundToInt(Mathf.Round(totalMagicalDamage * 0.75f));
         decreasesMagicDamage = Mathf.Clamp(totalMagicalDamage, 1, maxMagicalDamage);
         totalMagicalDamage -= decreasesMagicDamage;
@@ -189,7 +194,7 @@ public class CharacterStats : MonoBehaviour
         return totalMagicalDamage;
     }
 
-    public void ApplyAilments(bool _ignite,bool _chill,bool _shock)
+    public void ApplyAilments(bool _ignite, bool _chill, bool _shock)
     {
         //if (isIgnited || isChilled || isShocked)
         //{
@@ -212,24 +217,24 @@ public class CharacterStats : MonoBehaviour
             shockedTimer = 4;
         }
     }
-    public void SetupIgniteDamage(int _damage)=>igniteDamage = _damage;
+    public void SetupIgniteDamage(int _damage) => igniteDamage = _damage;
     public virtual void TakeDamage(int damage)
-{
+    {
 
-    currentHp -= damage;
+        currentHp -= damage;
 
-   // Debug.Log($"{gameObject.name} took {damage} damage. Current HP: {currentHp}");
+        // Debug.Log($"{gameObject.name} took {damage} damage. Current HP: {currentHp}");
 
-    if (currentHp <= 0)
-        Die();
-}
-protected virtual void DecreaseHealthBy(int _damage)
-{
-    currentHp -= _damage;
-PlayerHealth.instance.slider.value = currentHp;
-    if (onHealhtChanged != null)
-        onHealhtChanged();
-}
+        if (currentHp <= 0)
+            Die();
+    }
+    protected virtual void DecreaseHealthBy(int _damage)
+    {
+        currentHp -= _damage;
+        PlayerHealth.instance.slider.value = currentHp;
+        if (onHealhtChanged != null)
+            onHealhtChanged();
+    }
 
 
     protected virtual void Die()
@@ -271,7 +276,7 @@ PlayerHealth.instance.slider.value = currentHp;
     {
         int totalCritchance = critChance.GetValue() + agility.GetValue();
 
-        if(Random.Range(0, 100) <= totalCritchance)
+        if (Random.Range(0, 100) <= totalCritchance)
         {
             return true;
         }
@@ -280,12 +285,12 @@ PlayerHealth.instance.slider.value = currentHp;
 
     private int CalculateCriticalDamage(int _damage)
     {
-        float totalCritDamage= (critDamage.GetValue()+strength.GetValue())*.01f;
+        float totalCritDamage = (critDamage.GetValue() + strength.GetValue()) * .01f;
         Debug.Log("Total crit " + totalCritDamage);
         float critDamge = _damage * totalCritDamage;
 
         return Mathf.RoundToInt(critDamge);
-    } 
+    }
 
     public int GetMaxHealthValue()
     {
