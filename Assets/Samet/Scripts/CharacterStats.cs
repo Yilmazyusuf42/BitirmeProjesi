@@ -87,7 +87,8 @@ public class CharacterStats : MonoBehaviour
             }
             else
             {
-             entityFx?.Flash();
+                entityFx.targetMaterial.color = new Color(1f, 0.3f, 0.3f);
+                entityFx?.Flash();
             }
             
             ignitedDamgeTimer = igniteDamageCooldown;
@@ -215,8 +216,8 @@ public class CharacterStats : MonoBehaviour
     public void SetupIgniteDamage(int _damage)=>igniteDamage = _damage;
     public virtual void TakeDamage(int damage)
 {
-
-    currentHp -= damage;
+        entityFx.targetMaterial.color = Color.white;
+        currentHp -= damage;
 
    // Debug.Log($"{gameObject.name} took {damage} damage. Current HP: {currentHp}");
 
@@ -226,7 +227,7 @@ public class CharacterStats : MonoBehaviour
 protected virtual void DecreaseHealthBy(int _damage)
 {
     currentHp -= _damage;
-
+PlayerHealth.instance.slider.value = currentHp;
     if (onHealhtChanged != null)
         onHealhtChanged();
 }

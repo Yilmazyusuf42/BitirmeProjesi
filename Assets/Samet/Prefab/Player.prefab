@@ -33,7 +33,7 @@ RectTransform:
   m_Father: {fileID: 5139184324573829336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0.00018310547, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -100,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 1361629382477188771}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.117, y: -0.462, z: 0}
+  m_LocalPosition: {x: -0.117, y: -0.41, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -387,7 +387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2123436058719885489
 RectTransform:
   m_ObjectHideFlags: 0
@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5d90bfb51029fd4ab352b2c0f6cbef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MainSlider: {fileID: 0}
 --- !u!1 &8943072037029687539
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,8 +703,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09270567, y: -0.530239}
-  m_Size: {x: 0.88717973, y: 2.4218643}
+  m_Offset: {x: -0.06170742, y: -0.5984349}
+  m_Size: {x: 0.8251834, y: 2.2854726}
   m_Direction: 0
 --- !u!114 &3571853388325568431
 MonoBehaviour:
@@ -722,7 +723,7 @@ MonoBehaviour:
   knockBackDirection: {x: 0, y: 0}
   knockBackTime: 0
   groundCheck: {fileID: 826872758401599080}
-  groundCheckDistance: 1.46
+  groundCheckDistance: 1.35
   wallCheck: {fileID: 5536402828368364606}
   wallCheckDistance: 0.51
   whatIsGround:
@@ -733,11 +734,12 @@ MonoBehaviour:
   - {x: 1, y: 1}
   counterAttackDuration: 0.2
   moveSpeed: 9
-  jumpForce: 11
+  jumpForce: 12
   dashSpeed: 20
   dashDuration: 0.4
   crouchSpeed: 0.5
   swordReturnImpact: 2
+  isDead: 0
 --- !u!114 &5427915251374975974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -792,13 +794,13 @@ MonoBehaviour:
     baseValue: 100
     modifiers: 
   armor:
-    baseValue: 20
+    baseValue: 100
     modifiers: 
   evasion:
     baseValue: 10
     modifiers: 
   magicResistance:
-    baseValue: 20
+    baseValue: 100
     modifiers: 
   fireDamage:
     baseValue: 0

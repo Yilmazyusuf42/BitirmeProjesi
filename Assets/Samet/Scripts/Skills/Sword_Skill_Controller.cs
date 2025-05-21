@@ -57,6 +57,7 @@ public class Sword_Skill_Controller : MonoBehaviour
             if (Vector2.Distance(transform.position, player.transform.position) < 1)
             {
                 player.ClearSword();
+                if(player.sword!=null)
                 sword = player.sword.transform;
                 if (!player.isDead)
                 {
