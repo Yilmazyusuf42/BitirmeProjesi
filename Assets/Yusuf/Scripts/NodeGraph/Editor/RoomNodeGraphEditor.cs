@@ -16,6 +16,13 @@ public class RoomNodeGraphEditor : EditorWindow
     RoomNodeTypeListSO roomNodeTypeList;
 
 
+    // Grafiğin kaydırma konumunu sakla
+    private Vector2 graphOffset;
+
+    // Grafiğin sürükleme değerini sakla
+    private Vector2 graphDrag;
+
+
     // Node values
     private const float nodeWidth = 160f;
     private const float nodeHeight = 75f;
@@ -25,6 +32,10 @@ public class RoomNodeGraphEditor : EditorWindow
     const float connectingLineWidth = 3f;
     const float connectingLineArrowSize = 6f;
 
+
+    // Grid Aralığı
+    private const float gridLarge = 100f;
+    private const float gridSmall = 25f;
 
     [MenuItem("Room Node Graph Editor", menuItem = "Window/Dungeon Editor/Room Node Graph Editor")]
     static void OpenWindow()
@@ -81,6 +92,13 @@ public class RoomNodeGraphEditor : EditorWindow
         // If a scriptable object of type RoomNodeGraphSO has been selected then process it
         if (currentRoomNodeGraph != null)
         {
+
+            // Izgara çizimi
+            DrawBackgroundGrid(gridSmall, 0.2f, Color.gray);
+
+            DrawBackgroundGrid(gridLarge, 0.3f, Color.gray);
+
+
             DrawDraggedLine();
 
             // Process Events
@@ -98,6 +116,35 @@ public class RoomNodeGraphEditor : EditorWindow
         }
     }
 
+
+    /// Oda düğüm grafiği için arka plan ızgarası çiz
+    private void DrawBackgroundGrid(float gridSize, float gridOpacity, Color gridColor)
+    {
+        int verticalLineCount = Mathf.CeilToInt((position.width + gridSize) / gridSize);
+        int horizontalLineCount = Mathf.CeilToInt((position.height + gridSize) / gridSize);
+
+        Handles.color = new Color(gridColor.r, gridColor.g, gridColor.b, gridOpacity);
+
+        graphOffset += graphDrag * 0.5f;
+
+        Vector3 gridOffset = new Vector3(graphOffset.x % gridSize, graphOffset.y % gridSize, 0);
+
+        for (int i = 0; i < verticalLineCount; i++)
+        {
+            Handles.DrawLine(new Vector3(gridSize * i, -gridSize, 0) + gridOffset,
+                             new Vector3(gridSize * i, position.height + gridSize, 0f) + gridOffset);
+        }
+
+        for (int j = 0; j < horizontalLineCount; j++)
+        {
+            Handles.DrawLine(new Vector3(-gridSize, gridSize * j, 0) + gridOffset,
+                             new Vector3(position.width + gridSize, gridSize * j, 0f) + gridOffset);
+        }
+
+        Handles.color = Color.white; // Çizim rengini sıfırla
+    }
+
+
     private void DrawDraggedLine()
     {
         if (currentRoomNodeGraph.linePosition != Vector2.zero)
@@ -111,6 +158,9 @@ public class RoomNodeGraphEditor : EditorWindow
 
     private void ProcessEvents(Event currentEvent)
     {
+        //Reseting graph
+        graphDrag = Vector2.zero;
+
         // Get room node that mouse is over if it's null or not currently being dragged
         if (currentRoomNode == null || currentRoomNode.isLeftClickDragging == false)
         {
@@ -475,6 +525,10 @@ public class RoomNodeGraphEditor : EditorWindow
         if (currentEvent.button == 1)
         {
             ProcessRightMouseDragEvent(currentEvent);
+        }// Sol tıklama sürükleme olayını işle
+        else if (currentEvent.button == 0)
+        {
+            ProcessLeftMouseDragEvent(currentEvent.delta);
         }
     }
 
@@ -489,6 +543,22 @@ public class RoomNodeGraphEditor : EditorWindow
             DragConnectingLine(currentEvent.delta);
             GUI.changed = true;
         }
+    }
+
+    /// <summary>
+    /// Sol fare sürükleme işlemini yönet - oda düğümlerini sürükle
+    /// </summary>
+    private void ProcessLeftMouseDragEvent(Vector2 dragDelta)
+    {
+        graphDrag = dragDelta; // Genel grafiği sürükleme yönüne ayarla
+
+        // Tüm oda düğümlerini sürükleme yönüne göre güncelle
+        foreach (RoomNodeSO roomNode in currentRoomNodeGraph.roomNodeList)
+        {
+            roomNode.DragNode(dragDelta);
+        }
+
+        GUI.changed = true; // Arayüz değişiklikleri uygulandı
     }
 
     /// <summary>

@@ -19,9 +19,7 @@ public class RoomNodeSO : ScriptableObject
     [HideInInspector] public bool isLeftClickDragging = false;
     [HideInInspector] public bool isSelected = false;
 
-    /// <summary>
     /// Initialise node
-    /// </summary>
     public void Initialise(Rect rect, RoomNodeGraphSO nodeGraph, RoomNodeTypeSO roomNodeType)
     {
         this.rect = rect;
@@ -34,9 +32,7 @@ public class RoomNodeSO : ScriptableObject
         roomNodeTypeList = GameResources.Instance.roomNodeTypeList;
     }
 
-    /// <summary>
     /// Draw node with the nodestyle
-    /// </summary>
     public void Draw(GUIStyle nodeStyle)
     {
         // Draw Node Box Using Begin Area
@@ -92,9 +88,7 @@ public class RoomNodeSO : ScriptableObject
         GUILayout.EndArea();
     }
 
-    /// <summary>
-    /// Oda tiplerini listeler
-    /// </summary>
+    /// Oda tiplerini listelenmesi
     public string[] GetRoomNodeTypesToDisplay()
     {
         string[] roomArray = new string[roomNodeTypeList.list.Count];
@@ -111,9 +105,7 @@ public class RoomNodeSO : ScriptableObject
     }
 
 
-    /// <summary>
-    /// Process events for the node
-    /// </summary>
+    /// Node Procces Eventleri
     public void ProcessEvents(Event currentEvent)
     {
         switch (currentEvent.type)
@@ -245,19 +237,19 @@ public class RoomNodeSO : ScriptableObject
     }
 
 
-    /// <summary>
-    /// Çocuk odasının geçerli olup olmadığını kontrol et.
-    /// </summary>
+    /// Nodeların bağlantılarının kontrol edilmesi.
     public bool IsChildRoomValid(string childID)
     {
         bool isConnectedBossNodeAlready = false;
 
-        // Zindan grafiğinde zaten bağlı bir boss odası var mı kontrol et
+        /*Zindan grafiğinde zaten bağlı bir boss odası var mı kontrol et
         foreach (RoomNodeSO roomNode in roomNodeGraph.roomNodeList)
         {
             if (roomNode.roomNodeType.isBossRoom && roomNode.parentRoomNodeIDList.Count > 0)
                 isConnectedBossNodeAlready = true;
         }
+       */
+
 
         // Eğer çocuk düğüm boss odasıysa ve zaten bağlı bir boss odası varsa, geçersiz say
         if (roomNodeGraph.GetRoomNode(childID).roomNodeType.isBossRoom && isConnectedBossNodeAlready)
