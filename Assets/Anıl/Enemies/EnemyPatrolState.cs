@@ -45,25 +45,30 @@ public override void Update()
         flippedRecently = true;
     }
 
-    // 🔁 Flip if wall detected
-    if (!flippedRecently && enemy.IsWallDetected())
-    {
-        enemy.Flip();
-        flippedRecently = true;
-    }
 
     // ✅ Reset flip cooldown once inside safe zone
     if (posX > leftBound + 0.5f && posX < rightBound - 0.5f && !enemy.IsWallDetected())
     {
         flippedRecently = false;
     }
+    
+    if (!flippedRecently && (enemy.IsWallDetected() || !enemy.IsGroundAhead()))
+{
+    enemy.Flip();
+    flippedRecently = true;
+}
 
     // 🧠 Enter combat state if player nearby
-    // 🧠 Enter combat state if player nearby and alive
+        // 🧠 Enter combat state if player nearby and alive
 if (!GameState.isPlayerDead && enemy.IsPlayerDetected())
 {
+    // ⏳ Wait if ledge cooldown is active
+    if (Time.time < enemy.lastTimeLedgeAbort + enemy.ledgeAbortCooldownTime)
+        return;
+
     stateMachine.ChangeState(enemy.battleState);
 }
+
 
 
    // Debug.Log($"[Werewolf Patrol] PosX: {enemy.transform.position.x}, Spawn: {enemy.spawnPosition.x}, FacingDir: {enemy.facingDir}, Speed: {enemy.walkSpeed}, VelocityX: {rb.velocity.x}, Wall: {enemy.IsWallDetected()}");
