@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2286975159047315700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5508595991189750673}
+  m_Layer: 6
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5508595991189750673
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286975159047315700}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.01, y: -2.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7708407072820791656}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2386206381055655084
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,6 +200,7 @@ GameObject:
   - component: {fileID: 146951925644277319}
   - component: {fileID: 407098547228111663}
   - component: {fileID: 1899556114373426490}
+  - component: {fileID: 7619277805778862400}
   m_Layer: 6
   m_Name: firewizard 1
   m_TagString: Enemy
@@ -185,7 +217,7 @@ Transform:
   m_GameObject: {fileID: 4289880532604472714}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.31, y: 10.26, z: -0.05104412}
+  m_LocalPosition: {x: 33.929844, y: -26.043114, z: -0.05104412}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -193,6 +225,7 @@ Transform:
   - {fileID: 4385855632787561115}
   - {fileID: 4580388758663494693}
   - {fileID: 3314153725779992100}
+  - {fileID: 5508595991189750673}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3557258044644379748
@@ -449,13 +482,29 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  ledgeAbortCooldownTime: 1
+  lastTimeLedgeAbort: 0
   isDead: 0
+  groundCheck: {fileID: 5508595991189750673}
+  groundCheckDistance: 1
   attackCheck: {fileID: 1931696731921379967}
   attackRadius: 0.7
   fireballSpawnPoint: {fileID: 4580388758663494693}
   fireballPrefab: {fileID: 3732161453234661025, guid: 95d9b89a8f28adf478e93eef3677af8f, type: 3}
   fireballSpeed: 10
   lastAttackIndex: -1
+--- !u!114 &7619277805778862400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4289880532604472714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d599d1e3b216b4981dc1eb5719c10e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4587018949352195296
 GameObject:
   m_ObjectHideFlags: 0

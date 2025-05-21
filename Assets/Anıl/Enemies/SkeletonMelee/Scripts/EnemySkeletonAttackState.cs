@@ -30,16 +30,25 @@ public override void Enter()
 }
 
 
-    public override void Update()
-    {
-        base.Update();
+public override void Update()
+{
+    base.Update();
 
-        attackTimer -= Time.deltaTime;
-        if (attackTimer <= 0)
-        {
-            stateMachine.ChangeState(enemy.battleState);
-        }
+    
+    if (!enemy.IsGroundAhead())
+    {
+        enemy.SetZeroVelocity();
+        stateMachine.ChangeState(enemy.patrolState); 
+        return;
     }
+
+    attackTimer -= Time.deltaTime;
+    if (attackTimer <= 0)
+    {
+        stateMachine.ChangeState(enemy.battleState);
+    }
+}
+
 
     public override void AnimationFinishTrigger()
     {
