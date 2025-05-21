@@ -4,7 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - player
+  - Enemy
+  - Sword
+  - EnemyProjectile
+  - Dead
   layers:
   - Default
   - TransparentFX
@@ -44,6 +47,9 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 3836485991
+    locked: 0
+  - name: Sword
+    uniqueID: 3133909411
     locked: 0
   - name: Ground
     uniqueID: 1766860671
