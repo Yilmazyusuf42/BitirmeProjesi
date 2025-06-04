@@ -15,9 +15,9 @@ MonoBehaviour:
   active: 1
   postExposure:
     m_OverrideState: 1
-    m_Value: 1.2
+    m_Value: 1.4
   contrast:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: -10
   colorFilter:
     m_OverrideState: 0
@@ -160,6 +160,7 @@ MonoBehaviour:
   - {fileID: 7909597434646997055}
   - {fileID: -5889373531651738370}
   - {fileID: -6779419314933187852}
+  - {fileID: -5605386500664017073}
 --- !u!114 &7909597434646997055
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -225,7 +226,6 @@ MonoBehaviour:
   dirtTexture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
-    dimension: 1
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
