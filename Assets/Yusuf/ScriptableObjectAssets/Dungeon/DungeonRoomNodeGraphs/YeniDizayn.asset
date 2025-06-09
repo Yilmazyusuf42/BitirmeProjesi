@@ -13,19 +13,20 @@ MonoBehaviour:
   m_Name: RoomNode
   m_EditorClassIdentifier: 
   id: 6ba80ca2-3ca6-4dcd-80e3-c266083aa7de
-  parentRoomNodeIDList: []
+  parentRoomNodeIDList:
+  - 9b2fd172-d389-432d-9e65-38dae9688724
   childRoomNodeIDList: []
   roomNodeGraph: {fileID: 11400000}
   roomNodeType: {fileID: 11400000, guid: 765c760efac1f0642854f14bc8735a18, type: 2}
   roomNodeTypeList: {fileID: 11400000, guid: de11e932dbe51f24cb5983e48968afed, type: 2}
   rect:
     serializedVersion: 2
-    x: 1029
-    y: 242
+    x: 1155
+    y: 232
     width: 160
     height: 75
   isLeftClickDragging: 0
-  isSelected: 0
+  isSelected: 1
 --- !u!114 &-1703186733401289609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48,7 +49,7 @@ MonoBehaviour:
   roomNodeTypeList: {fileID: 11400000, guid: de11e932dbe51f24cb5983e48968afed, type: 2}
   rect:
     serializedVersion: 2
-    x: 514
+    x: 513
     y: 207
     width: 160
     height: 75
@@ -69,7 +70,8 @@ MonoBehaviour:
   id: 978da7ed-7859-400e-8e81-5559c9069824
   parentRoomNodeIDList:
   - e0dfbd9f-f558-424e-8f19-f6f3bac29b30
-  childRoomNodeIDList: []
+  childRoomNodeIDList:
+  - 9b2fd172-d389-432d-9e65-38dae9688724
   roomNodeGraph: {fileID: 11400000}
   roomNodeType: {fileID: 11400000, guid: 9936d6a125d50de40a8da3f2657e22f3, type: 2}
   roomNodeTypeList: {fileID: 11400000, guid: de11e932dbe51f24cb5983e48968afed, type: 2}
@@ -142,16 +144,18 @@ MonoBehaviour:
   m_Name: RoomNode
   m_EditorClassIdentifier: 
   id: 9b2fd172-d389-432d-9e65-38dae9688724
-  parentRoomNodeIDList: []
-  childRoomNodeIDList: []
+  parentRoomNodeIDList:
+  - 978da7ed-7859-400e-8e81-5559c9069824
+  childRoomNodeIDList:
+  - 6ba80ca2-3ca6-4dcd-80e3-c266083aa7de
   roomNodeGraph: {fileID: 11400000}
-  roomNodeType: {fileID: 11400000, guid: 79cee3c0c75be3e40b80e267ec8b25bc, type: 2}
+  roomNodeType: {fileID: 11400000, guid: 2303f924c05afe7449174d19f587be69, type: 2}
   roomNodeTypeList: {fileID: 11400000, guid: de11e932dbe51f24cb5983e48968afed, type: 2}
   rect:
     serializedVersion: 2
-    x: 985
-    y: 324
+    x: 964
+    y: 228
     width: 160
     height: 75
   isLeftClickDragging: 0
-  isSelected: 0
+  isSelected: 1

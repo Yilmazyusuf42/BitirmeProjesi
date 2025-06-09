@@ -11,6 +11,7 @@ TagManager:
   - groundTilemap
   - collisionTilemap
   - WallTileMap
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
