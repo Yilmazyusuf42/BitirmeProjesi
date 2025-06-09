@@ -72,7 +72,12 @@ public class EnemyBase : MonoBehaviour
         stats = GetComponent<CharacterStats>();
     }
 
-    public virtual void Start() => spawnPosition = transform.position;
+public virtual void Start()
+{
+    spawnPosition = transform.position;
+    initialScale = transform.localScale;
+}
+
 public virtual void Update()
 {
     if (isDead)
@@ -97,31 +102,36 @@ public virtual void Update()
 
     public void SetVelocity(float x, float y) => rb.velocity = new Vector2(x, y);
     public void SetZeroVelocity() => rb.velocity = Vector2.zero;
+    
+    private Vector3 initialScale;
 
-    public void Flip()
+
+public void Flip()
     {
         facingDir *= -1;
-        transform.localScale = new Vector3(facingDir, 1, 1);
+        transform.localScale = new Vector3(Mathf.Abs(initialScale.x) * facingDir, initialScale.y, initialScale.z);
 
         if (onFlipped != null)
             onFlipped();
     }
 
-    public void FlipTowardsPlayer()
+public void FlipTowardsPlayer()
+{
+    float previousFacingDir = facingDir;
+    if (player == null) return;
+    if (isDead) return;
+
+    float dir = player.position.x - transform.position.x;
+    facingDir = dir > 0 ? 1 : -1;
+
+    transform.localScale = new Vector3(Mathf.Abs(initialScale.x) * facingDir, initialScale.y, initialScale.z);
+    
+    if (previousFacingDir != facingDir)
     {
-        float previousFacingDir = facingDir;
-        if (player == null) return;
-        if (isDead) return;
-        float dir = player.position.x - transform.position.x;
-        facingDir = dir > 0 ? 1 : -1;
-        transform.localScale = new Vector3(facingDir, 1, 1);
-        if (previousFacingDir != facingDir)
-        {
-            if (onFlipped != null)
-                onFlipped();
-        }
-        
+        if (onFlipped != null)
+            onFlipped();
     }
+}
 
 public virtual bool IsPlayerDetected()
 {
