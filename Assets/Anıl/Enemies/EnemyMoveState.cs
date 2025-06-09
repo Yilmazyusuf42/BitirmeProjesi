@@ -29,24 +29,36 @@ public class EnemyMoveState : EnemyState
         enemy.anim.SetBool("PlayRun", false);
     }
 
-    public override void Update()
+public override void Update()
+{
+    base.Update();
+
+    // 🛑 Stop and do nothing if there's no ground ahead
+    if (!enemy.IsGroundAhead())
     {
-        base.Update();
+        enemy.SetZeroVelocity();
+        enemy.lastTimeLedgeAbort = Time.time; // ✅ mark ledge fallback
+        stateMachine.ChangeState(enemy.patrolState); // or patrolState
 
-        // Chase the player
-        enemy.SetVelocity(enemy.runSpeed * enemy.facingDir, rb.velocity.y);
-
-        // If player is within attack range, switch to attack
-        if (enemy.IsPlayerInMinAgroRange())
-        {
-            stateMachine.ChangeState(enemy.attackState);
-            return;
-        }
-
-        // If player escapes detection, return to patrol
-        if (!enemy.IsPlayerDetected())
-        {
-            stateMachine.ChangeState(enemy.patrolState);
-        }
+        return;
     }
+
+    // ✅ Chase player if safe
+    enemy.SetVelocity(enemy.runSpeed * enemy.facingDir, rb.velocity.y);
+
+    // 🎯 Attack if close enough
+    if (enemy.IsPlayerInMinAgroRange())
+    {
+        stateMachine.ChangeState(enemy.attackState);
+        return;
+    }
+
+    // 👀 If player escapes, return to patrol
+    if (!enemy.IsPlayerDetected())
+    {
+        stateMachine.ChangeState(enemy.patrolState);
+    }
+}
+
+
 }

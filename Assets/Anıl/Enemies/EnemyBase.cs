@@ -43,6 +43,11 @@ public class EnemyBase : MonoBehaviour
     public float wallCheckDistance = 0.2f;
     public LayerMask groundLayer;
 
+    [Header("Ledge Detection")]
+    public float ledgeAbortCooldownTime = 3f; // time to delay chasing again after ledge
+    [HideInInspector] public float lastTimeLedgeAbort;
+
+
     public bool isDead = false;
 
     public System.Action onFlipped;
@@ -53,6 +58,8 @@ public class EnemyBase : MonoBehaviour
     public virtual EnemyState attackState => null;
     public virtual EnemyState stunnedState => null;
     public virtual EnemyState idle => null;
+    public Transform groundCheck;
+    public float groundCheckDistance = 0.2f;
 
     public virtual void Awake()
     {
@@ -240,6 +247,13 @@ if (wallCheck != null)
         Gizmos.DrawSphere(right, 0.1f);
 #endif
     }
+
+public bool IsGroundAhead()
+{
+    Debug.DrawRay(groundCheck.position, Vector2.down * groundCheckDistance, Color.red);
+    return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, groundLayer);
+}
+
 
     
 
