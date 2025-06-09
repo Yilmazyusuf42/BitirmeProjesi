@@ -8,6 +8,10 @@ TagManager:
   - Sword
   - EnemyProjectile
   - Dead
+  - groundTilemap
+  - collisionTilemap
+  - WallTileMap
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
@@ -22,8 +26,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Room
+  - Wall
   - 
   - 
   - 
@@ -44,6 +48,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 2579431867
     locked: 0
   - name: Background
     uniqueID: 3836485991

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3c4206e7102825419b95d75701b2990, type: 3}
+  m_Name: DungeonLevel_Level1
+  m_EditorClassIdentifier: 
+  levelName: Zindan
+  roomTemplatelist:
+  - {fileID: 11400000, guid: 64982043086b11b49ae4a6dfcf58ce8c, type: 2}
+  - {fileID: 11400000, guid: 56aabacaf3592b249b8c2ce518cd35c0, type: 2}
+  - {fileID: 11400000, guid: e1e0fee9b1ea1594eaaa2b85b72e2da0, type: 2}
+  - {fileID: 11400000, guid: 587378d428e62474fbac8ac25c67a1cd, type: 2}
+  - {fileID: 11400000, guid: decdfe81313533449ad8ba18c3252cf0, type: 2}
+  - {fileID: 11400000, guid: 9633c66db7c0d664c9104bf072a03c60, type: 2}
+  - {fileID: 11400000, guid: 9633c66db7c0d664c9104bf072a03c60, type: 2}
+  roomNodeGraphList:
+  - {fileID: 11400000, guid: 0633afac9406ed1459be51d4a6532ea6, type: 2}
