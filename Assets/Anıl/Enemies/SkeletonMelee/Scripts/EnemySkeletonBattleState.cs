@@ -22,34 +22,45 @@ public class EnemySkeletonBattleState : EnemyState
         enemy.anim.SetBool("PlayRun", false);
     }
 
-public override void Update()
-{
-    base.Update();
-
-    enemy.FlipTowardsPlayer();
-    float distanceToPlayer = Vector2.Distance(enemy.transform.position, enemy.player.position);
-
-    if (distanceToPlayer <= enemy.minAgroRange)
+    public override void Update()
     {
-        enemy.SetZeroVelocity();
-        enemy.anim.SetBool("PlayRun", false); // ✅ idle while cooling
+        base.Update();
 
-        if (enemy.CanAttack())
+        enemy.FlipTowardsPlayer();
+        float distanceToPlayer = Vector2.Distance(enemy.transform.position, enemy.player.position);
+
+        if (distanceToPlayer <= enemy.minAgroRange)
         {
-            stateMachine.ChangeState(enemy.attackState);
+            enemy.SetZeroVelocity();
+            enemy.anim.SetBool("PlayRun", false); // ✅ idle while cooling
+
+            if (enemy.CanAttack())
+            {
+                stateMachine.ChangeState(enemy.attackState);
+            }
+            return;
         }
-        return;
-    }
 
-    if (enemy.IsPlayerDetected())
-    {
-        enemy.SetVelocity(enemy.runSpeed * enemy.facingDir, rb.velocity.y);
-        enemy.anim.SetBool("PlayRun", true);
-    }
-    else
-    {
-        stateMachine.ChangeState(enemy.moveState);
-    }
-}
+        if (enemy.IsPlayerDetected())
+        {
+            // 🛑 Block re-chase if ledge cooldown is active
+            if (Time.time < enemy.lastTimeLedgeAbort + enemy.ledgeAbortCooldownTime)
+            {
+                enemy.SetZeroVelocity();
+                enemy.anim.SetBool("PlayRun", false);
+                return;
+            }
 
+            // ✅ Cooldown passed, move to chase
+            stateMachine.ChangeState(enemy.moveState);
+        }
+        else
+        {
+            // ❌ Do NOT chase if player is not detected
+            // ❌ Let the enemy stay in battleState (idle or patrol logic continues elsewhere)
+            enemy.SetZeroVelocity();
+            enemy.anim.SetBool("PlayRun", false);
+        }
+
+    }
 }
