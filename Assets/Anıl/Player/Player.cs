@@ -181,20 +181,24 @@ public void Respawn(Vector3 spawnPosition)
 }
 
 
-    public void Die()
-    {
-        if (isDead)
-            return;
+public void Die()
+{
+    if (isDead)
+        return;
 
-        isDead = true;
+    isDead = true;
 
-        if (IsGroundDetected())
-            stateMachine.ChangeState(deadState);
+    // 🪙 Lose half gold on death
+    GoldManager.instance?.LoseHalfGold();
 
-        this.tag = "Dead";
-        SkillManager.instance.sword.DotsActive(false);
-        FindObjectOfType<DeathScreen>().ShowDeathScreen();
-    }
+    if (IsGroundDetected())
+        stateMachine.ChangeState(deadState);
+
+    this.tag = "Dead";
+    SkillManager.instance.sword.DotsActive(false);
+    FindObjectOfType<DeathScreen>().ShowDeathScreen();
+}
+
   
     
 }

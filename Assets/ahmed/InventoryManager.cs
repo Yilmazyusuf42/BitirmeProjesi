@@ -16,22 +16,6 @@ public class InventoryManager : MonoBehaviour
         itemSlot.ToList().ForEach(x => x.GetComponent<Button>().onClick.AddListener(() => { DeActivateOthers(x.GetComponent<Button>()); }));
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetButtonDown("Inventory") && menuActivated)
-        {
-            Time.timeScale = 1;
-            InventoryMenu.SetActive(false);
-            menuActivated = false;
-        }
-        else if (Input.GetButtonDown("Inventory") && !menuActivated)
-        {
-            Time.timeScale = 0;
-            InventoryMenu.SetActive(true);
-            menuActivated = true;
-        }
-    }
 
 
     public void AddItem(string itemName, int quantity, Sprite itemsprite)
