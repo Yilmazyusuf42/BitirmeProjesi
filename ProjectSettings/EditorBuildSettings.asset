@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: "Assets/An\u0131l/Scenes/SampleScene.unity"
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Yusuf/Demomapload.unity
+    guid: 3405076f4c4817d44a0ab7fc4dc76de6
+  - enabled: 1
+    path: Assets/Yusuf/DemoMapYusuf.unity
+    guid: e80c7deaee47f114ebef9ecce1268588
   m_configObjects: {}
