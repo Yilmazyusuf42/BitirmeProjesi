@@ -6,7 +6,7 @@ public class EnemySkeleton : EnemyMelee
     public EnemyMoveState moveState { get; private set; }
     public EnemySkeletonBattleState battleStateInternal { get; private set; }
     public EnemySkeletonAttackState attackStateInternal { get; private set; }
-    public EnemyStunnedState stunnedStateInternal { get; private set; } // 🔄 Changed to generic
+    public EnemyStunnedState stunnedStateInternal { get; private set; }
     public EnemyPatrolState patrolStateInternal { get; private set; }
 
     public override EnemyState battleState => battleStateInternal;

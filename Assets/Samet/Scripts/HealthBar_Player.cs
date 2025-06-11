@@ -1,41 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthBar_Player : MonoBehaviour
 {
-    private CharacterStats myStats;
-    private Entity _entity;
-    private RectTransform _rectTransform;
+    private PlayerStats playerStats;
     private Slider slider;
-    public Slider MainSlider;
+
+    private void Awake()
+    {
+        // Automatically find the slider on this GameObject or children
+        slider = GetComponentInChildren<Slider>();
+
+        if (slider == null)
+            Debug.LogError("❌ HealthBar_Player: Slider not found!");
+    }
+
     private void Start()
     {
-        _entity = GetComponentInParent<Entity>();
-        _rectTransform = GetComponent<RectTransform>();
-        slider = GetComponentInChildren<Slider>();
-        myStats = GetComponentInParent<CharacterStats>();
+        // Find PlayerStats once the game starts
+        playerStats = FindObjectOfType<PlayerStats>();
 
+        if (playerStats == null)
+        {
+            Debug.LogError("❌ HealthBar_Player: PlayerStats not found in scene!");
+            return;
+        }
 
-        _entity.onFlipped += FlipUI;
-        myStats.onHealhtChanged += UpdateHealthUI;
+        // Set initial values
+        slider.maxValue = playerStats.GetMaxHealthValue();
+        slider.value = playerStats.currentHp;
 
-        UpdateHealthUI();
+        // Subscribe to health change
+        playerStats.onHealhtChanged += UpdateHealthUI;
     }
-    private void Update()
-    {
-        UpdateHealthUI();
-    }
+
     private void UpdateHealthUI()
     {
-        slider.maxValue = myStats.GetMaxHealthValue();
-        slider.value = myStats.currentHp;
+        if (slider != null && playerStats != null)
+        {
+            slider.maxValue = playerStats.GetMaxHealthValue();
+            slider.value = playerStats.currentHp;
+        }
     }
-    private void FlipUI() => _rectTransform.Rotate(0, 180, 0);
+
     private void OnDisable()
     {
-        _entity.onFlipped -= FlipUI;
-        myStats.onHealhtChanged -= UpdateHealthUI;
+        if (playerStats != null)
+            playerStats.onHealhtChanged -= UpdateHealthUI;
     }
 }

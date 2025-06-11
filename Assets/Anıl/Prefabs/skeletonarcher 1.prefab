@@ -71,13 +71,12 @@ Transform:
   m_GameObject: {fileID: 621812281474841256}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.402012, y: -25.98163, z: -0.05104412}
-  m_LocalScale: {x: -1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -3.537, y: 9.692, z: -0.05104412}
+  m_LocalScale: {x: -0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2216985959266916211}
   - {fileID: 4778704677595453671}
-  - {fileID: 613313337046389662}
   - {fileID: 5684789085602321102}
   - {fileID: 8949675945481478923}
   m_Father: {fileID: 0}
@@ -260,8 +259,8 @@ MonoBehaviour:
   spawnPosition: {x: 0, y: 0}
   attackCooldown: 1.25
   lastAttackTime: 0
-  wallCheck: {fileID: 613313337046389662}
-  wallCheckDistance: 1
+  wallCheck: {fileID: 8949675945481478923}
+  wallCheckDistance: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -269,7 +268,7 @@ MonoBehaviour:
   lastTimeLedgeAbort: 0
   isDead: 0
   groundCheck: {fileID: 8949675945481478923}
-  groundCheckDistance: 1
+  groundCheckDistance: 0.5
   shootRange: 6
   arrowPrefab: {fileID: 3260180324519713910}
   arrowSpawnPoint: {fileID: 2216985959266916211}
@@ -302,13 +301,13 @@ MonoBehaviour:
     baseValue: 1
     modifiers: 
   agility:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   intelligence:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   vitality:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   damage:
     baseValue: 10
@@ -320,13 +319,13 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 0
+    baseValue: 50
     modifiers: 
   armor:
     baseValue: 0
     modifiers: 
   evasion:
-    baseValue: 0
+    baseValue: 25
     modifiers: 
   magicResistance:
     baseValue: 0
@@ -581,8 +580,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88e4616800279124bb7bdd5f57777f48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 20
   lifetime: 3
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
   ownerEnemy: {fileID: 218779461111773697}
 --- !u!212 &2529697820174093261
 SpriteRenderer:
@@ -661,7 +663,7 @@ Transform:
   m_GameObject: {fileID: 3877498068312765095}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24, y: -2.02, z: 0}
+  m_LocalPosition: {x: 0.4, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -701,7 +703,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 22.200012, y: 42}
+  m_AnchoredPosition: {x: 0, y: -0.000076293945}
   m_SizeDelta: {x: -606.5, y: -476.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &5655611836977139849
@@ -755,37 +757,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &5818639376369745889
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 613313337046389662}
-  m_Layer: 6
-  m_Name: WallCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &613313337046389662
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5818639376369745889}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.27, y: -2.01, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7592146040025669508}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6775879309599585981
 GameObject:
   m_ObjectHideFlags: 0
@@ -898,7 +869,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.16, y: -0.06}
+  m_AnchoredPosition: {x: -0.12, y: 0.35}
   m_SizeDelta: {x: 794, y: 502}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &907838723630995178

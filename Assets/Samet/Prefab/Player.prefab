@@ -770,16 +770,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strength:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   agility:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   intelligence:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   vitality:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   damage:
     baseValue: 20
@@ -794,13 +794,13 @@ MonoBehaviour:
     baseValue: 100
     modifiers: 
   armor:
-    baseValue: 100
+    baseValue: 10
     modifiers: 
   evasion:
     baseValue: 10
     modifiers: 
   magicResistance:
-    baseValue: 100
+    baseValue: 10
     modifiers: 
   fireDamage:
     baseValue: 0
