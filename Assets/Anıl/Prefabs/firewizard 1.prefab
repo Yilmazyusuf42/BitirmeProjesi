@@ -438,7 +438,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   fireDamage:
-    baseValue: 10
+    baseValue: 3
     modifiers: 
   iceDamage:
     baseValue: 0
@@ -450,6 +450,7 @@ MonoBehaviour:
   isChilled: 0
   isShocked: 0
   currentHp: 0
+  goldRange: {x: 1, y: 10}
 --- !u!114 &1899556114373426490
 MonoBehaviour:
   m_ObjectHideFlags: 0
