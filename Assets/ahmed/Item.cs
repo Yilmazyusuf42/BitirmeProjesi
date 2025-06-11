@@ -9,13 +9,13 @@ public class Item : MonoBehaviour
     [SerializeField] private Sprite sprite;
 
     private InventoryManager inventoryManager;
-    void Start()
+   /* void Start()
     {
         inventoryManager = GameObject.Find("InventoryCanvas").GetComponent<InventoryManager>();
         
-    }
+    }*/
 
-    private void OnCollisionEnter2D(Collision2D collision)
+   /* private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
             Destroy(gameObject);
         }
         
-    }
+    }*/
 
 
 }
