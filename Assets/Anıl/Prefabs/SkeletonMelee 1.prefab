@@ -29,7 +29,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 295874705508012286}
-  - {fileID: 2739735489889759706}
   m_Father: {fileID: 9088151772729230861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -67,11 +66,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9113120845487121531}
+  - {fileID: 2739735489889759706}
   m_Father: {fileID: 296275882773851536}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 22.200012, y: 42}
+  m_AnchoredPosition: {x: 0, y: -0.000076293945}
   m_SizeDelta: {x: -606.5, y: -476.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7193776039364565943
@@ -125,37 +125,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &3345836706089743884
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7106553768830924205}
-  m_Layer: 6
-  m_Name: WallCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7106553768830924205
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3345836706089743884}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.09, y: -1.99, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5767094490503621148}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3647093501804197551
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +150,7 @@ Transform:
   m_GameObject: {fileID: 3647093501804197551}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.22, y: -2.01, z: 0}
+  m_LocalPosition: {x: 0.5, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -221,12 +190,11 @@ Transform:
   m_GameObject: {fileID: 5421664534091814997}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.03, y: -26.02, z: -0.05104412}
-  m_LocalScale: {x: -1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 2.36, y: 9.76, z: -0.05104412}
+  m_LocalScale: {x: -0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2705084188608324937}
-  - {fileID: 7106553768830924205}
   - {fileID: 296275882773851536}
   - {fileID: 8456165914603159936}
   m_Father: {fileID: 0}
@@ -392,8 +360,8 @@ MonoBehaviour:
   spawnPosition: {x: 0, y: 0}
   attackCooldown: 1
   lastAttackTime: -Infinity
-  wallCheck: {fileID: 7106553768830924205}
-  wallCheckDistance: 1
+  wallCheck: {fileID: 8456165914603159936}
+  wallCheckDistance: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -401,7 +369,7 @@ MonoBehaviour:
   lastTimeLedgeAbort: 0
   isDead: 0
   groundCheck: {fileID: 8456165914603159936}
-  groundCheckDistance: 1
+  groundCheckDistance: 0.5
   attackCheck: {fileID: 2705084188608324937}
   attackRadius: 0.7
 --- !u!114 &117247522696183466
@@ -450,19 +418,19 @@ MonoBehaviour:
     baseValue: 1
     modifiers: 
   agility:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   intelligence:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   vitality:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   damage:
     baseValue: 10
     modifiers: 
   critChance:
-    baseValue: 99
+    baseValue: 15
     modifiers: 
   critDamage:
     baseValue: 0
@@ -471,7 +439,7 @@ MonoBehaviour:
     baseValue: 100
     modifiers: 
   armor:
-    baseValue: 0
+    baseValue: 25
     modifiers: 
   evasion:
     baseValue: 0
@@ -534,11 +502,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9113120845487121531}
+  m_Father: {fileID: 9088151772729230861}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00018310547, y: 0}
+  m_AnchoredPosition: {x: -0.00036621094, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6598816010004009591
@@ -616,7 +584,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.028, y: 0.27}
   m_SizeDelta: {x: 794, y: 502}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4731170319332706100

@@ -47,7 +47,6 @@ public class EnemyBase : MonoBehaviour
     public float ledgeAbortCooldownTime = 3f; // time to delay chasing again after ledge
     [HideInInspector] public float lastTimeLedgeAbort;
 
-
     public bool isDead = false;
 
     public System.Action onFlipped;

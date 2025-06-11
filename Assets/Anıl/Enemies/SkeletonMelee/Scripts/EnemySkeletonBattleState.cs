@@ -56,8 +56,6 @@ public class EnemySkeletonBattleState : EnemyState
         }
         else
         {
-            // ❌ Do NOT chase if player is not detected
-            // ❌ Let the enemy stay in battleState (idle or patrol logic continues elsewhere)
             enemy.SetZeroVelocity();
             enemy.anim.SetBool("PlayRun", false);
         }
