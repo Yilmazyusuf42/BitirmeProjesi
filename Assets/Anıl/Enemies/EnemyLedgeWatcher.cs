@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyLedgeWatcher : MonoBehaviour
 {
     private EnemyBase enemy;
+    private float ledgeCheckCooldown = 1f; // Time after spawn or transition to avoid early ledge check
 
     private void Awake()
     {
@@ -14,8 +15,8 @@ public class EnemyLedgeWatcher : MonoBehaviour
         if (enemy == null || enemy.isDead || GameState.isPlayerDead)
             return;
 
-        // Only check during combat-related states
         var current = enemy.stateMachine.currentState;
+
         bool isAggressiveState =
             current == enemy.attackState ||
             current == enemy.battleState;
@@ -23,12 +24,15 @@ public class EnemyLedgeWatcher : MonoBehaviour
         if (!isAggressiveState)
             return;
 
-        // 🛑 Abort movement or attack if no ground ahead
+        // Avoid early ledge check after spawn or re-entry into aggressive state
+        if (Time.time - enemy.lastTimeLedgeAbort < ledgeCheckCooldown)
+            return;
+
         if (!enemy.IsGroundAhead())
         {
             enemy.SetZeroVelocity();
-            enemy.lastTimeLedgeAbort = Time.time; 
-            enemy.stateMachine.ChangeState(enemy.patrolState); // or patrolState if safer
+            enemy.lastTimeLedgeAbort = Time.time;
+            enemy.stateMachine.ChangeState(enemy.patrolState);
         }
     }
 }

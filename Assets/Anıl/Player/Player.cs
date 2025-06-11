@@ -81,8 +81,11 @@ public class Player : Entity
     public override void Start()
     {
         base.Start();
-        stateMachine.Initialize(idleState);
 
+        isDead = false;              // ✅ Make player alive again
+        this.tag = "Player";         // ✅ Restore correct tag
+        stateMachine.Initialize(idleState); // ✅ Reset state machine
+        GameState.isPlayerDead = false; // ✅ Reset global flag
     }
 
 
@@ -157,14 +160,41 @@ public void StunPlayer(float duration)
     stateMachine.ChangeState(stunnedState);
 }
 
-
-public void Die()
+public void Respawn(Vector3 spawnPosition)
 {
+    // Reset core flags
+    isDead = false;
+    this.tag = "Player";
+
+    // Reset position
+    transform.position = spawnPosition;
+
+    // Reset stats
+    stats.currentHp = stats.GetMaxHealthValue();
+    stats.onHealhtChanged?.Invoke();
+
+    // Clear sword if needed
+    ClearSword();
+
+    // Reinitialize state machine
+    stateMachine.ChangeState(idleState);
+}
+
+
+    public void Die()
+    {
+        if (isDead)
+            return;
+
         isDead = true;
-        if(IsGroundDetected())
-    stateMachine.ChangeState(deadState);
+
+        if (IsGroundDetected())
+            stateMachine.ChangeState(deadState);
+
         this.tag = "Dead";
         SkillManager.instance.sword.DotsActive(false);
-}    
+        FindObjectOfType<DeathScreen>().ShowDeathScreen();
+    }
+  
     
 }

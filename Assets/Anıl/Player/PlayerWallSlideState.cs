@@ -23,7 +23,7 @@ public class PlayerWallSlideState : PlayerState
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)/*&&Input.GetKeyDown(KeyCode.A)||Input.GetKeyDown(KeyCode.D)*/)
         {
             stateMachine.ChangeState(player.wallJump);
             return;

@@ -33,6 +33,7 @@ public class PlayerAirState : PlayerState
         if (player.IsGroundDetected())
         {
             stateMachine.ChangeState(player.idleState);
+            player.SetZeroVelocity();
             if (fallTime > 1)
             {
                 player.stats.TakeDamage(Mathf.RoundToInt(Mathf.Round(fallTime * 15)));
