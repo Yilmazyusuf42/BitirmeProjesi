@@ -218,18 +218,20 @@ public class CharacterStats : MonoBehaviour
 {
         entityFx.targetMaterial.color = Color.white;
         currentHp -= damage;
+        onHealhtChanged?.Invoke();
 
    // Debug.Log($"{gameObject.name} took {damage} damage. Current HP: {currentHp}");
 
-    if (currentHp <= 0)
-        Die();
+        if (currentHp <= 0)
+            Die();
 }
 protected virtual void DecreaseHealthBy(int _damage)
 {
     currentHp -= _damage;
-PlayerHealth.instance.slider.value = currentHp;
+    PlayerHealth.instance.slider.value = currentHp;
+    onHealhtChanged?.Invoke();
     if (onHealhtChanged != null)
-        onHealhtChanged();
+            onHealhtChanged();
 }
 
 

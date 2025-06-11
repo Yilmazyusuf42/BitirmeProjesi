@@ -209,8 +209,8 @@ Transform:
   m_GameObject: {fileID: 5804639036310474863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16, y: 4.1, z: -0.05104412}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalPosition: {x: 12.74435, y: 4.1653, z: -0.05104412}
+  m_LocalScale: {x: -1, y: 1.0129, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3784126399657339173}
@@ -351,8 +351,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.7057352, y: -1.5782835}
-  m_Size: {x: 2.6294575, y: 4.8421464}
+  m_Offset: {x: 0.60878897, y: -1.5846639}
+  m_Size: {x: 3.1852846, y: 5.0335693}
   m_Direction: 0
 --- !u!114 &6781447416152320026
 MonoBehaviour:
@@ -459,14 +459,14 @@ MonoBehaviour:
   runSpeed: 3
   walkSpeed: 1.5
   facingDir: 1
-  minAgroRange: 3
-  maxAgroRange: 10
+  minAgroRange: 4
+  maxAgroRange: 15
   idleTime: 1.5
   canBeStunned: 0
   returningToSpawn: 0
   patrolRange: 6
   spawnPosition: {x: 0, y: 0}
-  attackCooldown: 3
+  attackCooldown: 2
   lastAttackTime: -Infinity
   wallCheck: {fileID: 5388708354193605487}
   wallCheckDistance: 0.5

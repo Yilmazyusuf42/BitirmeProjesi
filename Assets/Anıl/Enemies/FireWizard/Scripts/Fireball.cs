@@ -32,27 +32,36 @@ public class Fireball : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+private void OnTriggerEnter2D(Collider2D other)
+{
+    if (hasHit)
+        return;
+
+    // ✅ Only hurt player
+    if (other.CompareTag("Player"))
     {
-        if (hasHit)
-            return;
-
-        if (other.CompareTag("Player"))
+        if (other.TryGetComponent(out Player player))
         {
-            if (other.TryGetComponent(out Player player))
-            {
-                owner.stats.DoMagicalDamage(player.stats);
-                Debug.Log("🔥 Fireball hit player");
-            }
-
-            hasHit = true;
+            owner.stats.DoMagicalDamage(player.stats);
+            Debug.Log("🔥 Fireball hit player");
         }
 
-        if (!other.isTrigger)
-        {
-            hasHit = true;
-        }
+        hasHit = true;
+        return;
     }
+
+    // ✅ Ignore enemies entirely
+    if (other.CompareTag("Enemy"))
+        return;
+
+    // ✅ Ignore other triggers (e.g. hitboxes, attack zones)
+    if (other.isTrigger)
+        return;
+
+    // ✅ Everything else (e.g. walls, ground) counts as a hit
+    hasHit = true;
+}
+
 
     // Called by animation event
     public void DestroySelf()

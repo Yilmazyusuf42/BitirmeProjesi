@@ -32,29 +32,36 @@ public class Chargeball : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+private void OnTriggerEnter2D(Collider2D other)
+{
+    if (hasHit)
+        return;
+
+    // ✅ Only hurt player
+    if (other.CompareTag("Player"))
     {
-        if (hasHit)
-            return;
-
-        Debug.Log("⚡ Chargeball hit: " + other.name);
-
-        if (other.CompareTag("Player"))
+        if (other.TryGetComponent(out Player player))
         {
-            if (other.TryGetComponent(out Player player))
-            {
-                Debug.Log("💥 Chargeball is applying magic damage!");
-                owner.stats.DoMagicalDamage(player.stats);
-            }
-
-            hasHit = true;
+            owner.stats.DoMagicalDamage(player.stats);
+            Debug.Log("🔥 Fireball hit player");
         }
 
-        if (!other.isTrigger)
-        {
-            hasHit = true;
-        }
+        hasHit = true;
+        return;
     }
+
+    // ✅ Ignore enemies entirely
+    if (other.CompareTag("Enemy"))
+        return;
+
+    // ✅ Ignore other triggers (e.g. hitboxes, attack zones)
+    if (other.isTrigger)
+        return;
+
+    // ✅ Everything else (e.g. walls, ground) counts as a hit
+    hasHit = true;
+}
+
 
     // Called by animation event
     public void DestroySelf()

@@ -1,46 +1,56 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : CharacterStats
 {
     public static PlayerHealth instance;
-    public float maxHealth = 100f;
-    public float currentHealth;
-    public Slider slider;
-    private bool isDead = false; // Track death state
 
-    void Start()
+    public Slider slider;
+
+    protected override void Start()
     {
+        base.Start();
         instance = this;
-        currentHealth = maxHealth;
-        slider.maxValue = maxHealth;
-        slider.value = currentHealth;
+
+        if (slider)
+        {
+            slider.maxValue = GetMaxHealthValue();
+            slider.value = currentHp;
+        }
+
+        onHealhtChanged += UpdateSlider;
     }
 
-    public void TakeDamage(float damage)
+    public override void TakeDamage(int damage)
     {
-        if (isDead) return; // Don’t take damage if already dead
+        base.TakeDamage(damage); // Handles currentHp reduction and death
 
-        currentHealth -= damage;
-        slider.value = currentHealth;
-        Debug.Log("Player Health: " + currentHealth);
+        UpdateSlider();
+    }
 
-        if (currentHealth <= 0)
+    private void UpdateSlider()
+    {
+        if (slider)
         {
-            Die();
+            slider.maxValue = GetMaxHealthValue();
+            slider.value = currentHp;
         }
     }
 
-    void Die()
-    {
-        isDead = true;
-        Debug.Log("Player Died!");
-        // Add death animation or logic here if needed
-    }
-
-    // Public method to check if player is dead
     public bool IsDead()
     {
-        return isDead;
+        return currentHp <= 0;
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        Debug.Log("Player Died!");
+        // Add death animation or respawn here
+    }
+
+    private void OnDisable()
+    {
+        onHealhtChanged -= UpdateSlider;
     }
 }
