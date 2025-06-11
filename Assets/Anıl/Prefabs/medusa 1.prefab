@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1011152241983685682
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9131181084434382818}
-  m_Layer: 6
-  m_Name: WallCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9131181084434382818
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1011152241983685682}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.85, y: -4, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2076599659078553337}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2505766759221759170
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 2505766759221759170}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.89, y: -3.99, z: 0}
+  m_LocalPosition: {x: 2.25, y: -4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -240,12 +209,11 @@ Transform:
   m_GameObject: {fileID: 5804639036310474863}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.66, y: -24.11, z: -0.05104412}
+  m_LocalPosition: {x: 16, y: 4.1, z: -0.05104412}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3784126399657339173}
-  - {fileID: 9131181084434382818}
   - {fileID: 2979801294253579931}
   - {fileID: 4827437014060642019}
   - {fileID: 5388708354193605487}
@@ -432,31 +400,31 @@ MonoBehaviour:
     baseValue: 1
     modifiers: 
   agility:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   intelligence:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   vitality:
-    baseValue: 0
+    baseValue: 1
     modifiers: 
   damage:
-    baseValue: 100
+    baseValue: 25
     modifiers: 
   critChance:
-    baseValue: 0
+    baseValue: 40
     modifiers: 
   critDamage:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 1000
+    baseValue: 500
     modifiers: 
   armor:
-    baseValue: 0
+    baseValue: 25
     modifiers: 
   evasion:
-    baseValue: 0
+    baseValue: 25
     modifiers: 
   magicResistance:
     baseValue: 0
@@ -500,8 +468,8 @@ MonoBehaviour:
   spawnPosition: {x: 0, y: 0}
   attackCooldown: 3
   lastAttackTime: -Infinity
-  wallCheck: {fileID: 9131181084434382818}
-  wallCheckDistance: 0.2
+  wallCheck: {fileID: 5388708354193605487}
+  wallCheckDistance: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -509,7 +477,7 @@ MonoBehaviour:
   lastTimeLedgeAbort: 0
   isDead: 0
   groundCheck: {fileID: 5388708354193605487}
-  groundCheckDistance: 1
+  groundCheckDistance: 0.5
   attackCheck: {fileID: 3784126399657339173}
   attackRadius: 2
   holdPoint: {fileID: 4827437014060642019}
@@ -678,7 +646,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 18, y: 69}
+  m_AnchoredPosition: {x: 1, y: 0.000030517578}
   m_SizeDelta: {x: -606.5, y: -476.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9099533450935112505
@@ -769,7 +737,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.3709, y: 0.8509}
+  m_AnchoredPosition: {x: 0.37, y: 1.21}
   m_SizeDelta: {x: 1168.3806, y: 537.6554}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2648696777287301485

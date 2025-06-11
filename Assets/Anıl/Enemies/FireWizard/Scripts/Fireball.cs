@@ -6,19 +6,29 @@ public class Fireball : MonoBehaviour
     private Vector2 direction;
     private bool hasHit = false;
 
+    public LayerMask whatIsGround; // ✅ Set this in Inspector
     public EnemyBase owner;
 
     public void SetDirection(Vector2 dir)
     {
-        direction = dir.normalized;
+        // ✅ Ensure horizontal-only travel
+        direction = new Vector2(Mathf.Sign(dir.x), 0f);
         transform.localScale = new Vector3(Mathf.Sign(direction.x), 1, 1);
     }
 
     void Update()
     {
-        if (!hasHit)
+        if (hasHit)
+            return;
+
+        // ✅ Move
+        transform.Translate(direction * speed * Time.deltaTime);
+
+        // ✅ Raycast forward to check for solid collision
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 0.1f, whatIsGround);
+        if (hit.collider != null)
         {
-            transform.Translate(direction * speed * Time.deltaTime);
+            hasHit = true;
         }
     }
 
