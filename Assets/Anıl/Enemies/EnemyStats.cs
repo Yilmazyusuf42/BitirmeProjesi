@@ -23,16 +23,16 @@ protected override void Die()
 {
     base.Die();
 
-    // ✅ Award random gold on death (only once)
-    if (GoldManager.instance != null)
-    {
-        int goldToGive = Random.Range(goldRange.x, goldRange.y + 1);
-        GoldManager.instance.AddGold(goldToGive);
+        // ✅ Award random gold on death (only once)
+        if (GoldManager.instance != null)
+        {
+            int goldToGive = Random.Range(goldRange.x, goldRange.y + 1);
+            GoldManager.instance.AddGold(goldToGive);
     }
-    else
-    {
-        Debug.LogWarning("[EnemyStats] GoldManager instance is missing!");
-    }
+        else
+        {
+            Debug.LogWarning("[EnemyStats] GoldManager instance is missing!");
+        }
 
     m_Enemy.Die();
 }
