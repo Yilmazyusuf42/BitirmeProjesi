@@ -229,7 +229,7 @@ protected virtual void DecreaseHealthBy(int _damage)
 {
     currentHp -= _damage;
      if(PlayerHealth.instance != null)
-    PlayerHealth.instance.slider.value = currentHp;
+        PlayerHealth.instance.slider.value = currentHp;
     onHealhtChanged?.Invoke();
     if (onHealhtChanged != null)
             onHealhtChanged();

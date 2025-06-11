@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: "Assets/An\u0131l/Scenes/SampleScene.unity"
+    path: Assets/Cainos/Pixel Art Platformer - Dungeon/Scene/SC Demo Scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Yusuf/Demomapload.unity
+    guid: 3405076f4c4817d44a0ab7fc4dc76de6
   m_configObjects: {}
