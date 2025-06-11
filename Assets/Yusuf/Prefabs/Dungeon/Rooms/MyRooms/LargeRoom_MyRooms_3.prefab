@@ -69189,7 +69189,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2850799379035224670}
   - {fileID: 7923042643449570949}
   - {fileID: 57230235466987888}
   - {fileID: 3756180955118793927}
@@ -69202,7 +69201,6 @@ Transform:
   - {fileID: 8269149569672892069}
   - {fileID: 6946951824710980184}
   - {fileID: 1102751293226594728}
-  - {fileID: 1766772282797446203}
   - {fileID: 2691523641142321357}
   - {fileID: 7237332926882709615}
   - {fileID: 8101103126545849657}
@@ -83921,80 +83919,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6265670936862214329, guid: 8583057d8d61323449f1267a776d7334, type: 3}
   m_PrefabInstance: {fileID: 5152720291477375222}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &5169199101362933851
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5821029649756928891}
-    m_Modifications:
-    - target: {fileID: 527262527760620934, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: isOpened
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4142715627474073102, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 140802263, guid: 0afeb8577b003fb4589464f46d5b4b88, type: 3}
-    - target: {fileID: 6930122694965717508, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_Name
-      value: PF Dungeon Props - Door Wood Side 01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 32.328
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.033
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
---- !u!4 &2850799379035224670 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-  m_PrefabInstance: {fileID: 5169199101362933851}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5174797351139588746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91354,72 +91278,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6265670936862214329, guid: 1df495940352cbb42a15891fc7e5e2d6, type: 3}
   m_PrefabInstance: {fileID: 8645120660106566587}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &8694317657713294910
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5821029649756928891}
-    m_Modifications:
-    - target: {fileID: 6930122694965717508, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_Name
-      value: PF Dungeon Props - Door Wood Side 01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_RootOrder
-      value: 34
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 63.315247
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -22.041252
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.0062500015
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
---- !u!4 &1766772282797446203 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6930122694965717509, guid: 88b36fbeb18b02f4eb65eba52b1d0c52, type: 3}
-  m_PrefabInstance: {fileID: 8694317657713294910}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8731552478820735681
 PrefabInstance:

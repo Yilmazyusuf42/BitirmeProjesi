@@ -552,11 +552,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4620085561944903810, guid: d69f35b4539f4944585a4df2bd21443b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.795901
+      value: 21.9741
       objectReference: {fileID: 0}
     - target: {fileID: 4620085561944903810, guid: d69f35b4539f4944585a4df2bd21443b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8152439
+      value: -5.6657557
       objectReference: {fileID: 0}
     - target: {fileID: 4620085561944903810, guid: d69f35b4539f4944585a4df2bd21443b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -572,11 +572,11 @@ PrefabInstance:
       objectReference: {fileID: 1741587100}
     - target: {fileID: 7541237545656286720, guid: d69f35b4539f4944585a4df2bd21443b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.795901
+      value: 21.9741
       objectReference: {fileID: 0}
     - target: {fileID: 7541237545656286720, guid: d69f35b4539f4944585a4df2bd21443b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8152439
+      value: -5.6657557
       objectReference: {fileID: 0}
     - target: {fileID: 7541237545656286720, guid: d69f35b4539f4944585a4df2bd21443b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -777,11 +777,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4487530193396030471, guid: e0e9aca94bc4054459dc97c163b05409, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 24.77
       objectReference: {fileID: 0}
     - target: {fileID: 4487530193396030471, guid: e0e9aca94bc4054459dc97c163b05409, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.761
+      value: -5.72
       objectReference: {fileID: 0}
     - target: {fileID: 4487530193396030471, guid: e0e9aca94bc4054459dc97c163b05409, type: 3}
       propertyPath: m_LocalPosition.z
@@ -908,6 +908,10 @@ PrefabInstance:
     - target: {fileID: 96607496826516060, guid: 5fd31af095aaad94abd3c820750b1fde, type: 3}
       propertyPath: m_Name
       value: DeathScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 96607496826516060, guid: 5fd31af095aaad94abd3c820750b1fde, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1284109140603561068, guid: 5fd31af095aaad94abd3c820750b1fde, type: 3}
       propertyPath: m_Pivot.x
