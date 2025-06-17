@@ -259,7 +259,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1381016782, guid: 337e93568e960174eb9a4bbcfe74f646, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -409,7 +409,7 @@ MonoBehaviour:
     baseValue: 1
     modifiers: 
   damage:
-    baseValue: 25
+    baseValue: 10
     modifiers: 
   critChance:
     baseValue: 40
@@ -442,6 +442,7 @@ MonoBehaviour:
   isChilled: 0
   isShocked: 0
   currentHp: 10
+  goldRange: {x: 1, y: 10}
 --- !u!114 &6365442362900691322
 MonoBehaviour:
   m_ObjectHideFlags: 0

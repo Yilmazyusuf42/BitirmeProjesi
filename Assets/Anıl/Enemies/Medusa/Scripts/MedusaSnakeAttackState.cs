@@ -7,7 +7,7 @@ public class MedusaSnakeAttackState : EnemyState
     private Coroutine damageCoroutine;
 
     private float damageInterval = 0.5f;
-    private int damagePerTick = 50;
+    private int damagePerTick = 3;
 
     private float holdDuration = 3f; // ⏳ how long Medusa holds the player
     private float extraStunBuffer = 0.5f; // 🧠 how long the player stays stunned after release
